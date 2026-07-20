@@ -11,13 +11,13 @@ const countItems = [...document.querySelectorAll("[data-count]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-const sectorBrowser = document.querySelector("[data-sector-browser]");
-const sectorTabs = sectorBrowser ? [...sectorBrowser.querySelectorAll("[role='tab']")] : [];
-const sectorImage = sectorBrowser?.querySelector("[data-sector-image]");
-const sectorPanel = sectorBrowser?.querySelector("[role='tabpanel']");
-const sectorIndex = sectorBrowser?.querySelector("[data-sector-index]");
-const sectorTitle = sectorBrowser?.querySelector("[data-sector-title]");
-const sectorText = sectorBrowser?.querySelector("[data-sector-text]");
+const sectorCarousel = document.querySelector("[data-sector-carousel]");
+const sectorViewport = sectorCarousel?.querySelector(".sector-carousel__viewport");
+const sectorTrack = sectorCarousel?.querySelector("[data-carousel-track]");
+const sectorSlides = sectorTrack ? [...sectorTrack.children] : [];
+const sectorPrevBtn = sectorCarousel?.querySelector("[data-carousel-prev]");
+const sectorNextBtn = sectorCarousel?.querySelector("[data-carousel-next]");
+const sectorDots = sectorCarousel ? [...sectorCarousel.querySelectorAll("[data-carousel-dot]")] : [];
 
 function openHero() {
   requestAnimationFrame(() => {
@@ -95,18 +95,6 @@ function initCounts() {
   countItems.forEach((item) => observer.observe(item));
 }
 
-function preloadSectorImages() {
-  const preload = () => {
-    sectorTabs.forEach((tab) => {
-      const image = new Image();
-      image.src = `assets/2027/${tab.dataset.sector}-960.webp`;
-    });
-  };
-
-  if ("requestIdleCallback" in window) window.requestIdleCallback(preload, { timeout: 1400 });
-  else window.setTimeout(preload, 500);
-}
-
 function setHeader() {
   header?.classList.toggle("is-solid", window.scrollY > 30);
 }
@@ -150,52 +138,75 @@ function initMenu() {
   });
 }
 
-function activateSector(tab, moveFocus = false) {
-  if (!tab || !sectorImage || !sectorPanel) return;
+let sectorIndex = 0;
 
-  const name = tab.dataset.sector;
-  const wide = `assets/2027/${name}-1920.webp`;
-  const small = `assets/2027/${name}-960.webp`;
+function goToSectorSlide(index, moveFocus = false) {
+  if (!sectorTrack || !sectorSlides.length) return;
+  sectorIndex = (index + sectorSlides.length) % sectorSlides.length;
 
-  sectorTabs.forEach((item) => {
-    const selected = item === tab;
-    item.setAttribute("aria-selected", String(selected));
-    item.tabIndex = selected ? 0 : -1;
+  sectorTrack.style.transform = `translateX(-${sectorIndex * 100}%)`;
+  sectorSlides.forEach((slide, i) => slide.setAttribute("aria-hidden", String(i !== sectorIndex)));
+  sectorDots.forEach((dot, i) => {
+    dot.setAttribute("aria-selected", String(i === sectorIndex));
+    dot.tabIndex = i === sectorIndex ? 0 : -1;
   });
-
-  sectorImage.classList.add("is-changing");
-  window.setTimeout(() => {
-    sectorImage.src = wide;
-    sectorImage.srcset = `${small} 960w, ${wide} 1920w`;
-    sectorImage.alt = tab.dataset.alt;
-    sectorImage.classList.remove("is-changing");
-  }, reducedMotion ? 0 : 180);
-
-  sectorIndex.textContent = `${tab.dataset.index} / 05`;
-  sectorTitle.textContent = tab.dataset.title;
-  sectorText.textContent = tab.dataset.text;
-  sectorPanel.setAttribute("aria-labelledby", tab.id);
-  if (moveFocus) tab.focus();
+  if (moveFocus) sectorDots[sectorIndex]?.focus();
 }
 
-function initSectors() {
-  sectorTabs.forEach((tab, index) => {
-    tab.tabIndex = index === 0 ? 0 : -1;
-    tab.addEventListener("click", () => activateSector(tab));
-    tab.addEventListener("mouseenter", () => {
-      if (window.matchMedia("(hover: hover)").matches) activateSector(tab);
-    });
-    tab.addEventListener("keydown", (event) => {
-      if (!["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
-      event.preventDefault();
-      let next = index;
-      if (["ArrowDown", "ArrowRight"].includes(event.key)) next = (index + 1) % sectorTabs.length;
-      if (["ArrowUp", "ArrowLeft"].includes(event.key)) next = (index - 1 + sectorTabs.length) % sectorTabs.length;
-      if (event.key === "Home") next = 0;
-      if (event.key === "End") next = sectorTabs.length - 1;
-      activateSector(sectorTabs[next], true);
-    });
+function initSectorCarousel() {
+  if (!sectorCarousel || !sectorTrack || !sectorSlides.length) return;
+
+  sectorPrevBtn?.addEventListener("click", () => goToSectorSlide(sectorIndex - 1));
+  sectorNextBtn?.addEventListener("click", () => goToSectorSlide(sectorIndex + 1));
+  sectorDots.forEach((dot, i) => dot.addEventListener("click", () => goToSectorSlide(i)));
+
+  sectorCarousel.addEventListener("keydown", (event) => {
+    if (!["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === "ArrowRight") goToSectorSlide(sectorIndex + 1, true);
+    if (event.key === "ArrowLeft") goToSectorSlide(sectorIndex - 1, true);
+    if (event.key === "Home") goToSectorSlide(0, true);
+    if (event.key === "End") goToSectorSlide(sectorSlides.length - 1, true);
   });
+
+  if (sectorViewport) {
+    let dragging = false;
+    let startX = 0;
+    let deltaX = 0;
+
+    const onDragStart = (clientX) => {
+      dragging = true;
+      startX = clientX;
+      deltaX = 0;
+      sectorViewport.classList.add("is-dragging");
+      sectorTrack.style.transition = "none";
+    };
+    const onDragMove = (clientX) => {
+      if (!dragging) return;
+      deltaX = clientX - startX;
+      sectorTrack.style.transform = `translateX(calc(-${sectorIndex * 100}% + ${deltaX}px))`;
+    };
+    const onDragEnd = () => {
+      if (!dragging) return;
+      dragging = false;
+      sectorViewport.classList.remove("is-dragging");
+      sectorTrack.style.transition = "";
+      const threshold = sectorViewport.clientWidth * 0.12;
+      if (Math.abs(deltaX) > threshold) goToSectorSlide(sectorIndex + (deltaX < 0 ? 1 : -1));
+      else goToSectorSlide(sectorIndex);
+      deltaX = 0;
+    };
+
+    sectorViewport.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      onDragStart(event.clientX);
+    });
+    window.addEventListener("pointermove", (event) => onDragMove(event.clientX));
+    window.addEventListener("pointerup", onDragEnd);
+    window.addEventListener("pointercancel", onDragEnd);
+  }
+
+  goToSectorSlide(0);
 }
 
 let ticking = false;
@@ -215,8 +226,7 @@ initReveal();
 initHeroParallax();
 initCounts();
 initMenu();
-initSectors();
-preloadSectorImages();
+initSectorCarousel();
 setHeader();
 setProgress();
 setActiveNav();

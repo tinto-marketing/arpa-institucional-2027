@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ArPa — Apresentação Institucional 2027 · Opção 2</title>
-  <meta name="description" content="Conheça a ArPa, plataforma curatorial que aproxima arte contemporânea, galerias, instituições e públicos na América Latina.">
+  <meta name="description" content="Conheça a ArPa, iniciativa curatorial que aproxima arte contemporânea, galerias, instituições e públicos na América Latina.">
   <meta name="theme-color" content="#65002F" data-theme-color>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,7 +65,10 @@
     </section>
 
     <div class="kinetic-rail" aria-hidden="true">
-      <div>ARTE&nbsp;&nbsp;/&nbsp;&nbsp; DIÁLOGO&nbsp;&nbsp;/&nbsp;&nbsp; MERCADO&nbsp;&nbsp;/&nbsp;&nbsp; FORMAÇÃO&nbsp;&nbsp;/&nbsp;&nbsp; PRESENÇA&nbsp;&nbsp;/&nbsp;&nbsp; ARTE&nbsp;&nbsp;/&nbsp;&nbsp; DIÁLOGO&nbsp;&nbsp;/&nbsp;&nbsp; MERCADO&nbsp;&nbsp;/&nbsp;&nbsp; FORMAÇÃO&nbsp;&nbsp;/&nbsp;&nbsp; PRESENÇA&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+      <div class="kinetic-rail__track">
+        <span>ARTE&nbsp;&nbsp;/&nbsp;&nbsp; DIÁLOGO&nbsp;&nbsp;/&nbsp;&nbsp; MERCADO&nbsp;&nbsp;/&nbsp;&nbsp; FORMAÇÃO&nbsp;&nbsp;/&nbsp;&nbsp; PRESENÇA&nbsp;&nbsp;/&nbsp;&nbsp; </span>
+        <span>ARTE&nbsp;&nbsp;/&nbsp;&nbsp; DIÁLOGO&nbsp;&nbsp;/&nbsp;&nbsp; MERCADO&nbsp;&nbsp;/&nbsp;&nbsp; FORMAÇÃO&nbsp;&nbsp;/&nbsp;&nbsp; PRESENÇA&nbsp;&nbsp;/&nbsp;&nbsp; </span>
+      </div>
     </div>
 
     <section class="section manifesto" id="arpa" data-section="A ArPa">
@@ -77,7 +80,7 @@
         <div class="manifesto__body" data-reveal>
           <p class="lead">A ArPa nasceu para propor uma nova experiência de feira, mais atenta e menos ansiosa, proporcionando encontros de maior qualidade.</p>
           <p>Em uma escala cuidadosamente pensada, cada projeto ganha contexto, cada artista pode ser visto em profundidade e o público circula por pequenas exposições dentro da feira.</p>
-          <p class="founding">Fundada em 2022 por Camilla Barella, a partir de uma demanda do setor por uma nova plataforma relevante em São Paulo.</p>
+          <p class="founding">Fundada em 2022 por Camilla Barella, a partir de uma demanda do setor por um novo espaço relevante em São Paulo.</p>
         </div>
         <blockquote class="manifesto__quote" data-reveal>
           <p>“A abordagem curatorial cria um ambiente mais atento ao diálogo entre obras, pesquisas, artistas e diferentes públicos.”</p>
@@ -133,7 +136,7 @@
       <div class="shell">
         <div class="results__heading" data-reveal>
           <p class="chapter">Resultados 2026</p>
-          <h2 id="results-title">Uma plataforma<br>em movimento.</h2>
+          <h2 id="results-title">Uma cena<br>em movimento.</h2>
           <p>O balanço mais recente traduz a escala alcançada sem perder a precisão curatorial.</p>
         </div>
         <dl class="results__list" data-reveal>
@@ -153,37 +156,76 @@
           <p>Cinco perspectivas complementares constroem uma feira plural, conectando mercado, pesquisa, formação e acesso.</p>
         </div>
 
-        <div class="sector-browser" data-sector-browser>
-          <div class="sector-tabs" role="tablist" aria-label="Setores da ArPa" data-reveal>
-            <button type="button" role="tab" aria-selected="true" aria-controls="sector-panel" id="tab-principal" data-sector="principal" data-index="01" data-title="Principal" data-text="Reúne um grupo relevante e diverso de galerias, as quais contribuem de maneira construtiva e ativa para a comunidade artística." data-alt="Público circula por estandes do Setor Principal da ArPa">
-              <span>Principal</span><i>01</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-uni" data-sector="uni" data-index="02" data-title="UNI" data-text="Dedicado a estandes solo de artistas da cena contemporânea, e conta com a colaboração de um curador convidado a cada ano." data-alt="Visitantes observam pinturas coloridas em uma apresentação individual">
-              <span>UNI</span><i>02</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-base" data-sector="base" data-index="03" data-title="Base" data-text="Projetos expositivos e conversas ao vivo conectam prática artística, pedagogia e construção de comunidade." data-alt="Conversa pública do Setor Base com plateia no Pacaembu">
-              <span>Base</span><i>03</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-editorial" data-sector="editorial" data-index="04" data-title="Editorial" data-text="Editoras e publicações especializadas fazem do livro uma plataforma de circulação e pensamento crítico." data-alt="Público explora livros e publicações no Setor Editorial">
-              <span>Editorial</span><i>04</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-institucional" data-sector="institucional" data-index="05" data-title="Institucional" data-text="Museus e organizações apresentam iniciativas de pesquisa, memória, formação e acesso à arte." data-alt="Grupo participa de uma visita mediada em um espaço expositivo">
-              <span>Institucional</span><i>05</i>
-            </button>
+        <div class="sector-carousel" data-sector-carousel data-reveal>
+          <div class="sector-carousel__viewport">
+            <ul class="sector-carousel__track" data-carousel-track>
+              <li class="sector-slide" id="sector-principal" role="group" aria-roledescription="slide" aria-label="1 de 5: Principal">
+                <figure class="sector-slide__media">
+                  <img src="assets/2027/principal-1920.webp" srcset="assets/2027/principal-960.webp 960w, assets/2027/principal-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw" alt="Público circula por estandes do Setor Principal da ArPa" width="1920" height="1280">
+                </figure>
+                <div class="sector-slide__content">
+                  <p class="sector-slide__index">01 / 05</p>
+                  <h3>Principal</h3>
+                  <p>Reúne um grupo relevante e diverso de galerias, as quais contribuem de maneira construtiva e ativa para a comunidade artística.</p>
+                </div>
+              </li>
+              <li class="sector-slide" id="sector-uni" role="group" aria-roledescription="slide" aria-label="2 de 5: UNI">
+                <figure class="sector-slide__media">
+                  <img src="assets/2027/uni-1920.webp" srcset="assets/2027/uni-960.webp 960w, assets/2027/uni-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw" alt="Visitantes observam pinturas coloridas em uma apresentação individual" width="1920" height="1280">
+                </figure>
+                <div class="sector-slide__content">
+                  <p class="sector-slide__index">02 / 05</p>
+                  <h3>UNI</h3>
+                  <p>Dedicado a estandes solo de artistas da cena contemporânea, e conta com a colaboração de um curador convidado a cada ano.</p>
+                </div>
+              </li>
+              <li class="sector-slide" id="sector-base" role="group" aria-roledescription="slide" aria-label="3 de 5: Base">
+                <figure class="sector-slide__media">
+                  <img src="assets/2027/base-1920.webp" srcset="assets/2027/base-960.webp 960w, assets/2027/base-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw" alt="Conversa pública do Setor Base com plateia no Pacaembu" width="1920" height="1280">
+                </figure>
+                <div class="sector-slide__content">
+                  <p class="sector-slide__index">03 / 05</p>
+                  <h3>Base</h3>
+                  <p>Projetos expositivos e conversas ao vivo conectam prática artística, pedagogia e construção de comunidade.</p>
+                </div>
+              </li>
+              <li class="sector-slide" id="sector-editorial" role="group" aria-roledescription="slide" aria-label="4 de 5: Editorial">
+                <figure class="sector-slide__media">
+                  <img src="assets/2027/editorial-1920.webp" srcset="assets/2027/editorial-960.webp 960w, assets/2027/editorial-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw" alt="Público explora livros e publicações no Setor Editorial" width="1920" height="1280">
+                </figure>
+                <div class="sector-slide__content">
+                  <p class="sector-slide__index">04 / 05</p>
+                  <h3>Editorial</h3>
+                  <p>Editoras e publicações especializadas fazem do livro um espaço de circulação e pensamento crítico.</p>
+                </div>
+              </li>
+              <li class="sector-slide" id="sector-institucional" role="group" aria-roledescription="slide" aria-label="5 de 5: Institucional">
+                <figure class="sector-slide__media">
+                  <img src="assets/2027/institucional-1920.webp" srcset="assets/2027/institucional-960.webp 960w, assets/2027/institucional-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw" alt="Grupo participa de uma visita mediada em um espaço expositivo" width="1920" height="1280">
+                </figure>
+                <div class="sector-slide__content">
+                  <p class="sector-slide__index">05 / 05</p>
+                  <h3>Institucional</h3>
+                  <p>Museus e organizações apresentam iniciativas de pesquisa, memória, formação e acesso à arte.</p>
+                </div>
+              </li>
+            </ul>
           </div>
 
-          <figure class="sector-visual" data-reveal>
-            <div class="sector-visual__aperture">
-              <img src="assets/2027/principal-1920.webp" srcset="assets/2027/principal-960.webp 960w, assets/2027/principal-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw" alt="Público circula por estandes do Setor Principal da ArPa" width="1920" height="1280" data-sector-image>
+          <div class="sector-carousel__controls">
+            <button type="button" class="sector-carousel__arrow" data-carousel-prev aria-label="Setor anterior">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 4L7 12L15 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="sector-carousel__dots" role="tablist" aria-label="Selecionar setor">
+              <button type="button" role="tab" aria-selected="true" aria-controls="sector-principal" data-carousel-dot>01</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="sector-uni" data-carousel-dot>02</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="sector-base" data-carousel-dot>03</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="sector-editorial" data-carousel-dot>04</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="sector-institucional" data-carousel-dot>05</button>
             </div>
-            <figcaption>ArPa · edição 2026</figcaption>
-          </figure>
-
-          <div class="sector-panel" id="sector-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-principal" data-reveal>
-            <p class="sector-panel__index" data-sector-index>01 / 05</p>
-            <h3 data-sector-title>Principal</h3>
-            <p data-sector-text>Reúne um grupo relevante e diverso de galerias, as quais contribuem de maneira construtiva e ativa para a comunidade artística.</p>
-            <span class="sector-panel__hint">Selecione um setor para explorar</span>
+            <button type="button" class="sector-carousel__arrow" data-carousel-next aria-label="Próximo setor">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 4L17 12L9 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
           </div>
         </div>
       </div>
