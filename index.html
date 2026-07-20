@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArPa — Apresentação Institucional 2027</title>
+  <meta name="description" content="Conheça a ArPa, plataforma curatorial que aproxima arte contemporânea, galerias, instituições e públicos na América Latina.">
+  <meta name="theme-color" content="#f4f2ec" data-theme-color>
+  <script>
+    try {
+      const savedTheme = localStorage.getItem("arpa-theme");
+      const availableThemes = ["arpa", "atlantico", "mata", "vinho", "solar", "noturno", "cobalto", "ultravioleta", "tangerina", "esmeralda", "rubi"];
+      if (availableThemes.includes(savedTheme)) document.documentElement.dataset.theme = savedTheme;
+    } catch (error) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,300..700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/2027/hero-1920.webp" imagesrcset="assets/2027/hero-960.webp 960w, assets/2027/hero-1920.webp 1920w" imagesizes="(max-width: 760px) 100vw, 60vw" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+
+  <header class="site-header" data-header>
+    <div class="site-header__inner shell">
+      <a class="brand" href="#topo" aria-label="ArPa — início">
+        <img src="assets/2027/logo-arpa.svg" alt="ArPa" width="631" height="235">
+      </a>
+
+      <div class="palette-picker" data-palette-picker>
+        <button
+          class="palette-trigger"
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded="false"
+          aria-controls="palette-options"
+          data-palette-trigger
+        >
+          <span class="palette-trigger__swatch" aria-hidden="true"></span>
+          <span class="palette-trigger__label">Paleta</span>
+          <strong data-palette-current>ArPa</strong>
+          <span class="palette-trigger__chevron" aria-hidden="true">⌄</span>
+        </button>
+
+        <div class="palette-panel" id="palette-options" role="listbox" aria-label="Paletas de cores" data-palette-panel>
+          <p>Escolha uma atmosfera</p>
+          <button class="palette-option" type="button" role="option" aria-selected="true" data-theme="arpa">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#f4f2ec"></i><i style="--swatch:#171816"></i><i style="--swatch:#c51f55"></i></span>
+            <span><strong>ArPa</strong><small>Rosa curatorial</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="atlantico">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#eef4f3"></i><i style="--swatch:#0b2b35"></i><i style="--swatch:#147387"></i></span>
+            <span><strong>Atlântico</strong><small>Frescor latino</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="mata">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#eef1e8"></i><i style="--swatch:#17281f"></i><i style="--swatch:#2d7251"></i></span>
+            <span><strong>Mata</strong><small>Institucional orgânica</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="vinho">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#f4edea"></i><i style="--swatch:#35191f"></i><i style="--swatch:#962c50"></i></span>
+            <span><strong>Vinho</strong><small>Editorial e sofisticada</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="solar">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#f5f0dd"></i><i style="--swatch:#2d2514"></i><i style="--swatch:#bd3e1c"></i></span>
+            <span><strong>Solar</strong><small>Pacaembu luminoso</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="noturno">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#111517"></i><i style="--swatch:#f1efe8"></i><i style="--swatch:#ff5c8a"></i></span>
+            <span><strong>Noturno</strong><small>Galeria após o pôr do sol</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="cobalto">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#ffffff"></i><i style="--swatch:#111b40"></i><i style="--swatch:#174bd6"></i></span>
+            <span><strong>Cobalto</strong><small>Azul elétrico + branco</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="ultravioleta">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#ffffff"></i><i style="--swatch:#23133f"></i><i style="--swatch:#6a36d8"></i></span>
+            <span><strong>Ultravioleta</strong><small>Violeta intenso + branco</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="tangerina">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#ffffff"></i><i style="--swatch:#34160b"></i><i style="--swatch:#c43b00"></i></span>
+            <span><strong>Tangerina</strong><small>Laranja vivo + branco</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="esmeralda">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#ffffff"></i><i style="--swatch:#0d2c23"></i><i style="--swatch:#007a54"></i></span>
+            <span><strong>Esmeralda</strong><small>Verde vibrante + branco</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+          <button class="palette-option" type="button" role="option" aria-selected="false" data-theme="rubi">
+            <span class="palette-option__colors" aria-hidden="true"><i style="--swatch:#ffffff"></i><i style="--swatch:#3b0d19"></i><i style="--swatch:#b5142d"></i></span>
+            <span><strong>Rubi</strong><small>Vermelho preciso + branco</small></span>
+            <i class="palette-option__check" aria-hidden="true">✓</i>
+          </button>
+        </div>
+        <span class="sr-only" aria-live="polite" data-palette-status></span>
+      </div>
+
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-principal" data-menu-button>
+        <span class="menu-button__label">Menu</span>
+        <span class="menu-button__icon" aria-hidden="true"><i></i><i></i></span>
+      </button>
+
+      <nav class="site-nav" id="nav-principal" aria-label="Navegação principal" data-nav>
+        <a href="#arpa">A ArPa</a>
+        <a href="#modelo">Modelo</a>
+        <a href="#setores">Setores</a>
+        <a href="#impacto">Impacto</a>
+        <a href="#territorios">Territórios</a>
+        <a class="site-nav__cta" href="#parcerias">Seja parceiro</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="topo" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <div class="hero__copy-inner">
+          <h1 id="hero-title">Arte contemporânea,<br>em profundidade.</h1>
+          <p class="hero__intro">Desde 2022, a ArPa aproxima galerias, artistas, colecionadores, instituições e novos públicos por meio de uma feira curada, acolhedora e conectada à América Latina.</p>
+          <div class="hero__actions">
+            <a class="button button--dark" href="#arpa">Conheça a ArPa <span aria-hidden="true">↓</span></a>
+            <a class="text-link" href="#parcerias">Seja parceiro <span aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero__meta">São Paulo <span>·</span> América Latina <span>·</span> Desde 2022</p>
+        </div>
+      </div>
+
+      <figure class="hero__media" data-hero-media>
+        <picture>
+          <source media="(max-width: 760px)" srcset="assets/2027/hero-mobile.webp">
+          <source srcset="assets/2027/hero-960.webp 960w, assets/2027/hero-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw">
+          <img src="assets/2027/hero-1920.webp" alt="Visitantes circulam diante de grandes pinturas abstratas na ArPa" width="1920" height="1280" fetchpriority="high">
+        </picture>
+        <figcaption><span>ArPa 2026</span><span>Foto do acervo ArPa</span></figcaption>
+      </figure>
+
+      <a class="hero__scroll" href="#arpa"><span>Explore</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <section class="section manifesto" id="arpa" data-section="A ArPa">
+      <div class="shell manifesto__grid">
+        <div class="section-heading" data-reveal>
+          <p class="chapter">01 / A ArPa</p>
+          <h2>Uma feira para<br>olhar com tempo.</h2>
+        </div>
+        <div class="manifesto__body" data-reveal>
+          <p class="lead">A ArPa nasceu para propor outra experiência de feira: mais atenta, menos ansiosa e guiada pela qualidade dos encontros.</p>
+          <p>Em uma escala cuidadosamente pensada, cada projeto ganha contexto, cada artista pode ser visto em profundidade e o público circula por pequenas exposições dentro da feira.</p>
+          <p class="founding">Fundada em 2022 por Camilla Barella, a partir de uma demanda do setor por uma nova plataforma relevante em São Paulo.</p>
+        </div>
+        <blockquote class="manifesto__quote" data-reveal>
+          <p>“A abordagem curatorial cria um ambiente mais atento ao diálogo entre obras, pesquisas, artistas e diferentes públicos.”</p>
+          <cite>Camilla Barella · fundadora e diretora da ArPa</cite>
+        </blockquote>
+      </div>
+
+      <figure class="wide-image aperture-image" data-reveal>
+        <picture>
+          <source srcset="assets/2027/architecture-960.webp 960w, assets/2027/architecture-1920.webp 1920w" sizes="100vw">
+          <img src="assets/2027/architecture-1920.webp" alt="Vista panorâmica da feira sob a estrutura histórica do Pacaembu" width="1920" height="1280" loading="lazy">
+        </picture>
+        <figcaption class="shell"><span>Arquitetura que acolhe encontros</span><span>Mercado Livre Arena Pacaembu · São Paulo</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="section model" id="modelo" data-section="Modelo">
+      <div class="shell">
+        <div class="model__header" data-reveal>
+          <p class="chapter">02 / Modelo curado</p>
+          <h2>Curadoria como estrutura,<br>não como ornamento.</h2>
+          <p>A seleção, a expografia e o tempo de permanência são partes do mesmo projeto institucional.</p>
+        </div>
+
+        <div class="model__grid">
+          <figure class="model__image" data-reveal>
+            <picture>
+              <source srcset="assets/2027/model-960.webp 960w, assets/2027/model-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw">
+              <img src="assets/2027/model-1920.webp" alt="Visitantes atravessam uma galeria com pinturas e esculturas" width="1920" height="1280" loading="lazy">
+            </picture>
+            <figcaption>Projetos concebidos para serem vistos em relação.</figcaption>
+          </figure>
+
+          <ol class="principles" data-reveal>
+            <li>
+              <span>01</span>
+              <div><h3>Seleção por convite</h3><p>Galerias escolhidas pela direção com apoio de um comitê de conteúdo.</p></div>
+            </li>
+            <li>
+              <span>02</span>
+              <div><h3>Projetos inéditos</h3><p>Propostas concebidas especialmente para cada edição e para o contexto da feira.</p></div>
+            </li>
+            <li>
+              <span>03</span>
+              <div><h3>Escala humana</h3><p>Número limitado de artistas por estande para preservar profundidade, diálogo e fruição.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="results" aria-labelledby="results-title" data-section="Resultados">
+      <div class="shell">
+        <div class="results__heading" data-reveal>
+          <p class="chapter">Resultados 2026</p>
+          <h2 id="results-title">Uma plataforma<br>em movimento.</h2>
+          <p>O balanço mais recente traduz a escala alcançada sem perder a precisão curatorial.</p>
+        </div>
+        <dl class="results__list" data-reveal>
+          <div><dt data-count data-value="70" data-prefix="+">+70</dt><dd>expositores</dd></div>
+          <div><dt data-count data-value="5">5</dt><dd>setores</dd></div>
+          <div><dt data-count data-value="3">3</dt><dd>prêmios</dd></div>
+          <div><dt data-count data-value="13" data-prefix="+" data-suffix=" mil">+13 mil</dt><dd>visitantes</dd></div>
+        </dl>
+        <p class="source-note">Fonte: balanço institucional da edição 2026.</p>
+      </div>
+    </section>
+
+    <section class="section sectors" id="setores" data-section="Setores">
+      <div class="shell">
+        <div class="sectors__heading" data-reveal>
+          <p class="chapter">03 / Setores</p>
+          <h2>Diferentes portas de<br>entrada para a arte.</h2>
+          <p>Cinco perspectivas complementares constroem uma feira plural, conectando mercado, pesquisa, formação e acesso.</p>
+        </div>
+
+        <div class="sector-browser" data-sector-browser>
+          <div class="sector-tabs" role="tablist" aria-label="Setores da ArPa" data-reveal>
+            <button type="button" role="tab" aria-selected="true" aria-controls="sector-panel" id="tab-principal" data-sector="principal" data-index="01" data-title="Principal" data-text="Galerias nacionais e internacionais apresentam projetos inéditos, individuais e coletivos, em diálogo entre trajetórias consolidadas e novas perspectivas." data-alt="Público circula por estandes do Setor Principal da ArPa">
+              <span>Principal</span><i>01</i>
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-uni" data-sector="uni" data-index="02" data-title="UNI" data-text="Exposições individuais ampliam o olhar sobre a produção moderna e contemporânea da América Latina." data-alt="Visitantes observam pinturas coloridas em uma apresentação individual">
+              <span>UNI</span><i>02</i>
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-base" data-sector="base" data-index="03" data-title="Base" data-text="Projetos expositivos e conversas ao vivo conectam prática artística, pedagogia e construção de comunidade." data-alt="Conversa pública do Setor Base com plateia no Pacaembu">
+              <span>Base</span><i>03</i>
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-editorial" data-sector="editorial" data-index="04" data-title="Editorial" data-text="Editoras e publicações especializadas fazem do livro uma plataforma de circulação e pensamento crítico." data-alt="Público explora livros e publicações no Setor Editorial">
+              <span>Editorial</span><i>04</i>
+            </button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-institucional" data-sector="institucional" data-index="05" data-title="Institucional" data-text="Museus e organizações apresentam iniciativas de pesquisa, memória, formação e acesso à arte." data-alt="Grupo participa de uma visita mediada em um espaço expositivo">
+              <span>Institucional</span><i>05</i>
+            </button>
+          </div>
+
+          <figure class="sector-visual" data-reveal>
+            <div class="sector-visual__aperture">
+              <img src="assets/2027/principal-1920.webp" srcset="assets/2027/principal-960.webp 960w, assets/2027/principal-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw" alt="Público circula por estandes do Setor Principal da ArPa" width="1920" height="1280" loading="lazy" data-sector-image>
+            </div>
+            <figcaption>ArPa · edição 2026</figcaption>
+          </figure>
+
+          <div class="sector-panel" id="sector-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-principal" data-reveal>
+            <p class="sector-panel__index" data-sector-index>01 / 05</p>
+            <h3 data-sector-title>Principal</h3>
+            <p data-sector-text>Galerias nacionais e internacionais apresentam projetos inéditos, individuais e coletivos, em diálogo entre trajetórias consolidadas e novas perspectivas.</p>
+            <span class="sector-panel__hint">Selecione um setor para explorar</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section year-round" id="atuacao" data-section="Atuação anual">
+      <div class="shell year-round__grid">
+        <div class="year-round__copy" data-reveal>
+          <p class="chapter">04 / Além da feira</p>
+          <h2>Uma comunidade que se constrói ao longo do ano.</h2>
+          <p class="lead">A ArPa fortalece relações no tempo — antes, durante e depois dos dias de feira.</p>
+        </div>
+
+        <div class="year-round__programs" data-reveal>
+          <article>
+            <span>01</span><div><h3>Programa Prisma</h3><p>Visitas a ateliês, coleções privadas e exposições aproximam colecionadores, curadores, artistas e profissionais do circuito.</p></div>
+          </article>
+          <article>
+            <span>02</span><div><h3>Programa educativo</h3><p>Visitas temáticas, ações com escolas públicas e oficinas ampliam o acesso e prolongam a experiência.</p></div>
+          </article>
+          <article>
+            <span>03</span><div><h3>Relacionamento contínuo</h3><p>Comunicação, formação de público e encontros mantêm o ecossistema em movimento durante todo o ano.</p></div>
+          </article>
+        </div>
+
+        <figure class="year-round__image" data-reveal>
+          <picture>
+            <source srcset="assets/2027/institucional-960.webp 960w, assets/2027/institucional-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 56vw">
+            <img src="assets/2027/institucional-1920.webp" alt="Grupo acompanha uma visita mediada na ArPa" width="1920" height="1280" loading="lazy">
+          </picture>
+          <figcaption>Formação de público e troca de conhecimento</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section impact" id="impacto" data-section="Impacto">
+      <div class="shell">
+        <div class="impact__heading" data-reveal>
+          <p class="chapter">05 / Fomento</p>
+          <h2>Reconhecimento<br>que circula.</h2>
+          <p>A feira transforma visibilidade em continuidade para artistas, galerias, instituições e acervos públicos.</p>
+        </div>
+
+        <div class="impact__grid">
+          <figure class="impact__image" data-reveal>
+            <picture>
+              <source srcset="assets/2027/conversation-960.webp 960w, assets/2027/conversation-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw">
+              <img src="assets/2027/conversation-1920.webp" alt="Conversa aberta entre convidados e público da ArPa" width="1920" height="1280" loading="lazy">
+            </picture>
+          </figure>
+
+          <div class="impact__list" data-reveal>
+            <article><p class="chapter">Descentralização</p><h3>Selo Mandacaru</h3><p>Reconhece artistas fora do eixo Rio–São Paulo e de periferias urbanas, ampliando a visibilidade de diferentes territórios.</p></article>
+            <article><p class="chapter">Excelência curatorial</p><h3>Melhor Estande</h3><p>Valoriza propostas de destaque pela coerência expográfica, curatorial e intelectual.</p></article>
+            <article><p class="chapter">Acervo público</p><h3>Doação para a Pinacoteca</h3><p>Em parceria com o ICCo, incorpora ao museu obras de artistas ainda não representados em sua coleção.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section territories" id="territorios" data-section="Territórios">
+      <div class="shell">
+        <div class="territories__heading" data-reveal>
+          <p class="chapter">06 / Territórios</p>
+          <h2>Do Pacaembu<br>a Buenos Aires.</h2>
+          <p>A ArPa escolhe lugares que carregam memória e pertencimento, conectando ecossistemas da arte na América Latina.</p>
+        </div>
+
+        <figure class="territories__image" data-reveal>
+          <picture>
+            <source srcset="assets/2027/territories-960.webp 960w, assets/2027/territories-1920.webp 1920w" sizes="100vw">
+            <img src="assets/2027/territories-1920.webp" alt="Vista superior da expografia e do público da ArPa" width="1920" height="1280" loading="lazy">
+          </picture>
+          <figcaption>São Paulo · um lugar de encontro para a América Latina</figcaption>
+        </figure>
+
+        <div class="territories__list" data-reveal>
+          <article>
+            <p class="status status--current">Origem</p>
+            <h3>São Paulo</h3>
+            <p>Mercado Livre Arena Pacaembu</p>
+            <span>A feira anual e seu ecossistema de galerias, instituições e públicos.</span>
+          </article>
+          <article>
+            <p class="status status--future">Programação futura</p>
+            <h3>Buenos Aires</h3>
+            <p>16–20 de setembro de 2026 · Casa Victoria Ocampo</p>
+            <span>Uma experiência intimista e curada com cerca de 20 galerias latino-americanas.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partnership" id="parcerias" data-section="Parcerias">
+      <figure class="partnership__media">
+        <picture>
+          <source srcset="assets/2027/experience-960.webp 960w, assets/2027/experience-1920.webp 1920w" sizes="100vw">
+          <img src="assets/2027/experience-1920.webp" alt="Público observa uma obra têxtil em uma exposição da ArPa" width="1920" height="1280" loading="lazy">
+        </picture>
+      </figure>
+      <div class="partnership__overlay" aria-hidden="true"></div>
+      <div class="partnership__content shell" data-reveal>
+        <p class="chapter">07 / Parcerias</p>
+        <h2>O próximo capítulo<br>já começou.</h2>
+        <p>Depois de cinco edições, a ArPa prepara sua 6ª edição em São Paulo e aprofunda sua presença latino-americana. Marcas podem criar contexto por meio de ativações, conteúdo, programas socioculturais e experiências exclusivas.</p>
+        <a class="button button--light" href="https://arpa.art/" target="_blank" rel="noreferrer">Construir uma parceria <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell site-footer__top">
+      <a class="brand brand--footer" href="#topo" aria-label="ArPa — voltar ao início">
+        <img src="assets/2027/logo-arpa.svg" alt="ArPa" width="631" height="235">
+      </a>
+      <p>Feira de arte contemporânea<br>São Paulo · América Latina</p>
+      <nav aria-label="Links institucionais">
+        <a href="#arpa">A ArPa</a>
+        <a href="#setores">Setores</a>
+        <a href="#impacto">Impacto</a>
+        <a href="#parcerias">Parcerias</a>
+      </nav>
+      <div class="site-footer__links">
+        <a href="https://arpa.art/" target="_blank" rel="noreferrer">arpa.art <span aria-hidden="true">↗</span></a>
+        <a href="https://www.instagram.com/arpa__art/" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+    <div class="shell site-footer__bottom">
+      <span>Apresentação institucional · ciclo 2027</span>
+      <span>Conteúdo consolidado a partir dos materiais fornecidos pela ArPa.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
