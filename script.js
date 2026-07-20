@@ -34,17 +34,17 @@ const paletteNames = {
 };
 
 const paletteThemeColors = {
-  arpa: "#f4f2ec",
-  atlantico: "#eef4f3",
-  mata: "#eef1e8",
-  vinho: "#f4edea",
-  solar: "#f5f0dd",
-  noturno: "#111517",
-  cobalto: "#ffffff",
-  ultravioleta: "#ffffff",
-  tangerina: "#ffffff",
-  esmeralda: "#ffffff",
-  rubi: "#ffffff",
+  arpa: "#e4007f",
+  atlantico: "#006b8f",
+  mata: "#2d7251",
+  vinho: "#962c50",
+  solar: "#bd3e1c",
+  noturno: "#111111",
+  cobalto: "#174bd6",
+  ultravioleta: "#6a36d8",
+  tangerina: "#c43b00",
+  esmeralda: "#007a54",
+  rubi: "#b5142d",
 };
 
 let paletteTransitionTimer = 0;
