@@ -601,8 +601,158 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
   .site-footer__bottom { display: grid; padding-inline: 20px; }
 }
 
+/* ============================================================
+   Desktop full-page sections (>=901px): one section = 100svh,
+   header-safe padding, internal safety scroll, soft scroll-snap.
+   Below 901px the layout is untouched (natural content height).
+   ============================================================ */
+@media (min-width: 901px) {
+  html { scroll-snap-type: y proximity; }
+
+  /* Sections already reserve 86px of internal top padding for the
+     fixed header and must align their own box edge with the viewport
+     for snapping to land correctly, so the old anchor-scroll offset
+     is not needed here (kept intact below 901px). */
+  section[id] { scroll-margin-top: 0; }
+
+  /* Shared full-viewport shell: exact height, never grows past it,
+     scrolls internally only if content does not fit, snaps as a unit. */
+  .hero,
+  .section.manifesto,
+  .section.model,
+  .results,
+  .section.sectors,
+  .section.year-round,
+  .section.impact,
+  .section.territories,
+  .partnership {
+    height: 100svh;
+    max-height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .hero::-webkit-scrollbar,
+  .section.manifesto::-webkit-scrollbar,
+  .section.model::-webkit-scrollbar,
+  .results::-webkit-scrollbar,
+  .section.sectors::-webkit-scrollbar,
+  .section.year-round::-webkit-scrollbar,
+  .section.impact::-webkit-scrollbar,
+  .section.territories::-webkit-scrollbar,
+  .partnership::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  .hero { min-height: auto; }
+
+  .section.manifesto,
+  .section.model,
+  .results,
+  .section.sectors,
+  .section.year-round,
+  .section.impact,
+  .section.territories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 86px;
+    padding-bottom: clamp(16px, 2.4vh, 32px);
+  }
+  .section.manifesto { padding-bottom: 0; }
+
+  .partnership {
+    height: 100svh;
+    min-height: auto;
+    padding-top: 86px;
+  }
+
+  /* Trim headline / lead scale so text blocks take less vertical room */
+  .section h2, .results h2, .partnership h2 { font-size: clamp(2.1rem, 3.1vw, 3.4rem); }
+  .results__heading h2 { font-size: clamp(1.8rem, 2.5vw, 2.5rem); }
+  .partnership__content h2 { font-size: clamp(2.4rem, 3.4vw, 3.8rem); }
+  .lead { font-size: clamp(.95rem, .6vw + .82rem, 1.12rem); line-height: 1.42; }
+  .chapter { margin-bottom: 12px; }
+
+  /* Shared "gap before visual block" trims (same elements, smaller gap) */
+  .model__grid,
+  .sector-carousel,
+  .year-round__image,
+  .impact__grid,
+  .territories__image {
+    margin-top: clamp(18px, 2.6vh, 36px);
+  }
+
+  /* Manifesto: text grid + wide image must share one screen */
+  .manifesto__body p { margin: 0 0 10px; line-height: 1.4; }
+  .manifesto__body .lead { margin-bottom: 12px; }
+  .manifesto__body .founding { padding-top: 10px; }
+  .manifesto__quote { margin: clamp(12px, 2.4vh, 32px) 0 0; padding: 16px; }
+  .manifesto__quote p { font-size: clamp(1.3rem, 1.8vw, 2.1rem); }
+  .manifesto__quote cite { margin-top: 14px; }
+  .wide-image { margin-top: clamp(10px, 1.6vh, 22px); }
+  .wide-image img { height: clamp(120px, 16vh, 200px); }
+  .wide-image figcaption { padding: 8px var(--pad); }
+
+  /* Model */
+  .model__image { padding: clamp(14px, 2vh, 28px); }
+  .model__image img { aspect-ratio: auto; height: clamp(140px, 24vh, 260px); }
+  .model__image figcaption { margin-top: 8px; }
+  .principles li { padding: clamp(12px, 2vh, 22px); }
+  .principles h3 { font-size: clamp(1.1rem, 1.6vw, 1.6rem); }
+  .principles p { margin-top: 6px; font-size: .82rem; }
+
+  /* Sectors: carousel height recalculated to fit under the heading */
+  .sector-slide { grid-template-rows: clamp(220px, 40vh, 420px); }
+  .sector-slide__content { padding: clamp(16px, 2.6vh, 32px); }
+  .sector-slide__index { margin-bottom: 12px; }
+  .sector-slide__content h3 { font-size: clamp(1.8rem, 3.2vw, 3.2rem); }
+  .sector-slide__content p { margin-top: 12px; font-size: .9rem; }
+  .sector-carousel__controls { padding: 12px clamp(16px, 2vw, 28px); }
+
+  /* Year-round */
+  .year-round__copy .lead { margin-top: 10px; }
+  .year-round__programs article { padding: 10px 0 12px; }
+  .year-round__programs h3 { font-size: clamp(1.15rem, 1.6vw, 1.6rem); }
+  .year-round__programs p { margin-top: 6px; font-size: .82rem; }
+  .year-round__image img { aspect-ratio: auto; height: clamp(140px, 24vh, 260px); }
+  .year-round__image figcaption { margin-top: 8px; }
+
+  /* Impact */
+  .impact__image { top: 24px; }
+  .impact__image img { aspect-ratio: auto; height: clamp(140px, 24vh, 260px); }
+  .impact__list article { padding: 14px 40px 16px 0; }
+  .impact__list article::after { top: 14px; }
+  .impact__list h3 { font-size: clamp(1.3rem, 2vw, 2rem); }
+  .impact__list p:last-child { margin-top: 6px; font-size: .82rem; }
+
+  /* Territories */
+  .territories__image img { height: clamp(140px, 22vh, 260px); }
+  .territories__image figcaption { margin-top: 8px; }
+  .territories__list { margin-top: clamp(16px, 2.4vh, 32px); }
+  .territories__list article { min-height: auto; padding: clamp(16px, 2.4vh, 32px); }
+  .territories__list .status { margin-bottom: 14px; }
+  .territories__list h3 { font-size: clamp(2rem, 3.4vw, 3.4rem); }
+  .territories__list span { margin-top: 12px; padding-top: 10px; }
+
+  /* Results */
+  .results .shell { gap: clamp(16px, 2.4vh, 32px) clamp(24px, 3vw, 48px); }
+  .results__list div { min-height: clamp(96px, 15vh, 170px); padding: 16px 20px; }
+  .results__list dt, .results__list dd { font-size: clamp(1.7rem, 2.4vw, 2.6rem); }
+  .source-note { margin-top: 8px; }
+
+  /* Partnership */
+  .partnership__content.shell { padding: clamp(24px, 4vh, 56px) clamp(36px, 5vw, 72px); }
+  .partnership__content > p:not(.chapter) { margin: 16px 0 20px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html { scroll-behavior: auto; scroll-snap-type: none; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
