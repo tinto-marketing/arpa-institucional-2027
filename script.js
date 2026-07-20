@@ -11,44 +11,6 @@ const countItems = [...document.querySelectorAll("[data-count]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-const palettePicker = document.querySelector("[data-palette-picker]");
-const paletteTrigger = document.querySelector("[data-palette-trigger]");
-const palettePanel = document.querySelector("[data-palette-panel]");
-const paletteOptions = palettePanel ? [...palettePanel.querySelectorAll("[data-theme]")] : [];
-const paletteCurrent = document.querySelector("[data-palette-current]");
-const paletteStatus = document.querySelector("[data-palette-status]");
-const themeColorMeta = document.querySelector("[data-theme-color]");
-
-const paletteNames = {
-  arpa: "ArPa",
-  atlantico: "Atlântico",
-  mata: "Mata",
-  vinho: "Vinho",
-  solar: "Solar",
-  noturno: "Noturno",
-  cobalto: "Cobalto",
-  ultravioleta: "Ultravioleta",
-  tangerina: "Tangerina",
-  esmeralda: "Esmeralda",
-  rubi: "Rubi",
-};
-
-const paletteThemeColors = {
-  arpa: "#e4007f",
-  atlantico: "#006b8f",
-  mata: "#2d7251",
-  vinho: "#962c50",
-  solar: "#bd3e1c",
-  noturno: "#111111",
-  cobalto: "#174bd6",
-  ultravioleta: "#6a36d8",
-  tangerina: "#c43b00",
-  esmeralda: "#007a54",
-  rubi: "#b5142d",
-};
-
-let paletteTransitionTimer = 0;
-
 const sectorBrowser = document.querySelector("[data-sector-browser]");
 const sectorTabs = sectorBrowser ? [...sectorBrowser.querySelectorAll("[role='tab']")] : [];
 const sectorImage = sectorBrowser?.querySelector("[data-sector-image]");
@@ -133,96 +95,6 @@ function initCounts() {
   countItems.forEach((item) => observer.observe(item));
 }
 
-function closePalette(returnFocus = false) {
-  if (!palettePicker || !paletteTrigger) return;
-  palettePicker.classList.remove("is-open");
-  paletteTrigger.setAttribute("aria-expanded", "false");
-  if (returnFocus) paletteTrigger.focus();
-}
-
-function openPalette(focusSelected = false) {
-  if (!palettePicker || !paletteTrigger) return;
-  closeMenu();
-  palettePicker.classList.add("is-open");
-  paletteTrigger.setAttribute("aria-expanded", "true");
-  if (focusSelected) {
-    const selected = paletteOptions.find((option) => option.getAttribute("aria-selected") === "true");
-    selected?.focus();
-  }
-}
-
-function applyPalette(theme, { persist = true, announce = true } = {}) {
-  if (!paletteNames[theme]) theme = "arpa";
-
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.classList.add("theme-changing");
-  window.clearTimeout(paletteTransitionTimer);
-  paletteTransitionTimer = window.setTimeout(() => {
-    document.documentElement.classList.remove("theme-changing");
-  }, 420);
-
-  paletteOptions.forEach((option) => {
-    const selected = option.dataset.theme === theme;
-    option.setAttribute("aria-selected", String(selected));
-    option.tabIndex = selected ? 0 : -1;
-  });
-
-  if (paletteCurrent) paletteCurrent.textContent = paletteNames[theme];
-  if (themeColorMeta) themeColorMeta.content = paletteThemeColors[theme];
-  if (announce && paletteStatus) paletteStatus.textContent = `Paleta ${paletteNames[theme]} aplicada.`;
-
-  if (persist) {
-    try { localStorage.setItem("arpa-theme", theme); } catch (error) {}
-  }
-}
-
-function initPalettePicker() {
-  if (!palettePicker || !paletteTrigger || !palettePanel || !paletteOptions.length) return;
-
-  const initialTheme = document.documentElement.dataset.theme || "arpa";
-  applyPalette(initialTheme, { persist: false, announce: false });
-
-  paletteTrigger.addEventListener("click", () => {
-    const isOpen = palettePicker.classList.contains("is-open");
-    if (isOpen) closePalette();
-    else openPalette();
-  });
-
-  paletteTrigger.addEventListener("keydown", (event) => {
-    if (event.key !== "ArrowDown") return;
-    event.preventDefault();
-    openPalette(true);
-  });
-
-  paletteOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      applyPalette(option.dataset.theme);
-      closePalette(true);
-    });
-  });
-
-  palettePanel.addEventListener("keydown", (event) => {
-    const activeIndex = paletteOptions.indexOf(document.activeElement);
-    if (event.key === "Escape") {
-      event.preventDefault();
-      closePalette(true);
-      return;
-    }
-    if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
-    event.preventDefault();
-    let nextIndex = Math.max(0, activeIndex);
-    if (event.key === "ArrowDown") nextIndex = (nextIndex + 1) % paletteOptions.length;
-    if (event.key === "ArrowUp") nextIndex = (nextIndex - 1 + paletteOptions.length) % paletteOptions.length;
-    if (event.key === "Home") nextIndex = 0;
-    if (event.key === "End") nextIndex = paletteOptions.length - 1;
-    paletteOptions[nextIndex].focus();
-  });
-
-  document.addEventListener("pointerdown", (event) => {
-    if (!palettePicker.contains(event.target)) closePalette();
-  });
-}
-
 function preloadSectorImages() {
   const preload = () => {
     sectorTabs.forEach((tab) => {
@@ -267,7 +139,6 @@ function closeMenu() {
 function initMenu() {
   menuButton?.addEventListener("click", () => {
     const willOpen = !nav?.classList.contains("is-open");
-    if (willOpen) closePalette();
     nav?.classList.toggle("is-open", willOpen);
     menuButton.setAttribute("aria-expanded", String(willOpen));
     body.classList.toggle("menu-open", willOpen);
@@ -343,7 +214,6 @@ openHero();
 initReveal();
 initHeroParallax();
 initCounts();
-initPalettePicker();
 initMenu();
 initSectors();
 preloadSectorImages();
