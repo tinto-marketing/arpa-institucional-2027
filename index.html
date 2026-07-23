@@ -133,16 +133,8 @@
 
     <section class="results" aria-labelledby="results-title" data-section="Resultados">
       <div class="shell">
-        <div class="results__heading" data-reveal>
-          <p class="chapter">Resultados 2026</p>
-          <h2 id="results-title">Uma cena<br>em movimento.</h2>
-          <p>O balanço mais recente traduz a escala alcançada sem perder a precisão curatorial.</p>
-        </div>
-        <dl class="results__list" data-reveal>
-          <div><dt data-count data-value="70" data-prefix="+">+70</dt><dd>expositores</dd></div>
-          <div><dt data-count data-value="3">3</dt><dd>prêmios</dd></div>
-          <div><dt data-count data-value="13" data-prefix="+" data-suffix=" mil">+13 mil</dt><dd>visitantes</dd></div>
-        </dl>
+        <p class="chapter">Resultados 2026</p>
+        <p id="results-title" class="results__statement" data-reveal>A edição 2026 reuniu <b class="results__num" data-count data-value="70" data-prefix="+">+70</b> <b class="results__word">expositores</b> em uma escala inédita, concedeu <b class="results__num" data-count data-value="3">3</b> <b class="results__word">prêmios</b> a artistas e galerias, e recebeu <b class="results__num" data-count data-value="13" data-prefix="+" data-suffix=" mil">+13 mil</b> <b class="results__word">visitantes</b> ao longo da feira.</p>
         <p class="source-note">Fonte: balanço institucional da edição 2026.</p>
       </div>
     </section>
@@ -155,38 +147,67 @@
           <p>Cinco perspectivas complementares constroem uma feira plural, conectando mercado, pesquisa, formação e acesso.</p>
         </div>
 
-        <div class="sector-browser" data-sector-browser>
-          <div class="sector-tabs" role="tablist" aria-label="Setores da ArPa" data-reveal>
-            <button type="button" role="tab" aria-selected="true" aria-controls="sector-panel" id="tab-principal" data-sector="principal" data-index="01" data-title="Principal" data-text="Reúne um grupo relevante e diverso de galerias, as quais contribuem de maneira construtiva e ativa para a comunidade artística." data-alt="Público circula por estandes do Setor Principal da ArPa">
-              <span>Principal</span><i>01</i>
+        <div class="sector-list" data-reveal>
+          <article class="sector-row is-open" data-sector-row>
+            <button type="button" class="sector-row__head" aria-expanded="true">
+              <span class="sector-row__idx">01 / 05</span>
+              <h3>Principal</h3>
             </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-uni" data-sector="uni" data-index="02" data-title="UNI" data-text="Dedicado a estandes solo de artistas da cena contemporânea, e conta com a colaboração de um curador convidado a cada ano." data-alt="Entrada do Setor UNI, com a arquibancada de publicações ao fundo">
-              <span>UNI</span><i>02</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-base" data-sector="base" data-index="03" data-title="Base" data-text="Projetos expositivos e conversas ao vivo conectam prática artística, pedagogia e construção de comunidade." data-alt="Conversa pública do Setor Base com plateia no Pacaembu">
-              <span>Base</span><i>03</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-editorial" data-sector="editorial" data-index="04" data-title="Editorial" data-text="Editoras e publicações especializadas fazem do livro um espaço de circulação e pensamento crítico." data-alt="Público explora livros e publicações no Setor Editorial">
-              <span>Editorial</span><i>04</i>
-            </button>
-            <button type="button" role="tab" aria-selected="false" aria-controls="sector-panel" id="tab-institucional" data-sector="institucional" data-index="05" data-title="Institucional" data-text="Museus e organizações apresentam iniciativas de pesquisa, memória, formação e acesso à arte." data-alt="Grupo participa de uma visita mediada em um espaço expositivo">
-              <span>Institucional</span><i>05</i>
-            </button>
-          </div>
-
-          <figure class="sector-visual" data-reveal>
-            <div class="sector-visual__aperture">
-              <img src="assets/2027/principal-1920.webp" srcset="assets/2027/principal-960.webp 960w, assets/2027/principal-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw" alt="Público circula por estandes do Setor Principal da ArPa" width="1920" height="1280" data-sector-image>
+            <div class="sector-row__detail">
+              <div class="sector-row__in">
+                <p>Reúne um grupo relevante e diverso de galerias, as quais contribuem de maneira construtiva e ativa para a comunidade artística.</p>
+                <figure><img src="assets/2027/principal-960.webp" srcset="assets/2027/principal-960.webp 960w, assets/2027/principal-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 46vw" alt="Público circula por estandes do Setor Principal da ArPa" width="1920" height="1280"></figure>
+              </div>
             </div>
-            <figcaption>ArPa · edição 2026</figcaption>
-          </figure>
-
-          <div class="sector-panel" id="sector-panel" role="tabpanel" tabindex="0" aria-labelledby="tab-principal" data-reveal>
-            <p class="sector-panel__index" data-sector-index>01 / 05</p>
-            <h3 data-sector-title>Principal</h3>
-            <p data-sector-text>Reúne um grupo relevante e diverso de galerias, as quais contribuem de maneira construtiva e ativa para a comunidade artística.</p>
-            <span class="sector-panel__hint">Selecione um setor para explorar</span>
-          </div>
+          </article>
+          <article class="sector-row" data-sector-row>
+            <button type="button" class="sector-row__head" aria-expanded="false">
+              <span class="sector-row__idx">02 / 05</span>
+              <h3>UNI</h3>
+            </button>
+            <div class="sector-row__detail">
+              <div class="sector-row__in">
+                <p>Dedicado a estandes solo de artistas da cena contemporânea, e conta com a colaboração de um curador convidado a cada ano.</p>
+                <figure><img src="assets/2027/uni-960.webp" srcset="assets/2027/uni-960.webp 960w, assets/2027/uni-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 46vw" alt="Entrada do Setor UNI, com a arquibancada de publicações ao fundo" width="1920" height="1280" loading="lazy"></figure>
+              </div>
+            </div>
+          </article>
+          <article class="sector-row" data-sector-row>
+            <button type="button" class="sector-row__head" aria-expanded="false">
+              <span class="sector-row__idx">03 / 05</span>
+              <h3>Base</h3>
+            </button>
+            <div class="sector-row__detail">
+              <div class="sector-row__in">
+                <p>Projetos expositivos e conversas ao vivo conectam prática artística, pedagogia e construção de comunidade.</p>
+                <figure><img src="assets/2027/base-960.webp" srcset="assets/2027/base-960.webp 960w, assets/2027/base-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 46vw" alt="Conversa pública do Setor Base com plateia no Pacaembu" width="1920" height="1280" loading="lazy"></figure>
+              </div>
+            </div>
+          </article>
+          <article class="sector-row" data-sector-row>
+            <button type="button" class="sector-row__head" aria-expanded="false">
+              <span class="sector-row__idx">04 / 05</span>
+              <h3>Editorial</h3>
+            </button>
+            <div class="sector-row__detail">
+              <div class="sector-row__in">
+                <p>Editoras e publicações especializadas fazem do livro um espaço de circulação e pensamento crítico.</p>
+                <figure><img src="assets/2027/editorial-960.webp" srcset="assets/2027/editorial-960.webp 960w, assets/2027/editorial-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 46vw" alt="Público explora livros e publicações no Setor Editorial" width="1920" height="1280" loading="lazy"></figure>
+              </div>
+            </div>
+          </article>
+          <article class="sector-row" data-sector-row>
+            <button type="button" class="sector-row__head" aria-expanded="false">
+              <span class="sector-row__idx">05 / 05</span>
+              <h3>Institucional</h3>
+            </button>
+            <div class="sector-row__detail">
+              <div class="sector-row__in">
+                <p>Museus e organizações apresentam iniciativas de pesquisa, memória, formação e acesso à arte.</p>
+                <figure><img src="assets/2027/institucional-960.webp" srcset="assets/2027/institucional-960.webp 960w, assets/2027/institucional-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 46vw" alt="Grupo participa de uma visita mediada em um espaço expositivo" width="1920" height="1280" loading="lazy"></figure>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>

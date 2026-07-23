@@ -11,13 +11,7 @@ const countItems = [...document.querySelectorAll("[data-count]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
-const sectorBrowser = document.querySelector("[data-sector-browser]");
-const sectorTabs = sectorBrowser ? [...sectorBrowser.querySelectorAll("[role='tab']")] : [];
-const sectorImage = sectorBrowser?.querySelector("[data-sector-image]");
-const sectorPanel = sectorBrowser?.querySelector("[role='tabpanel']");
-const sectorIndex = sectorBrowser?.querySelector("[data-sector-index]");
-const sectorTitle = sectorBrowser?.querySelector("[data-sector-title]");
-const sectorText = sectorBrowser?.querySelector("[data-sector-text]");
+const sectorRows = [...document.querySelectorAll("[data-sector-row]")];
 
 function openHero() {
   requestAnimationFrame(() => {
@@ -95,18 +89,6 @@ function initCounts() {
   countItems.forEach((item) => observer.observe(item));
 }
 
-function preloadSectorImages() {
-  const preload = () => {
-    sectorTabs.forEach((tab) => {
-      const image = new Image();
-      image.src = `assets/2027/${tab.dataset.sector}-960.webp`;
-    });
-  };
-
-  if ("requestIdleCallback" in window) window.requestIdleCallback(preload, { timeout: 1400 });
-  else window.setTimeout(preload, 500);
-}
-
 function setHeader() {
   header?.classList.toggle("is-solid", window.scrollY > 30);
 }
@@ -150,50 +132,32 @@ function initMenu() {
   });
 }
 
-function activateSector(tab, moveFocus = false) {
-  if (!tab || !sectorImage || !sectorPanel) return;
-
-  const name = tab.dataset.sector;
-  const wide = `assets/2027/${name}-1920.webp`;
-  const small = `assets/2027/${name}-960.webp`;
-
-  sectorTabs.forEach((item) => {
-    const selected = item === tab;
-    item.setAttribute("aria-selected", String(selected));
-    item.tabIndex = selected ? 0 : -1;
+function openSectorRow(row) {
+  sectorRows.forEach((item) => {
+    const open = item === row;
+    item.classList.toggle("is-open", open);
+    item.querySelector(".sector-row__head")?.setAttribute("aria-expanded", String(open));
   });
-
-  sectorImage.classList.add("is-changing");
-  window.setTimeout(() => {
-    sectorImage.src = wide;
-    sectorImage.srcset = `${small} 960w, ${wide} 1920w`;
-    sectorImage.alt = tab.dataset.alt;
-    sectorImage.classList.remove("is-changing");
-  }, reducedMotion ? 0 : 180);
-
-  sectorIndex.textContent = `${tab.dataset.index} / 05`;
-  sectorTitle.textContent = tab.dataset.title;
-  sectorText.textContent = tab.dataset.text;
-  sectorPanel.setAttribute("aria-labelledby", tab.id);
-  if (moveFocus) tab.focus();
 }
 
-function initSectors() {
-  sectorTabs.forEach((tab, index) => {
-    tab.tabIndex = index === 0 ? 0 : -1;
-    tab.addEventListener("click", () => activateSector(tab));
-    tab.addEventListener("mouseenter", () => {
-      if (window.matchMedia("(hover: hover)").matches) activateSector(tab);
+function initSectorRows() {
+  sectorRows.forEach((row, index) => {
+    const head = row.querySelector(".sector-row__head");
+    if (!head) return;
+    head.addEventListener("click", () => openSectorRow(row));
+    head.addEventListener("mouseenter", () => {
+      if (window.matchMedia("(hover: hover)").matches) openSectorRow(row);
     });
-    tab.addEventListener("keydown", (event) => {
-      if (!["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) return;
+    head.addEventListener("keydown", (event) => {
+      if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) return;
       event.preventDefault();
       let next = index;
-      if (["ArrowDown", "ArrowRight"].includes(event.key)) next = (index + 1) % sectorTabs.length;
-      if (["ArrowUp", "ArrowLeft"].includes(event.key)) next = (index - 1 + sectorTabs.length) % sectorTabs.length;
+      if (event.key === "ArrowDown") next = (index + 1) % sectorRows.length;
+      if (event.key === "ArrowUp") next = (index - 1 + sectorRows.length) % sectorRows.length;
       if (event.key === "Home") next = 0;
-      if (event.key === "End") next = sectorTabs.length - 1;
-      activateSector(sectorTabs[next], true);
+      if (event.key === "End") next = sectorRows.length - 1;
+      openSectorRow(sectorRows[next]);
+      sectorRows[next].querySelector(".sector-row__head")?.focus();
     });
   });
 }
@@ -215,8 +179,7 @@ initReveal();
 initHeroParallax();
 initCounts();
 initMenu();
-initSectors();
-preloadSectorImages();
+initSectorRows();
 setHeader();
 setProgress();
 setActiveNav();
