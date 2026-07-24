@@ -502,6 +502,16 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 [data-reveal] { opacity: 0; transform: translateY(34px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
 [data-reveal].is-visible { opacity: 1; transform: none; }
 
+/* Movimento nas imagens ao revelar: zoom out + leve descida (pedido da Cris e Camila via Isabella, 10/07/2026 — referencia: apresentacao do Bar do Tenis) */
+.wide-image[data-reveal],
+.model__image[data-reveal],
+.year-round__image[data-reveal],
+.impact__image[data-reveal],
+.territories__image[data-reveal] {
+  transform: scale(1.14) translateY(-34px);
+  transform-origin: center;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .wide-image img,
   .model__image img,
@@ -628,4 +638,9 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
+  .wide-image[data-reveal],
+  .model__image[data-reveal],
+  .year-round__image[data-reveal],
+  .impact__image[data-reveal],
+  .territories__image[data-reveal] { transform: none; }
 }
