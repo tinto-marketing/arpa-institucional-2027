@@ -191,7 +191,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 .bleed figcaption { display: flex; justify-content: space-between; gap: 16px; padding: 14px var(--rail) 0; font: 500 0.68rem var(--mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
 
 /* ---------- model ---------- */
-.model__head { max-width: 26ch; }
+.model__head { max-width: none; }
 .model__head .display { margin: 18px 0 22px; }
 .model__sub { font-size: clamp(1.05rem, 1.4vw, 1.35rem); max-width: 44ch; color: color-mix(in srgb, var(--ink) 70%, transparent); }
 /* principles as real cards */
@@ -220,7 +220,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 
 /* ---------- sectors (horizontal scroll) ---------- */
 .sectors { padding-bottom: 0; }
-.sectors__intro { max-width: 30ch; margin-bottom: clamp(40px, 6vw, 80px); }
+.sectors__intro { max-width: none; margin-bottom: clamp(40px, 6vw, 80px); }
 .sectors__intro .display { margin: 18px 0 20px; }
 .sectors__intro p { max-width: 44ch; font-size: 1.05rem; color: color-mix(in srgb, var(--ink) 72%, transparent); }
 .sectors__viewport { position: relative; }
@@ -239,7 +239,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 .sector-card p { max-width: 42ch; font-size: 0.98rem; color: color-mix(in srgb, var(--ink) 74%, transparent); }
 
 /* ---------- year round ---------- */
-.year-round__head { max-width: 28ch; }
+.year-round__head { max-width: none; }
 .year-round__head .display { margin: 18px 0 20px; }
 .year-round__lead { font-size: clamp(1.05rem, 1.5vw, 1.4rem); max-width: 32ch; color: var(--accent); font-family: var(--display); font-style: italic; }
 .year-round__programs { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 46px); margin-top: clamp(50px, 7vw, 100px); }
@@ -254,7 +254,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 @media (max-width: 860px) { .year-round__programs { grid-template-columns: 1fr; } }
 
 /* ---------- impact ---------- */
-.impact__head { max-width: 28ch; }
+.impact__head { max-width: none; }
 .impact__head .display { margin: 18px 0 18px; }
 .impact__head > p { max-width: 42ch; font-size: 1.05rem; color: color-mix(in srgb, var(--ink) 72%, transparent); }
 .impact__list { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(24px, 3vw, 50px); margin-top: clamp(50px, 7vw, 100px); }
@@ -264,7 +264,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 @media (max-width: 860px) { .impact__list { grid-template-columns: 1fr; } }
 
 /* ---------- territories ---------- */
-.territories__head { max-width: 24ch; }
+.territories__head { max-width: none; }
 .territories__head .display { margin: 18px 0 18px; }
 .territories__head > p { max-width: 42ch; font-size: 1.05rem; color: color-mix(in srgb, var(--ink) 72%, transparent); }
 .territories__list { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 40px); margin-top: clamp(40px, 5vw, 70px); }
@@ -281,7 +281,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 .partnership__media { position: absolute; inset: -12% 0; margin: 0; z-index: 0; }
 .partnership__media img { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 .partnership::before { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(101,0,47,0.92) 0%, rgba(101,0,47,0.6) 50%, rgba(11,11,11,0.35) 100%); }
-.partnership__inner { position: relative; z-index: 2; max-width: 20ch; }
+.partnership__inner { position: relative; z-index: 2; max-width: min(90vw, 720px); }
 .partnership__inner .display { margin: 20px 0 24px; }
 .partnership__text { max-width: 46ch; font-size: clamp(1rem, 1.3vw, 1.2rem); opacity: 0.92; margin: 0 0 32px; }
 .partnership .button--light { background: #fff; color: var(--accent); }
@@ -305,7 +305,7 @@ section[data-section] { position: relative; padding: clamp(80px, 12vw, 180px) va
 }
 @media (max-width: 760px) {
   .partnership { align-items: flex-start; min-height: auto; }
-  .partnership__inner { max-width: 28ch; }
+  .partnership__inner { max-width: 90vw; }
 }
 
 /* ---------- reduced motion ---------- */
