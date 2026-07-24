@@ -48,7 +48,7 @@
   --ink: #090909;
   --muted: #5d5d58;
   --accent: #65002f;
-  --accent-2: #ff0000;
+  --accent-2: var(--accent); /* era vermelho #ff0000; agora vinho como cor unica de destaque */
   --accent-ink: #ffffff;
   --line: #111111;
   --line-soft: rgba(9, 9, 9, 0.18);
