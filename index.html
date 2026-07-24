@@ -33,7 +33,19 @@
       <a href="#territorios"><span>Territórios</span></a>
       <a class="site-nav__cta" href="#parcerias" data-magnetic><span>Seja parceiro</span></a>
     </nav>
+    <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu">
+      <span></span><span></span>
+    </button>
   </header>
+
+  <div class="mobile-nav" id="mobile-nav" data-mobile-nav aria-label="Navegação mobile">
+    <a href="#arpa">A ArPa</a>
+    <a href="#modelo">Modelo</a>
+    <a href="#setores">Setores</a>
+    <a href="#impacto">Impacto</a>
+    <a href="#territorios">Territórios</a>
+    <a href="#parcerias">Seja parceiro</a>
+  </div>
 
   <main id="conteudo">
 
@@ -49,7 +61,6 @@
       <div class="hero__veil" aria-hidden="true"></div>
 
       <div class="hero__inner">
-        <p class="hero__eyebrow" data-reveal>São Paulo · América Latina · Desde 2022</p>
         <h1 id="hero-title" class="hero__title" data-split>Uma feira de arte com uma proposta única.</h1>
         <div class="hero__foot">
           <p class="hero__intro" data-reveal>Desde 2022, a ArPa aproxima galerias, artistas, colecionadores, instituições e novos públicos por meio de uma feira curada, acolhedora, em profundidade e conectada à América Latina.</p>
@@ -84,7 +95,7 @@
       </div>
 
       <figure class="bleed" data-reveal>
-        <div class="bleed__frame" data-parallax="0.12">
+        <div class="bleed__frame" data-parallax="0.12" data-pan>
           <picture>
             <source srcset="assets/2027/architecture-960.webp 960w, assets/2027/architecture-1920.webp 1920w" sizes="100vw">
             <img src="assets/2027/architecture-1920.webp" alt="Vista panorâmica da feira sob a estrutura histórica do Pacaembu" width="1920" height="1280" loading="lazy">
@@ -165,7 +176,7 @@
         <article class="program" data-reveal><span>03</span><div><h3>Relacionamento contínuo</h3><p>Comunicação, formação de público e encontros mantêm a rede em movimento durante todo o ano.</p></div></article>
       </div>
       <figure class="bleed" data-reveal>
-        <div class="bleed__frame" data-parallax="0.12">
+        <div class="bleed__frame" data-parallax="0.12" data-pan>
           <picture>
             <source srcset="assets/2027/institucional-960.webp 960w, assets/2027/institucional-1920.webp 1920w" sizes="100vw">
             <img src="assets/2027/institucional-1920.webp" alt="Grupo acompanha uma visita mediada na ArPa" width="1920" height="1280" loading="lazy">
@@ -197,7 +208,7 @@
         <p data-reveal>A ArPa escolhe lugares que carregam memória e pertencimento, conectando a cena da arte na América Latina.</p>
       </div>
       <figure class="bleed bleed--tall" data-reveal>
-        <div class="bleed__frame" data-parallax="0.14">
+        <div class="bleed__frame" data-parallax="0.14" data-pan>
           <picture>
             <source srcset="assets/2027/territories-960.webp 960w, assets/2027/territories-1920.webp 1920w" sizes="100vw">
             <img src="assets/2027/territories-1920.webp" alt="Vista superior da expografia e do público da ArPa" width="1920" height="1280" loading="lazy">

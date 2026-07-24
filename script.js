@@ -4,49 +4,19 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isTouch = window.matchMedia("(hover: none)").matches;
 
-  /* ---------- split headlines into REAL visual lines ---------- */
-  const splitEls = Array.from(document.querySelectorAll("[data-split]"));
-  splitEls.forEach((el) => { el.dataset.text = el.textContent.trim(); });
-
-  function splitLines(el) {
-    const text = el.dataset.text || el.textContent.trim();
-    // 1) lay words out as inline-block to measure real line breaks
+  /* ---------- split headlines into WORDS (staggered rise, no clip mask) ---------- */
+  document.querySelectorAll("[data-split]").forEach((el) => {
+    const words = el.textContent.trim().split(/\s+/);
     el.textContent = "";
-    const words = text.split(/\s+/).map((w) => {
-      const s = document.createElement("span");
-      s.className = "measure-word";
-      s.textContent = w;
-      el.appendChild(s);
-      el.appendChild(document.createTextNode(" "));
-      return s;
+    words.forEach((word, i) => {
+      const w = document.createElement("span");
+      w.className = "w";
+      w.textContent = word;
+      w.style.transitionDelay = Math.min(i * 0.055, 0.7) + "s";
+      el.appendChild(w);
+      if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
     });
-    // 2) group by vertical position (same offsetTop = same visual line)
-    const lines = [];
-    let curTop = null, cur = null;
-    words.forEach((w) => {
-      const top = w.offsetTop;
-      if (curTop === null || Math.abs(top - curTop) > 4) { cur = []; lines.push(cur); curTop = top; }
-      cur.push(w.textContent);
-    });
-    // 3) rebuild: one masked .split-line per visual line
-    el.textContent = "";
-    lines.forEach((lineWords) => {
-      const line = document.createElement("span");
-      line.className = "split-line";
-      const inner = document.createElement("span");
-      inner.textContent = lineWords.join(" ");
-      line.appendChild(inner);
-      el.appendChild(line);
-    });
-  }
-  function runSplit() { splitEls.forEach(splitLines); }
-  // Measure AFTER the display font is ready, else words wrap wrong and clip.
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(runSplit);
-    setTimeout(runSplit, 1200); // fallback if fonts.ready never resolves
-  } else {
-    runSplit();
-  }
+  });
 
   /* ---------- word-by-word illuminate for manifesto lead ---------- */
   const litEls = [];
@@ -96,18 +66,28 @@
     if (header) header.style.opacity = (st > lastY && st > 400) ? "0" : "1";
     lastY = st;
 
-    if (!reduce && !isTouch) {
+    if (!reduce) {
       const vh = window.innerHeight;
+      const mobile = window.matchMedia("(max-width: 760px)").matches;
       parallaxEls.forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (rect.bottom < -240 || rect.top > vh + 240) return;
         const speed = parseFloat(el.dataset.parallax) || 0.12;
         const img = el.querySelector("img") || el;
-        const overscan = Math.max(0, (img.offsetHeight - el.clientHeight) / 2);
         const centerOffset = rect.top + rect.height / 2 - vh / 2;
-        let y = -centerOffset * speed;
-        y = Math.max(-overscan, Math.min(overscan, y)); // clamp to available overscan
-        img.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
+
+        if (mobile && el.hasAttribute("data-pan")) {
+          // horizontal PAN RIGHT: progress 0 (entering bottom) -> 1 (leaving top)
+          const overscanX = Math.max(0, img.offsetWidth - el.clientWidth);
+          const prog = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+          img.style.transform = "translate3d(" + (-overscanX * prog).toFixed(1) + "px,0,0)";
+        } else {
+          // vertical parallax
+          const overscanY = Math.max(0, (img.offsetHeight - el.clientHeight) / 2);
+          let y = -centerOffset * speed;
+          y = Math.max(-overscanY, Math.min(overscanY, y));
+          img.style.transform = "translate3d(0," + y.toFixed(1) + "px,0)";
+        }
       });
 
       litEls.forEach((el) => {
@@ -126,18 +106,39 @@
   window.addEventListener("resize", requestScroll);
   onScroll();
 
-  /* ---------- re-split headlines on resize (debounced) ---------- */
-  let resizeT;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeT);
-    resizeT = setTimeout(() => {
-      splitEls.forEach((el) => {
-        const wasIn = el.classList.contains("is-in");
-        splitLines(el);
-        if (wasIn) el.classList.add("is-in");
-      });
-    }, 200);
-  });
+  /* ---------- mobile hamburger nav ---------- */
+  const navToggle = document.querySelector("[data-nav-toggle]");
+  const mobileNav = document.querySelector("[data-mobile-nav]");
+  if (navToggle && mobileNav) {
+    const setNav = (open) => {
+      navToggle.setAttribute("aria-expanded", String(open));
+      mobileNav.classList.toggle("is-open", open);
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+    navToggle.addEventListener("click", () => setNav(navToggle.getAttribute("aria-expanded") !== "true"));
+    mobileNav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setNav(false)));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
+  }
+
+  /* ---------- sectors position dots (mobile) ---------- */
+  const track = document.querySelector("[data-hscroll-track]");
+  if (track && track.parentElement) {
+    const cards = Array.from(track.children);
+    const dots = document.createElement("div");
+    dots.className = "sectors__dots";
+    dots.setAttribute("aria-hidden", "true");
+    cards.forEach(() => dots.appendChild(document.createElement("span")));
+    track.parentElement.appendChild(dots);
+    const marks = Array.from(dots.children);
+    const sync = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      const i = max > 0 ? Math.round((track.scrollLeft / max) * (cards.length - 1)) : 0;
+      marks.forEach((m, k) => m.classList.toggle("is-on", k === i));
+    };
+    let dTick = false;
+    track.addEventListener("scroll", () => { if (!dTick) { dTick = true; requestAnimationFrame(() => { sync(); dTick = false; }); } }, { passive: true });
+    sync();
+  }
 
   /* ---------- marquee (auto + scroll-reactive, paused when off-screen) ---------- */
   const marquee = document.querySelector("[data-marquee]");
