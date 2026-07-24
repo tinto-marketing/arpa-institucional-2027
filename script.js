@@ -39,7 +39,14 @@
       el.appendChild(line);
     });
   }
-  splitEls.forEach(splitLines);
+  function runSplit() { splitEls.forEach(splitLines); }
+  // Measure AFTER the display font is ready, else words wrap wrong and clip.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(runSplit);
+    setTimeout(runSplit, 1200); // fallback if fonts.ready never resolves
+  } else {
+    runSplit();
+  }
 
   /* ---------- word-by-word illuminate for manifesto lead ---------- */
   const litEls = [];
