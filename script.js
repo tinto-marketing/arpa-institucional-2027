@@ -15,6 +15,8 @@ const countItems = [...document.querySelectorAll("[data-count]")];
 const audienceCharts = [...document.querySelectorAll("[data-audience-chart]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+const parallaxMotionStates = new Map();
+let parallaxMotionFrame = 0;
 
 const sectorRows = [...document.querySelectorAll("[data-sector-row]")];
 
@@ -170,36 +172,94 @@ function initTicker() {
   });
 }
 
+function renderParallaxMotion() {
+  let keepAnimating = false;
+
+  parallaxMotionStates.forEach((state, image) => {
+    if (!state.moving) return;
+    state.x += (state.targetX - state.x) * state.response;
+    state.y += (state.targetY - state.y) * state.response;
+    state.rotation += (state.targetRotation - state.rotation) * state.response;
+    state.scale += (state.targetScale - state.scale) * state.response;
+
+    image.style.transform = `translate3d(${state.x.toFixed(2)}px, ${state.y.toFixed(2)}px, 0) rotate(${state.rotation.toFixed(3)}deg) scale(${state.scale.toFixed(4)})`;
+
+    const remaining = Math.max(
+      Math.abs(state.targetX - state.x),
+      Math.abs(state.targetY - state.y),
+      Math.abs(state.targetRotation - state.rotation) * 10,
+      Math.abs(state.targetScale - state.scale) * 100,
+    );
+    if (remaining > 0.025) {
+      keepAnimating = true;
+    } else {
+      state.x = state.targetX;
+      state.y = state.targetY;
+      state.rotation = state.targetRotation;
+      state.scale = state.targetScale;
+      state.moving = false;
+      image.style.transform = `translate3d(${state.x.toFixed(2)}px, ${state.y.toFixed(2)}px, 0) rotate(${state.rotation.toFixed(3)}deg) scale(${state.scale.toFixed(4)})`;
+    }
+  });
+
+  if (keepAnimating) parallaxMotionFrame = requestAnimationFrame(renderParallaxMotion);
+  else parallaxMotionFrame = 0;
+}
+
+function setParallaxTarget(image, { x = 0, y = 0, rotation = 0, scale = 1.11, response = 0.06 }) {
+  let state = parallaxMotionStates.get(image);
+  if (!state) {
+    state = { x: 0, y: 0, rotation: 0, scale: 1.11, targetX: x, targetY: y, targetRotation: rotation, targetScale: scale, response, moving: true };
+    parallaxMotionStates.set(image, state);
+  } else {
+    state.targetX = x;
+    state.targetY = y;
+    state.targetRotation = rotation;
+    state.targetScale = scale;
+    state.response = response;
+    state.moving = true;
+  }
+
+  if (!parallaxMotionFrame) parallaxMotionFrame = requestAnimationFrame(renderParallaxMotion);
+}
+
 function setParallax() {
   if (reducedMotion || !parallaxItems.length) return;
   const viewportHeight = window.innerHeight;
   const isMobile = window.innerWidth < 700;
-  const motionFactor = isMobile ? 0.9 : 1;
+  const motionFactor = isMobile ? 1.3 : 1.45;
+  const activePadding = viewportHeight * 0.42;
 
-  if (isMobile && heroMedia && heroImage) {
-    const heroBounds = heroMedia.getBoundingClientRect();
-    const heroActive = heroBounds.bottom >= -120 && heroBounds.top <= viewportHeight + 120;
-    heroMedia.classList.toggle("is-scroll-parallax-active", heroActive);
-    if (heroActive) {
-      const heroOffset = (heroBounds.top + heroBounds.height / 2 - viewportHeight / 2) / (viewportHeight + heroBounds.height);
-      const heroShift = Math.max(-18, Math.min(18, heroOffset * -36));
-      heroImage.style.transform = `translate3d(0, ${heroShift.toFixed(2)}px, 0) scale(1.085)`;
+  if (heroMedia && heroImage) {
+    if (isMobile) {
+      const heroBounds = heroMedia.getBoundingClientRect();
+      const heroActive = heroBounds.bottom >= -activePadding && heroBounds.top <= viewportHeight + activePadding;
+      heroMedia.classList.toggle("is-scroll-parallax-active", heroActive);
+      if (heroActive) {
+        const heroOffset = (heroBounds.top + heroBounds.height / 2 - viewportHeight / 2) / (viewportHeight + heroBounds.height);
+        const heroShift = Math.max(-32, Math.min(32, heroOffset * -68));
+        setParallaxTarget(heroImage, { y: heroShift, scale: 1.11, response: 0.052 });
+      }
+    } else {
+      heroMedia.classList.remove("is-scroll-parallax-active");
+      parallaxMotionStates.delete(heroImage);
+      heroImage.style.removeProperty("transform");
     }
   }
 
   parallaxItems.forEach((item, index) => {
     const bounds = item.getBoundingClientRect();
     const image = item.querySelector("img");
-    const active = bounds.bottom >= -120 && bounds.top <= viewportHeight + 120;
+    const active = bounds.bottom >= -activePadding && bounds.top <= viewportHeight + activePadding;
     item.classList.toggle("is-parallax-active", active);
     if (!active || !image) return;
     const centerOffset = (bounds.top + bounds.height / 2 - viewportHeight / 2) / (viewportHeight + bounds.height);
     const intensity = Number(item.dataset.parallax || 12) * motionFactor;
-    const shift = Math.max(-intensity, Math.min(intensity, centerOffset * -intensity * 2));
+    const shift = Math.max(-intensity * 1.45, Math.min(intensity * 1.45, centerOffset * -intensity * 2.8));
     const direction = index % 2 === 0 ? -1 : 1;
-    const horizontalShift = shift * direction * (isMobile ? 0.3 : 0.16);
-    const rotation = isMobile ? shift * direction * 0.012 : 0;
-    image.style.transform = `translate3d(${horizontalShift.toFixed(2)}px, ${shift.toFixed(2)}px, 0) rotate(${rotation.toFixed(3)}deg) scale(1.085)`;
+    const horizontalShift = shift * direction * (isMobile ? 0.18 : 0.12);
+    const rotation = isMobile ? shift * direction * 0.006 : 0;
+    setParallaxTarget(image, { x: horizontalShift, y: shift, rotation, scale: 1.11, response: isMobile ? 0.052 : 0.064 });
   });
 }
 

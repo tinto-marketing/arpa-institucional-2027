@@ -47,11 +47,6 @@
         <div class="hero__copy-inner">
           <h1 id="hero-title">Uma feira de arte com uma proposta única.</h1>
           <p class="hero__intro">Desde 2022, a ArPa aproxima galerias, artistas, colecionadores, instituições e novos públicos por meio de uma feira curada, acolhedora e conectada à América Latina — criada para ver a arte em profundidade.</p>
-          <div class="hero__actions">
-            <a class="button button--dark" href="#arpa">Conheça a ArPa <span aria-hidden="true">↓</span></a>
-            <a class="text-link" href="#parcerias">Seja parceiro <span aria-hidden="true">↗</span></a>
-          </div>
-          <p class="hero__meta">São Paulo <span>·</span> América Latina <span>·</span> Desde 2022</p>
         </div>
       </div>
 
@@ -61,10 +56,7 @@
           <source srcset="assets/2027/hero-960.webp 960w, assets/2027/hero-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 60vw">
           <img src="assets/2027/hero-1920.webp" alt="Visitantes circulam pelos estandes durante a ArPa" width="1920" height="1280" fetchpriority="high">
         </picture>
-        <figcaption><span>ArPa 2026</span><span>Foto do acervo ArPa</span></figcaption>
       </figure>
-
-      <a class="hero__scroll" href="#arpa"><span>Explore</span><i aria-hidden="true"></i></a>
     </section>
 
     <div class="kinetic-rail" data-ticker>
@@ -360,17 +352,27 @@
         </figure>
 
         <div class="territories__list" data-reveal>
-          <article>
-            <p class="status status--current">Origem</p>
-            <h3>São Paulo</h3>
-            <p>Mercado Livre Arena Pacaembu</p>
-            <span>A feira anual e sua rede de galerias, instituições e públicos.</span>
+          <article class="territory-card territory-card--origin">
+            <div class="territory-card__top">
+              <p class="status status--current">Origem</p>
+              <span class="territory-card__code" aria-hidden="true">SP</span>
+            </div>
+            <div class="territory-card__body">
+              <h3>São Paulo</h3>
+              <p class="territory-card__venue">Mercado Livre Arena Pacaembu</p>
+              <span class="territory-card__description">A feira anual e sua rede de galerias, instituições e públicos.</span>
+            </div>
           </article>
-          <article>
-            <p class="status status--future">Programação futura</p>
-            <h3>Buenos Aires</h3>
-            <p>16–20 de setembro de 2026 · Casa Victoria Ocampo</p>
-            <span>Uma experiência intimista e curada com galerias latino-americanas.</span>
+          <article class="territory-card territory-card--future">
+            <div class="territory-card__top">
+              <p class="status status--future">Programação futura</p>
+              <span class="territory-card__code" aria-hidden="true">BA</span>
+            </div>
+            <div class="territory-card__body">
+              <h3>Buenos Aires</h3>
+              <p class="territory-card__venue">16–20 de setembro de 2026 · Casa Victoria Ocampo</p>
+              <span class="territory-card__description">Uma experiência intimista e curada com galerias latino-americanas.</span>
+            </div>
           </article>
         </div>
       </div>
