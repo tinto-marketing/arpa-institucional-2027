@@ -67,8 +67,15 @@
       <a class="hero__scroll" href="#arpa"><span>Explore</span><i aria-hidden="true"></i></a>
     </section>
 
-    <div class="kinetic-rail" aria-hidden="true">
-      <div>ARTE&nbsp;&nbsp;/&nbsp;&nbsp; DIÁLOGO&nbsp;&nbsp;/&nbsp;&nbsp; MERCADO&nbsp;&nbsp;/&nbsp;&nbsp; FORMAÇÃO&nbsp;&nbsp;/&nbsp;&nbsp; PRESENÇA&nbsp;&nbsp;/&nbsp;&nbsp; ARTE&nbsp;&nbsp;/&nbsp;&nbsp; DIÁLOGO&nbsp;&nbsp;/&nbsp;&nbsp; MERCADO&nbsp;&nbsp;/&nbsp;&nbsp; FORMAÇÃO&nbsp;&nbsp;/&nbsp;&nbsp; PRESENÇA&nbsp;&nbsp;/&nbsp;&nbsp;</div>
+    <div class="kinetic-rail" aria-hidden="true" data-ticker>
+      <div class="kinetic-rail__track" data-ticker-track>
+        <div class="kinetic-rail__group" data-ticker-group>
+          <span>Arte</span><i>·</i><span>Diálogo</span><i>·</i><span>Mercado</span><i>·</i><span>Formação</span><i>·</i><span>Presença</span><i>·</i>
+        </div>
+        <div class="kinetic-rail__group" data-ticker-group aria-hidden="true">
+          <span>Arte</span><i>·</i><span>Diálogo</span><i>·</i><span>Mercado</span><i>·</i><span>Formação</span><i>·</i><span>Presença</span><i>·</i>
+        </div>
+      </div>
     </div>
 
     <section class="section manifesto" id="arpa" data-section="A ArPa">
@@ -88,7 +95,7 @@
         </blockquote>
       </div>
 
-      <figure class="wide-image aperture-image" data-reveal>
+      <figure class="wide-image aperture-image" data-reveal data-parallax="20">
         <picture>
           <source srcset="assets/2027/architecture-960.webp 960w, assets/2027/architecture-1920.webp 1920w" sizes="100vw">
           <img src="assets/2027/architecture-1920.webp" alt="Vista panorâmica da feira sob a estrutura histórica do Pacaembu" width="1920" height="1280">
@@ -106,7 +113,7 @@
         </div>
 
         <div class="model__grid">
-          <figure class="model__image" data-reveal>
+          <figure class="model__image" data-reveal data-parallax="14">
             <picture>
               <source srcset="assets/2027/model-960.webp 960w, assets/2027/model-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw">
               <img src="assets/2027/model-1920.webp" alt="Visitantes atravessam uma galeria com pinturas e esculturas" width="1920" height="1280">
@@ -169,8 +176,20 @@
         </div>
 
         <div class="proof__press" data-reveal>
-          <span>Presença editorial</span>
-          <p>Veja SP · O Globo · Estadão · Folha · Valor · Vogue · CasaCor · Arte Que Acontece</p>
+          <div class="proof__press-intro">
+            <p class="chapter">Presença editorial</p>
+            <h3>Uma conversa que circula.</h3>
+          </div>
+          <ul class="proof__press-list" aria-label="Veículos com cobertura da ArPa">
+            <li><span>Veja São Paulo</span><i aria-hidden="true">↗</i></li>
+            <li><span>O Globo</span><i aria-hidden="true">↗</i></li>
+            <li><span>Estadão</span><i aria-hidden="true">↗</i></li>
+            <li><span>Folha</span><i aria-hidden="true">↗</i></li>
+            <li><span>Valor</span><i aria-hidden="true">↗</i></li>
+            <li><span>Vogue</span><i aria-hidden="true">↗</i></li>
+            <li><span>CasaCor</span><i aria-hidden="true">↗</i></li>
+            <li><span>Arte Que Acontece</span><i aria-hidden="true">↗</i></li>
+          </ul>
         </div>
         <p class="source-note">Fonte: apresentação institucional ArPa — 6ª edição. Dados digitais de 1º de maio a 1º de junho de 2026.</p>
       </div>
@@ -269,7 +288,7 @@
           </article>
         </div>
 
-        <figure class="year-round__image" data-reveal>
+        <figure class="year-round__image" data-reveal data-parallax="18">
           <picture>
             <source srcset="assets/2027/institucional-960.webp 960w, assets/2027/institucional-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 56vw">
             <img src="assets/2027/institucional-1920.webp" alt="Grupo acompanha uma visita mediada na ArPa" width="1920" height="1280">
@@ -288,7 +307,7 @@
         </div>
 
         <div class="impact__grid">
-          <figure class="impact__image" data-reveal>
+          <figure class="impact__image" data-reveal data-parallax="16">
             <picture>
               <source srcset="assets/2027/conversation-960.webp 960w, assets/2027/conversation-1920.webp 1920w" sizes="(max-width: 760px) 100vw, 48vw">
               <img src="assets/2027/conversation-1920.webp" alt="Conversa aberta entre convidados e público da ArPa" width="1920" height="1280">
@@ -312,7 +331,7 @@
           <p>A ArPa escolhe lugares que carregam memória e pertencimento, conectando a cena da arte na América Latina.</p>
         </div>
 
-        <figure class="territories__image" data-reveal>
+        <figure class="territories__image" data-reveal data-parallax="18">
           <picture>
             <source srcset="assets/2027/territories-960.webp 960w, assets/2027/territories-1920.webp 1920w" sizes="100vw">
             <img src="assets/2027/territories-1920.webp" alt="Vista superior da expografia e do público da ArPa" width="1920" height="1280">
@@ -347,25 +366,25 @@
 
         <div class="brand-cases__grid">
           <article class="brand-case" data-reveal>
-            <figure>
+            <figure data-parallax="10">
               <img src="assets/2027/brand-guided-800.webp" srcset="assets/2027/brand-guided-800.webp 800w, assets/2027/brand-guided-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Convidados do Shopping Cidade Jardim participam de visita guiada exclusiva na ArPa" width="1600" height="900" loading="lazy">
             </figure>
             <div><span>01 / Hospitalidade</span><h3>Visitas guiadas exclusivas</h3><p>Shopping Cidade Jardim</p></div>
           </article>
           <article class="brand-case" data-reveal>
-            <figure>
+            <figure data-parallax="10">
               <img src="assets/2027/brand-sauer-800.webp" srcset="assets/2027/brand-sauer-800.webp 800w, assets/2027/brand-sauer-1600.webp 1565w" sizes="(max-width: 900px) 100vw, 50vw" alt="Espaço de ativação da joalheria Sauer integrado à área das galerias na ArPa" width="1565" height="880" loading="lazy">
             </figure>
             <div><span>02 / Presença</span><h3>Espaço de ativação</h3><p>Sauer</p></div>
           </article>
           <article class="brand-case" data-reveal>
-            <figure>
+            <figure data-parallax="10">
               <img src="assets/2027/brand-vivo-800.webp" srcset="assets/2027/brand-vivo-800.webp 800w, assets/2027/brand-vivo-1600.webp 1565w" sizes="(max-width: 900px) 100vw, 50vw" alt="Visitantes interagem com uma instalação imersiva da Vivo no Setor Principal" width="1565" height="880" loading="lazy">
             </figure>
             <div><span>03 / Interação</span><h3>Experiência imersiva</h3><p>Vivo</p></div>
           </article>
           <article class="brand-case" data-reveal>
-            <figure>
+            <figure data-parallax="10">
               <img src="assets/2027/brand-progen-800.webp" srcset="assets/2027/brand-progen-800.webp 800w, assets/2027/brand-progen-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Crianças de escolas públicas participam do Programa Educativo patrocinado pela Progen" width="1600" height="901" loading="lazy">
             </figure>
             <div><span>04 / Legado</span><h3>Programa educativo</h3><p>Progen</p></div>
@@ -375,7 +394,7 @@
     </section>
 
     <section class="partnership" id="parcerias" data-section="Parcerias">
-      <figure class="partnership__media">
+      <figure class="partnership__media" data-parallax="18">
         <picture>
           <source srcset="assets/2027/experience-960.webp 960w, assets/2027/experience-1920.webp 1920w" sizes="100vw">
           <img src="assets/2027/experience-1920.webp" alt="Público observa uma obra têxtil em uma exposição da ArPa" width="1920" height="1280">

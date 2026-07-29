@@ -6,6 +6,9 @@ const nav = document.querySelector("[data-nav]");
 const navLinks = [...document.querySelectorAll(".site-nav a[href^='#']")];
 const heroMedia = document.querySelector("[data-hero-media]");
 const heroImage = heroMedia?.querySelector("img");
+const tickerTrack = document.querySelector("[data-ticker-track]");
+const tickerGroup = document.querySelector("[data-ticker-group]");
+const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
 const revealItems = [...document.querySelectorAll("[data-reveal]")];
 const countItems = [...document.querySelectorAll("[data-count]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -54,6 +57,33 @@ function initHeroParallax() {
   heroMedia.addEventListener("pointerleave", () => {
     heroMedia.style.setProperty("--hero-shift-x", "0px");
     heroMedia.style.setProperty("--hero-shift-y", "0px");
+  });
+}
+
+function setTickerSpeed() {
+  if (!tickerTrack || !tickerGroup || reducedMotion) return;
+  const width = tickerGroup.getBoundingClientRect().width;
+  const duration = Math.max(15, width / 58);
+  tickerTrack.style.setProperty("--ticker-duration", `${duration.toFixed(2)}s`);
+}
+
+function initTicker() {
+  setTickerSpeed();
+  document.fonts?.ready.then(setTickerSpeed);
+}
+
+function setParallax() {
+  if (reducedMotion || !parallaxItems.length) return;
+  const viewportHeight = window.innerHeight;
+  const mobileFactor = window.innerWidth < 700 ? 0.55 : 1;
+
+  parallaxItems.forEach((item) => {
+    const bounds = item.getBoundingClientRect();
+    if (bounds.bottom < -120 || bounds.top > viewportHeight + 120) return;
+    const centerOffset = (bounds.top + bounds.height / 2 - viewportHeight / 2) / (viewportHeight + bounds.height);
+    const intensity = Number(item.dataset.parallax || 12) * mobileFactor;
+    const shift = Math.max(-intensity, Math.min(intensity, centerOffset * -intensity * 2));
+    item.style.setProperty("--parallax-y", `${shift.toFixed(2)}px`);
   });
 }
 
@@ -172,6 +202,7 @@ function onScroll() {
     setHeader();
     setProgress();
     setActiveNav();
+    setParallax();
     ticking = false;
   });
 }
@@ -179,12 +210,17 @@ function onScroll() {
 openHero();
 initReveal();
 initHeroParallax();
+initTicker();
 initCounts();
 initMenu();
 initSectorRows();
 setHeader();
 setProgress();
 setActiveNav();
+setParallax();
 
 window.addEventListener("scroll", onScroll, { passive: true });
-window.addEventListener("resize", onScroll);
+window.addEventListener("resize", () => {
+  setTickerSpeed();
+  onScroll();
+});
