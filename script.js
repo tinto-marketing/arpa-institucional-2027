@@ -115,6 +115,7 @@ function setActiveNav() {
 function closeMenu() {
   nav?.classList.remove("is-open");
   menuButton?.setAttribute("aria-expanded", "false");
+  menuButton?.setAttribute("aria-label", "Abrir menu");
   body.classList.remove("menu-open");
 }
 
@@ -123,6 +124,7 @@ function initMenu() {
     const willOpen = !nav?.classList.contains("is-open");
     nav?.classList.toggle("is-open", willOpen);
     menuButton.setAttribute("aria-expanded", String(willOpen));
+    menuButton.setAttribute("aria-label", willOpen ? "Fechar menu" : "Abrir menu");
     body.classList.toggle("menu-open", willOpen);
   });
 
