@@ -143,7 +143,7 @@
     <section class="results" aria-labelledby="results-title" data-section="Resultados">
       <div class="shell">
         <p class="chapter">Resultados 2026</p>
-        <p id="results-title" class="results__statement" data-reveal>A edição 2026 reuniu <b class="results__num" data-count data-value="70" data-prefix="+">+70</b> <b class="results__word">expositores</b> em <b class="results__num" data-count data-value="5">5</b> <b class="results__word">setores</b>, concedeu <b class="results__num" data-count data-value="3">3</b> <b class="results__word">prêmios</b> e recebeu <b class="results__num" data-count data-value="13" data-prefix="+" data-suffix=" mil">+13 mil</b> <b class="results__word">visitantes</b>.</p>
+        <p id="results-title" class="results__statement" data-reveal>A edição 2026 reuniu <span class="results__highlight"><b class="results__num" data-count data-value="70" data-prefix="+">+70</b>&nbsp;<b class="results__word">expositores</b></span> em <span class="results__highlight"><b class="results__num" data-count data-value="5">5</b>&nbsp;<b class="results__word">setores</b></span>, concedeu <span class="results__highlight"><b class="results__num" data-count data-value="3">3</b>&nbsp;<b class="results__word">prêmios</b></span> e recebeu <span class="results__highlight"><b class="results__num" data-count data-value="13" data-prefix="+" data-suffix=" mil">+13 mil</b>&nbsp;<b class="results__word">visitantes</b></span>.</p>
         <p class="source-note">Fonte: balanço institucional da edição 2026.</p>
       </div>
     </section>
@@ -164,22 +164,41 @@
         </dl>
 
         <div class="proof__community" data-reveal>
-          <div>
+          <div class="proof__community-copy">
             <p class="chapter">Comunidade</p>
-            <h3>Uma audiência plural,<br>atenta e conectada.</h3>
+            <h3>Mulheres são metade<br>de uma audiência plural.</h3>
+            <p>Perfil declarado pela audiência respondente da edição 2026.</p>
           </div>
-          <dl aria-label="Identidade de gênero da audiência respondente">
-            <div><dt>Mulheres</dt><dd>50%</dd></div>
-            <div><dt>Homens</dt><dd>45%</dd></div>
-            <div><dt>Não binário</dt><dd>3%</dd></div>
-            <div><dt>Prefere não responder</dt><dd>2%</dd></div>
-          </dl>
+          <div class="audience-chart" data-audience-chart role="group" aria-labelledby="audience-chart-title" aria-describedby="audience-chart-desc">
+            <p id="audience-chart-title" class="sr-only">Identidade de gênero da audiência respondente</p>
+            <p id="audience-chart-desc" class="sr-only">Mulheres representam 50%; homens, 45%; pessoas não binárias, 3%; e 2% preferem não responder.</p>
+            <div class="audience-chart__graphic">
+              <svg viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+                <circle class="audience-chart__track" cx="120" cy="120" r="88" pathLength="100"></circle>
+                <circle class="audience-chart__segment audience-chart__segment--women is-selected" data-audience-segment="0" cx="120" cy="120" r="88" pathLength="100" stroke-dasharray="50 50" stroke-dashoffset="0"></circle>
+                <circle class="audience-chart__segment audience-chart__segment--men" data-audience-segment="1" cx="120" cy="120" r="88" pathLength="100" stroke-dasharray="45 55" stroke-dashoffset="-50"></circle>
+                <circle class="audience-chart__segment audience-chart__segment--nonbinary" data-audience-segment="2" cx="120" cy="120" r="88" pathLength="100" stroke-dasharray="3 97" stroke-dashoffset="-95"></circle>
+                <circle class="audience-chart__segment audience-chart__segment--undisclosed" data-audience-segment="3" cx="120" cy="120" r="88" pathLength="100" stroke-dasharray="2 98" stroke-dashoffset="-98"></circle>
+              </svg>
+              <div class="audience-chart__center" aria-live="polite">
+                <strong data-audience-value>50%</strong>
+                <span data-audience-label>Mulheres</span>
+              </div>
+            </div>
+            <div class="audience-chart__legend" role="group" aria-label="Destaque um grupo da audiência">
+              <button type="button" class="audience-chart__item is-selected" data-audience-control="0" aria-pressed="true" style="--audience-value: 50%"><i aria-hidden="true"></i><span>Mulheres</span><strong>50%</strong></button>
+              <button type="button" class="audience-chart__item" data-audience-control="1" aria-pressed="false" style="--audience-value: 45%"><i aria-hidden="true"></i><span>Homens</span><strong>45%</strong></button>
+              <button type="button" class="audience-chart__item" data-audience-control="2" aria-pressed="false" style="--audience-value: 3%"><i aria-hidden="true"></i><span>Não binário</span><strong>3%</strong></button>
+              <button type="button" class="audience-chart__item" data-audience-control="3" aria-pressed="false" style="--audience-value: 2%"><i aria-hidden="true"></i><span>Prefere não responder</span><strong>2%</strong></button>
+            </div>
+          </div>
         </div>
 
         <div class="proof__press" data-reveal>
           <div class="proof__press-intro">
             <p class="chapter">Presença editorial</p>
             <h3>Uma conversa que circula.</h3>
+            <p class="proof__press-count"><strong>08</strong><span>veículos citados no balanço institucional</span></p>
           </div>
           <ul class="proof__press-list" aria-label="Veículos com cobertura da ArPa">
             <li><span>Veja São Paulo</span><i aria-hidden="true">↗</i></li>
@@ -369,26 +388,30 @@
           <article class="brand-case" data-reveal>
             <figure data-parallax="10">
               <img src="assets/2027/brand-guided-800.webp" srcset="assets/2027/brand-guided-800.webp 800w, assets/2027/brand-guided-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Convidados do Shopping Cidade Jardim participam de visita guiada exclusiva na ArPa" width="1600" height="900" loading="lazy">
+              <span class="brand-case__index" aria-hidden="true">01</span>
             </figure>
-            <div><span>01 / Hospitalidade</span><h3>Visitas guiadas exclusivas</h3><p>Shopping Cidade Jardim</p></div>
+            <div class="brand-case__content"><span class="brand-case__eyebrow">Hospitalidade</span><h3>Visitas guiadas exclusivas</h3><p>Shopping Cidade Jardim</p></div>
           </article>
           <article class="brand-case" data-reveal>
             <figure data-parallax="10">
               <img src="assets/2027/brand-sauer-800.webp" srcset="assets/2027/brand-sauer-800.webp 800w, assets/2027/brand-sauer-1600.webp 1565w" sizes="(max-width: 900px) 100vw, 50vw" alt="Espaço de ativação da joalheria Sauer integrado à área das galerias na ArPa" width="1565" height="880" loading="lazy">
+              <span class="brand-case__index" aria-hidden="true">02</span>
             </figure>
-            <div><span>02 / Presença</span><h3>Espaço de ativação</h3><p>Sauer</p></div>
+            <div class="brand-case__content"><span class="brand-case__eyebrow">Presença</span><h3>Espaço de ativação</h3><p>Sauer</p></div>
           </article>
           <article class="brand-case" data-reveal>
             <figure data-parallax="10">
               <img src="assets/2027/brand-vivo-800.webp" srcset="assets/2027/brand-vivo-800.webp 800w, assets/2027/brand-vivo-1600.webp 1565w" sizes="(max-width: 900px) 100vw, 50vw" alt="Visitantes interagem com uma instalação imersiva da Vivo no Setor Principal" width="1565" height="880" loading="lazy">
+              <span class="brand-case__index" aria-hidden="true">03</span>
             </figure>
-            <div><span>03 / Interação</span><h3>Experiência imersiva</h3><p>Vivo</p></div>
+            <div class="brand-case__content"><span class="brand-case__eyebrow">Interação</span><h3>Experiência imersiva</h3><p>Vivo</p></div>
           </article>
           <article class="brand-case" data-reveal>
             <figure data-parallax="10">
               <img src="assets/2027/brand-progen-800.webp" srcset="assets/2027/brand-progen-800.webp 800w, assets/2027/brand-progen-1600.webp 1600w" sizes="(max-width: 900px) 100vw, 50vw" alt="Crianças de escolas públicas participam do Programa Educativo patrocinado pela Progen" width="1600" height="901" loading="lazy">
+              <span class="brand-case__index" aria-hidden="true">04</span>
             </figure>
-            <div><span>04 / Legado</span><h3>Programa educativo</h3><p>Progen</p></div>
+            <div class="brand-case__content"><span class="brand-case__eyebrow">Legado</span><h3>Programa educativo</h3><p>Progen</p></div>
           </article>
         </div>
       </div>

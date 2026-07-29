@@ -12,6 +12,7 @@ const tickerToggle = document.querySelector("[data-ticker-toggle]");
 const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
 const revealItems = [...document.querySelectorAll("[data-reveal]")];
 const countItems = [...document.querySelectorAll("[data-count]")];
+const audienceCharts = [...document.querySelectorAll("[data-audience-chart]")];
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const precisePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
@@ -82,6 +83,7 @@ function initTextMotion() {
     ".manifesto__body > p",
     ".model__header > p:last-child",
     ".proof__heading > p:last-child",
+    ".proof__community-copy > p:last-child",
     ".sectors__heading > p:last-child",
     ".year-round__copy > p:last-child",
     ".impact__heading > p:last-child",
@@ -233,6 +235,57 @@ function initCounts() {
   countItems.forEach((item) => observer.observe(item));
 }
 
+function initAudienceCharts() {
+  audienceCharts.forEach((chart) => {
+    const controls = [...chart.querySelectorAll("[data-audience-control]")];
+    const segments = [...chart.querySelectorAll("[data-audience-segment]")];
+    const centerValue = chart.querySelector("[data-audience-value]");
+    const centerLabel = chart.querySelector("[data-audience-label]");
+
+    function selectAudience(index) {
+      const control = controls[index];
+      if (!control) return;
+
+      chart.classList.add("has-selection");
+      controls.forEach((item, itemIndex) => {
+        const selected = itemIndex === index;
+        item.classList.toggle("is-selected", selected);
+        item.setAttribute("aria-pressed", String(selected));
+      });
+      segments.forEach((item, itemIndex) => item.classList.toggle("is-selected", itemIndex === index));
+
+      const label = control.querySelector("span")?.textContent || "";
+      const value = control.querySelector("strong")?.textContent || "";
+      if (centerLabel) centerLabel.textContent = label;
+      if (centerValue) centerValue.textContent = value;
+    }
+
+    controls.forEach((control, index) => {
+      control.addEventListener("pointerenter", () => selectAudience(index));
+      control.addEventListener("focus", () => selectAudience(index));
+      control.addEventListener("click", () => selectAudience(index));
+      control.addEventListener("keydown", (event) => {
+        if (!["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        let nextIndex = index;
+        if (["ArrowRight", "ArrowDown"].includes(event.key)) nextIndex = (index + 1) % controls.length;
+        if (["ArrowLeft", "ArrowUp"].includes(event.key)) nextIndex = (index - 1 + controls.length) % controls.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = controls.length - 1;
+        selectAudience(nextIndex);
+        controls[nextIndex].focus();
+      });
+    });
+
+    segments.forEach((segment, index) => {
+      segment.addEventListener("pointerenter", () => selectAudience(index));
+      segment.addEventListener("click", () => selectAudience(index));
+    });
+
+    selectAudience(0);
+  });
+}
+
 function setHeader() {
   header?.classList.toggle("is-solid", window.scrollY > 30);
 }
@@ -332,6 +385,7 @@ initReveal();
 initHeroParallax();
 initTicker();
 initCounts();
+initAudienceCharts();
 initMenu();
 initSectorRows();
 setHeader();
