@@ -458,3 +458,69 @@ window.addEventListener("resize", () => {
   setTickerSpeed();
   onScroll();
 });
+
+/* Presença editorial — mosaico de imprensa: lightbox interno (sem links externos) */
+(function () {
+  "use strict";
+  var modal = document.querySelector("[data-press-modal]");
+  if (!modal) return;
+  var outlet = modal.querySelector("[data-modal-outlet]");
+  var headline = modal.querySelector("[data-modal-headline]");
+  var closeBtn = modal.querySelector(".press-modal__close");
+  var lastFocus = null;
+  function open(v, h, tile) {
+    lastFocus = tile;
+    outlet.textContent = v;
+    headline.textContent = h;
+    modal.hidden = false;
+    requestAnimationFrame(function () { modal.classList.add("is-open"); });
+    document.body.style.overflow = "hidden";
+    if (closeBtn) closeBtn.focus();
+  }
+  function close() {
+    modal.classList.remove("is-open");
+    document.body.style.overflow = "";
+    setTimeout(function () { modal.hidden = true; if (lastFocus) lastFocus.focus(); }, 340);
+  }
+  document.querySelectorAll(".press-tile").forEach(function (t) {
+    t.addEventListener("click", function () { open(t.dataset.veiculo, t.dataset.headline, t); });
+  });
+  modal.querySelectorAll("[data-press-close]").forEach(function (el) {
+    el.addEventListener("click", close);
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modal.hidden) close();
+  });
+})();
+
+/* ============================================================
+   Hero Materialização (v15) — cascata das barras + frase word-by-word
+   ============================================================ */
+(function () {
+  var hero = document.querySelector(".hero-mat");
+  if (!hero) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  hero.querySelectorAll(".bars i").forEach(function (b, i) {
+    b.style.transitionDelay = (i * 150) + "ms";
+  });
+
+  var line = hero.querySelector("[data-line]");
+  if (line) {
+    var words = line.textContent.trim().split(/\s+/);
+    line.textContent = "";
+    words.forEach(function (w, i) {
+      var s = document.createElement("span");
+      s.className = "w";
+      s.textContent = w;
+      s.style.transitionDelay = (4900 + i * 95) + "ms";
+      line.appendChild(s);
+      if (i < words.length - 1) line.appendChild(document.createTextNode(" "));
+    });
+  }
+
+  if (reduce) { hero.classList.add("is-in"); return; }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { hero.classList.add("is-in"); });
+  });
+})();
