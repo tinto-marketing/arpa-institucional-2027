@@ -459,37 +459,26 @@ window.addEventListener("resize", () => {
   onScroll();
 });
 
-/* Presença editorial — mosaico de imprensa: lightbox interno (sem links externos) */
+/* Presença editorial — cards que expandem no lugar (acordeão, um aberto por vez) */
 (function () {
   "use strict";
-  var modal = document.querySelector("[data-press-modal]");
-  if (!modal) return;
-  var outlet = modal.querySelector("[data-modal-outlet]");
-  var headline = modal.querySelector("[data-modal-headline]");
-  var closeBtn = modal.querySelector(".press-modal__close");
-  var lastFocus = null;
-  function open(v, h, tile) {
-    lastFocus = tile;
-    outlet.textContent = v;
-    headline.textContent = h;
-    modal.hidden = false;
-    requestAnimationFrame(function () { modal.classList.add("is-open"); });
-    document.body.style.overflow = "hidden";
-    if (closeBtn) closeBtn.focus();
+  var tiles = [].slice.call(document.querySelectorAll(".press-tile"));
+  if (!tiles.length) return;
+  function setOpen(tile, open) {
+    tile.classList.toggle("is-open", open);
+    tile.setAttribute("aria-expanded", String(open));
+    var lbl = tile.querySelector(".press-tile__cta-label");
+    if (lbl) lbl.textContent = open ? "Fechar" : "Ler";
   }
-  function close() {
-    modal.classList.remove("is-open");
-    document.body.style.overflow = "";
-    setTimeout(function () { modal.hidden = true; if (lastFocus) lastFocus.focus(); }, 340);
-  }
-  document.querySelectorAll(".press-tile").forEach(function (t) {
-    t.addEventListener("click", function () { open(t.dataset.veiculo, t.dataset.headline, t); });
-  });
-  modal.querySelectorAll("[data-press-close]").forEach(function (el) {
-    el.addEventListener("click", close);
+  tiles.forEach(function (t) {
+    t.addEventListener("click", function () {
+      var willOpen = !t.classList.contains("is-open");
+      tiles.forEach(function (o) { if (o !== t) setOpen(o, false); });
+      setOpen(t, willOpen);
+    });
   });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && !modal.hidden) close();
+    if (e.key === "Escape") tiles.forEach(function (o) { setOpen(o, false); });
   });
 })();
 
