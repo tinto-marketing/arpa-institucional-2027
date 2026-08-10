@@ -22,9 +22,9 @@ body{margin:0;background:var(--vinho);color:var(--cream);font-family:var(--disp)
 .line{position:absolute;bottom:clamp(30px,6vh,74px);left:0;right:0;font-style:italic;font-weight:300;font-size:clamp(1.15rem,2vw,1.9rem);color:var(--cream);opacity:0;transition:opacity 2s ease}
 .is-in .line{opacity:.94}
 .stage{position:relative;width:min(80vw,900px)}
-.stage .logo{width:100%;height:auto;display:block;color:var(--cream);opacity:0;transform:scale(1.14)}
+.stage .logo{width:100%;height:auto;display:block;color:var(--cream);opacity:0;transform-origin:center;transform:scale(1.72)}
 .is-in .stage .logo{opacity:1;transform:none}
-.bars{position:absolute;inset:-4% -1%;display:flex;pointer-events:none}
+.bars{position:absolute;inset:-44% -44%;display:flex;pointer-events:none}
 .bars i{flex:1;background:var(--vinho);transform:translateY(0)}
 .glow{position:absolute;inset:-34% -14%;z-index:-1;background:radial-gradient(ellipse at center, rgba(242,184,208,.18), rgba(101,0,47,0) 62%);opacity:0;transition:opacity 2.4s ease}
 .is-in .glow{opacity:1}
@@ -38,15 +38,15 @@ body{margin:0;background:var(--vinho);color:var(--cream);font-family:var(--disp)
 .prolong .bars i{transition:transform 3s var(--eout)}
 .prolong.is-in .bars i{transform:translateY(-104%)}
 .prolong.is-in .bars i:nth-child(even){transform:translateY(104%)}
-.prolong.is-in .stage .logo{transition:opacity .1s ease 1.6s, transform 4s var(--eout) 1.6s}
-.prolong.is-in .stage .logo{animation:breathe 13s ease-in-out 6s infinite}
+.prolong.is-in .stage .logo{transition:opacity 1.2s ease .35s, transform 4.8s var(--eout) .35s}
+.prolong.is-in .stage .logo{animation:breathe 13s ease-in-out 6.5s infinite}
 .prolong .eye{transition-delay:.5s}.prolong .line{transition-delay:5s}
 
 /* A2 — CINEMÁTICA (cascata longa + brilho varre o logo) */
 .cine .bars i{transition:transform 2.8s var(--eout)}
 .cine.is-in .bars i{transform:translateY(-104%)}
 .cine.is-in .bars i:nth-child(even){transform:translateY(104%)}
-.cine.is-in .stage .logo{transition:opacity .1s ease 1.5s, transform 3.6s var(--eout) 1.5s}
+.cine.is-in .stage .logo{transition:opacity 1.1s ease .35s, transform 4s var(--eout) .35s}
 .cine.is-in .sheen{opacity:1;animation:sheen 2.6s cubic-bezier(.4,0,.2,1) 4.4s 1 forwards}
 .cine.is-in .stage .logo{animation:breathe 13s ease-in-out 7.5s infinite}
 .cine .eye{transition-delay:.5s}.cine .line{transition-delay:6.4s}
