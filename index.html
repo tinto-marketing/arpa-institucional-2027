@@ -19,8 +19,10 @@ body{margin:0;background:var(--vinho);color:var(--cream);font-family:var(--disp)
 .replay:hover{opacity:1}
 .eye{position:absolute;top:clamp(26px,5vw,80px);left:0;right:0;font:500 .72rem var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--rose);opacity:0;transition:opacity 1.8s ease}
 .is-in .eye{opacity:.85}
-.line{position:absolute;bottom:clamp(30px,6vh,74px);left:0;right:0;font-style:italic;font-weight:300;font-size:clamp(1.15rem,2vw,1.9rem);color:var(--cream);opacity:0;transition:opacity 2s ease}
-.is-in .line{opacity:.94}
+.line{position:absolute;bottom:clamp(34px,7vh,86px);left:0;right:0;font-style:italic;font-weight:300;font-size:clamp(1.2rem,2.15vw,2.05rem);letter-spacing:.005em;color:var(--cream);opacity:.94}
+.line .w{display:inline-block;opacity:0;transform:translateY(.62em);filter:blur(7px);transition:opacity .95s var(--eout),transform 1.15s var(--eout),filter .95s var(--eout)}
+.is-in .line .w{opacity:1;transform:none;filter:blur(0)}
+
 .stage{position:relative;width:min(80vw,900px)}
 .stage .logo{width:100%;height:auto;display:block;color:var(--cream);opacity:0;transform-origin:center;transform:scale(1.72)}
 .is-in .stage .logo{opacity:1;transform:none}
@@ -40,7 +42,7 @@ body{margin:0;background:var(--vinho);color:var(--cream);font-family:var(--disp)
 .prolong.is-in .bars i:nth-child(even){transform:translateY(104%)}
 .prolong.is-in .stage .logo{transition:opacity 1.2s ease .35s, transform 4.8s var(--eout) .35s}
 .prolong.is-in .stage .logo{animation:breathe 13s ease-in-out 6.5s infinite}
-.prolong .eye{transition-delay:.5s}.prolong .line{transition-delay:5s}
+
 
 /* A2 — CINEMÁTICA (cascata longa + brilho varre o logo) */
 .cine .bars i{transition:transform 2.8s var(--eout)}
@@ -53,7 +55,7 @@ body{margin:0;background:var(--vinho);color:var(--cream);font-family:var(--disp)
 
 @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.024)}}
 @keyframes sheen{from{background-position:130% 0}to{background-position:-160% 0}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.bars,.sheen{display:none}.stage .logo,.eye,.line{opacity:1!important;transform:none!important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.bars,.sheen{display:none}.stage .logo,.line,.line .w{opacity:1!important;transform:none!important;filter:none!important}}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="arpa" viewBox="0 0 631 235">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M340 0C453.87 0 453.87 0 477.754 22.6289C484.915 30.1881 489.512 38.2266 493 48C493.345 48.9216 493.691 49.8434 494.047 50.793C495.025 54.0828 495.258 56.7191 495.266 60.1406L495.273 63.6367L495.25 67.25L495.273 70.8164C495.234 88.6032 489.963 103.94 477.425 116.805C460.727 133.229 439.773 139.385 416.801 139.195C415.632 139.193 414.464 139.192 413.26 139.189C408.944 139.179 404.628 139.151 400.312 139.125L371 139V231H340V0ZM405.102 25.6396L397 25.75L371 26V113L399.5 113.125C403.7 113.151 407.9 113.178 412.101 113.188C413.267 113.191 414.399 113.193 415.531 113.195C416.779 113.206 417.991 113.215 419.202 113.226C432.702 113.228 445.097 109.824 454.953 100.066C462.958 90.5818 465.417 81.0526 465.375 68.9375C465.238 56.8583 461.847 45.7742 453 37C438.667 25.9973 422.398 25.5014 405.102 25.6396Z" fill="currentColor"/>
@@ -63,27 +65,13 @@ body{margin:0;background:var(--vinho);color:var(--cream);font-family:var(--disp)
 <path fill-rule="evenodd" clip-rule="evenodd" d="M542.652 60.6611C560.033 59.0929 576.654 58.3303 593.001 65L595.876 65.9766C606.699 69.7715 615.659 77.8157 621.059 87.9375C627.764 102.627 627.153 117.755 627.23 133.574C627.247 136.858 627.27 140.142 627.295 143.426C627.365 152.753 627.426 162.08 627.477 171.407C627.509 177.133 627.55 182.859 627.597 188.585C627.613 190.759 627.626 192.933 627.634 195.107C627.647 198.144 627.67 201.18 627.697 204.217C627.698 205.108 627.698 205.999 627.699 206.917C627.758 212.008 628.433 216.159 630 221C630.195 223.871 630.196 223.871 630.126 226.438L630.071 229.059L630 231C625.603 231.025 621.207 231.043 616.81 231.055C615.314 231.06 613.817 231.067 612.32 231.075C610.173 231.088 608.026 231.093 605.879 231.098C604.586 231.103 603.292 231.108 601.959 231.114C599 231 599 231 598 230C597.842 228.075 597.75 226.145 597.684 224.215L597.557 220.67L597.438 216.938L597.307 213.193C597.201 210.129 597.099 207.065 597.001 204C596.515 204.793 596.029 205.586 595.529 206.403C592.409 211.467 589.502 216.047 585.001 220L583.337 221.672C570.403 234.126 553.332 234.581 536.419 234.305C522.378 233.811 508.982 229.564 499.11 219.059C496.561 216.168 494.255 213.125 492.001 210L490.602 208.133C484.525 198.948 483.726 185.731 485.469 175.156C488.338 163 495.494 152.765 506.059 146.059C522.865 137.064 541.619 134.441 560.36 132.551C572.066 131.337 586.607 129.275 594.813 119.938C598.258 114.317 597.534 107.345 597.001 101C596.015 98.2361 595.078 97.1926 593.001 95L591.258 93.0195C588.539 90.587 586.041 89.5745 582.626 88.3125L579.29 87.0508C567.239 83.2009 552.453 83.3787 541.001 89C530.986 96.0558 528.428 101.865 526.001 114H497.001C497.001 100.46 500.672 91.4921 509.001 81L510.618 78.8516C518.171 69.419 530.613 62.2019 542.652 60.6611ZM598 131C596.596 133.527 595.225 135.993 593.861 138.448C590.733 142.453 587.187 145.614 582.14 147.781L579 149C569.907 152.798 561.265 156.251 551.375 157.062C540.836 157.922 530.032 160.88 521.187 166.875C516.543 170.935 514.322 175.009 513.66 181.156C513.429 189.201 514.095 194.976 519.562 201.125C527.282 208.272 537.251 210.907 547.5 211.438C561.379 211.171 575.076 205.665 585.25 196.312C592.709 188.372 596.467 179.224 598.152 169.401C599.051 166.998 599.227 165.041 599.226 161.905C599.216 161.11 599.205 160.337 599.195 159.565C599.331 156.814 599.358 154.025 599.301 151.211C599.266 149.505 599.239 147.8 599.219 146.094C599.172 141.062 599.1 136.031 599 131H598Z" fill="currentColor"/>
 </symbol></svg>
 <section class="hero mat prolong" data-reveal data-mode="prolong">
-  <span class="tag">A · Prolongada</span>
-  <p class="eye">São Paulo · desde 2022</p>
   <div class="stage">
     <div class="glow" aria-hidden="true"></div>
     <svg class="logo" viewBox="0 0 631 235"><use href="#arpa"/></svg>
     
     <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
   </div>
-  <p class="line">Uma feira de arte com uma proposta única.</p>
-  <span class="replay" data-replay>repetir ↻</span>
-</section>
-<section class="hero mat cine" data-reveal data-mode="cine">
-  <span class="tag">A · Cinemática</span>
-  <p class="eye">São Paulo · desde 2022</p>
-  <div class="stage">
-    <div class="glow" aria-hidden="true"></div>
-    <svg class="logo" viewBox="0 0 631 235"><use href="#arpa"/></svg>
-    <div class="sheen" aria-hidden="true"></div>
-    <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  </div>
-  <p class="line">Uma feira de arte com uma proposta única.</p>
+  <p class="line" data-line>Uma feira de arte com uma proposta única</p>
   <span class="replay" data-replay>repetir ↻</span>
 </section>
 <script>
@@ -91,6 +79,18 @@ var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('.hero').forEach(function(sec){
   var bars=sec.querySelectorAll('.bars i'),mode=sec.dataset.mode;
   bars.forEach(function(b,i){ b.style.transitionDelay=(i*(mode==='prolong'?150:135))+'ms'; });
+});
+// split the phrase into words for a staggered rise, starting after the logo settles
+document.querySelectorAll('[data-line]').forEach(function(line){
+  var words=line.textContent.trim().split(/\s+/);
+  line.textContent='';
+  words.forEach(function(w,i){
+    var span=document.createElement('span');
+    span.className='w'; span.textContent=w;
+    span.style.transitionDelay=(4900+i*95)+'ms';
+    line.appendChild(span);
+    if(i<words.length-1) line.appendChild(document.createTextNode(' '));
+  });
 });
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('is-in');})},{threshold:.5});
 document.querySelectorAll('[data-reveal]').forEach(function(el){reduce?el.classList.add('is-in'):io.observe(el);});
