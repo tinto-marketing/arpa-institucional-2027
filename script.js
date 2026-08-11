@@ -502,9 +502,12 @@ window.addEventListener("resize", () => {
       var s = document.createElement("span");
       s.className = "w";
       s.textContent = w;
-      s.style.transitionDelay = (4900 + i * 95) + "ms";
+      s.style.transitionDelay = (3100 + i * 70) + "ms";
       line.appendChild(s);
-      if (i < words.length - 1) line.appendChild(document.createTextNode(" "));
+      if (i < words.length - 1) {
+        if (/^arte$/i.test(w)) line.appendChild(document.createElement("br"));
+        else line.appendChild(document.createTextNode(" "));
+      }
     });
   }
 

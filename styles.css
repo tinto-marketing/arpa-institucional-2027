@@ -1354,3 +1354,63 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .press-mosaic { padding: 20px; }
   .press-tile::before, .press-tile::after { width: 46px; }
 }
+
+/* ============================================================
+   Ajustes v19
+   ============================================================ */
+
+/* Home hero — frase da tagline em TWK Lausanne (itálico) */
+.hero-mat__line { font-family: var(--body); font-style: italic; }
+
+/* Mais respiro entre o banner §01 e o texto abaixo */
+.manifesto__grid { padding-top: clamp(58px, 7vw, 114px); }
+
+/* Resultados 2026 — tamanho uniforme (destaques = corpo), mantendo o fundo colorido;
+   composição serif/sans para dar interesse */
+.results__highlight { font-size: 1em; letter-spacing: -.015em; padding: .02em .2em .12em; }
+.results__num { font-family: var(--display); font-weight: 400; letter-spacing: -.01em; }
+
+/* Camilla — card da citação melhorado (cabeçalho avatar+nome, aspas d'água) */
+.manifesto__quote { overflow: hidden; gap: clamp(18px, 1.7vw, 28px); }
+.manifesto__quote::after {
+  content: "\201D"; position: absolute; right: .1em; top: -.34em;
+  font: 400 8rem/1 var(--display); color: rgba(101,0,47,.10); pointer-events: none; z-index: 0;
+}
+.manifesto__quote-head { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+.manifesto__quote-attr { display: grid; gap: 3px; }
+.manifesto__quote-attr strong { font: 400 clamp(1.04rem, 1.1vw, 1.24rem)/1.05 var(--display); color: var(--ink); letter-spacing: -.01em; }
+.manifesto__quote-attr span { font: 500 .62rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.manifesto__quote p.manifesto__quote-text { position: relative; z-index: 1; font-size: clamp(1.18rem, 1.4vw, 1.62rem); }
+
+/* Presença editorial — cards VINHO (natural), PRETO no hover/aberto, chip BRANCO */
+.press-tile { background: var(--accent); color: #e8e1d5; border-color: transparent; }
+.press-tile .press-tile__headline { color: #e8e1d5; }
+.press-tile .press-tile__cta { color: #f2b8d0; }
+.press-tile .press-tile__cta i { border-color: currentColor; }
+.press-tile__outlet,
+.press-tile.is-open .press-tile__outlet { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.22), inset 0 0 0 1px rgba(0,0,0,.05); }
+@media (hover: hover) {
+  .press-tile:hover { background: var(--ink); color: #e8e1d5; transform: rotate(calc(var(--rot) * .35)) translateY(-5px) scale(1.015); }
+  .press-tile:hover .press-tile__headline { color: #e8e1d5; }
+  .press-tile:hover .press-tile__cta { color: #f2b8d0; }
+  .press-tile:hover .press-tile__outlet { background: #fff; }
+  .press-tile.is-open:hover { background: var(--ink); transform: none; }
+}
+.press-tile.is-open { background: var(--ink); color: #e8e1d5; border-color: transparent; }
+.press-tile.is-open .press-tile__headline { color: #e8e1d5; }
+.press-tile.is-open .press-tile__tag { color: #f2b8d0; }
+.press-tile.is-open .press-tile__co { color: rgba(255,255,255,.9); }
+.press-tile.is-open .press-tile__meta { border-top-color: rgba(242,184,208,.32); }
+
+/* §08 Parcerias — CTA com mais intenção de clique */
+.partnership__cta-note { margin: 0 0 12px; color: color-mix(in srgb, var(--accent-ink) 82%, transparent); font: 500 .62rem var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+.partnership .button--light { width: min(100%, 400px); min-height: 66px; padding-inline: 24px; font-size: 1.08rem; box-shadow: 6px 6px 0 var(--ink); }
+.partnership .button--light span { font-size: 1.2em; }
+@media (hover: hover) {
+  .partnership .button--light:hover { background: var(--ink); color: #fff; box-shadow: 2px 2px 0 rgba(0,0,0,.55); }
+  .partnership .button--light:hover span { animation: none; transform: translate(6px, -2px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .partnership .button--light span { animation: ctaNudge 1.8s var(--ease) infinite; }
+  @keyframes ctaNudge { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(5px, -2px); } }
+}
