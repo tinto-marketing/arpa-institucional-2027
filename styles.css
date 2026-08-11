@@ -1083,3 +1083,274 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 @media (prefers-reduced-motion: reduce) {
   .press-tile, .press-tile__headline, .press-tile__meta { transition: none; }
 }
+
+/* ============================================================
+   REFINO — Tasks A/B/C (adicionado ao fim p/ sobrepor regras anteriores)
+   ============================================================ */
+
+/* TASK A — banda editorial full-bleed com título sobreposto ao hero */
+.manifesto__hero {
+  position: relative;
+  width: 100%;
+  margin: 0 0 clamp(52px, 7vw, 104px);
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 0;
+}
+.manifesto__hero picture { display: block; width: 100%; height: 100%; overflow: hidden; }
+.manifesto__hero img {
+  display: block; width: 100%;
+  height: clamp(440px, 74vh, 780px);
+  object-fit: cover; object-position: center 42%;
+}
+.manifesto__hero-scrim {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(9,9,9,.06) 0%, rgba(9,9,9,.24) 44%, rgba(9,9,9,.76) 100%),
+    linear-gradient(90deg, rgba(101,0,47,.42) 0%, rgba(101,0,47,0) 62%);
+}
+.manifesto__hero-caption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding-bottom: clamp(30px, 4.4vw, 60px);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+}
+.manifesto__hero-caption .chapter { color: var(--rose, #f2b8d0); margin: 0; }
+.manifesto__hero-caption .chapter::after { background: var(--rose, #f2b8d0); }
+.manifesto__hero-caption h2 {
+  margin: 0; color: #fff;
+  text-shadow: 0 2px 30px rgba(9,9,9,.35);
+}
+/* grade reequilibrada (o título saiu para a imagem) */
+.manifesto__grid { align-items: start; }
+.manifesto__body { grid-column: 1 / 7; }
+.manifesto__quote { grid-column: 8 / 13; }
+
+/* TASK B — card de citação refinado + avatar circular + texto em body font */
+.manifesto__quote {
+  position: relative; margin: clamp(6px, 1.5vw, 26px) 0 0;
+  display: grid; gap: clamp(16px, 1.5vw, 22px);
+  padding: clamp(26px, 2.4vw, 38px);
+  background: var(--wash); border: 1px solid rgba(101,0,47,.16);
+  border-radius: 16px; box-shadow: none;
+  box-shadow: 0 34px 70px -52px rgba(9,9,9,.55), inset 0 0 0 1px rgba(255,255,255,.4);
+}
+.manifesto__quote::before {
+  content: ""; position: absolute; left: 0; top: clamp(26px, 2.4vw, 38px); bottom: clamp(26px, 2.4vw, 38px);
+  width: 3px; border-radius: 3px; background: var(--accent);
+}
+.manifesto__quote-avatar {
+  display: grid; place-content: center;
+  width: clamp(64px, 6vw, 78px); height: clamp(64px, 6vw, 78px);
+  border-radius: 50%; overflow: hidden;
+  background: rgba(101,0,47,.09); border: 1px solid rgba(101,0,47,.3);
+  color: var(--accent);
+  font: 300 clamp(1.35rem, 1.8vw, 1.6rem)/1 var(--display);
+  letter-spacing: .04em; text-transform: uppercase;
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.5);
+}
+.manifesto__quote-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.manifesto__quote p.manifesto__quote-text {
+  margin: 0; font-family: var(--body); font-weight: 300; font-style: normal;
+  font-size: clamp(1.12rem, 1.35vw, 1.5rem); line-height: 1.5;
+  letter-spacing: -.005em; text-transform: none; color: var(--ink);
+}
+.manifesto__quote cite {
+  margin-top: 4px; color: var(--accent);
+}
+
+/* TASK C — logos em chip de papel (legível em ambos os estados) + colagem */
+.press-tile__outlet {
+  display: inline-flex; align-items: center; align-self: flex-start;
+  padding: 6px 11px; border-radius: 7px;
+  background: #f7f2ea;
+  box-shadow: 0 1px 2px rgba(9,9,9,.12), inset 0 0 0 1px rgba(9,9,9,.07);
+}
+.press-tile__logo {
+  display: block; height: 22px; width: auto; max-width: 140px;
+  object-fit: contain; object-position: left center;
+}
+.press-tile.is-open .press-tile__outlet,
+.press-tile:hover .press-tile__outlet { background: #fbf7f0; }
+
+/* manchete em TWK Lausanne */
+.press-tile .press-tile__headline {
+  font-family: var(--body); font-weight: 300; letter-spacing: 0;
+}
+.press-tile.is-open .press-tile__headline { font-family: var(--body); font-weight: 300; }
+
+/* colagem/scrapbook — rotações sutis, sobreposições e fita adesiva */
+.press-mosaic { padding-top: 16px; }
+.press-tile {
+  overflow: visible; --rot: 0deg;
+  transform: rotate(var(--rot)); transform-origin: center;
+}
+.press-tile:nth-child(6n+1) { --rot: -1.8deg; }
+.press-tile:nth-child(6n+2) { --rot: 1.4deg; }
+.press-tile:nth-child(6n+3) { --rot: -0.8deg; }
+.press-tile:nth-child(6n+4) { --rot: 2deg; }
+.press-tile:nth-child(6n+5) { --rot: -1.3deg; }
+.press-tile:nth-child(6n+6) { --rot: 0.9deg; }
+.press-tile:nth-child(3n+2) { margin-top: clamp(8px, 1.1vw, 20px); }
+.press-tile:nth-child(5n+3) { min-height: clamp(168px, 19vw, 214px); }
+/* fita adesiva translúcida no topo do recorte */
+.press-tile::after {
+  content: ""; position: absolute; z-index: 3;
+  top: -9px; left: 50%; width: 54px; height: 18px;
+  transform: translateX(-50%) rotate(-3.5deg);
+  background: repeating-linear-gradient(45deg,
+    rgba(242,184,208,.5) 0, rgba(242,184,208,.5) 5px,
+    rgba(242,184,208,.3) 5px, rgba(242,184,208,.3) 10px);
+  border: 1px solid rgba(101,0,47,.18);
+  box-shadow: 0 2px 6px -3px rgba(11,11,11,.4);
+}
+.press-tile:nth-child(2n)::after {
+  left: 22px; transform: rotate(4deg); width: 46px;
+}
+@media (hover: hover) {
+  .press-tile:hover {
+    transform: rotate(calc(var(--rot) * .35)) translateY(-5px) scale(1.015);
+    z-index: 6;
+  }
+  .press-tile.is-open:hover { transform: none; }
+}
+/* aberto = endireita p/ leitura */
+.press-tile.is-open { --rot: 0deg; transform: none; z-index: 7; }
+.press-tile.is-open::after { opacity: .85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-tile { transform: none; }
+  .press-tile::after { transform: translateX(-50%) rotate(0deg); }
+  .press-tile:nth-child(2n)::after { transform: rotate(0deg); }
+}
+
+/* responsivo */
+@media (max-width: 760px) {
+  .manifesto__hero img { height: clamp(360px, 62svh, 520px); }
+  .manifesto__body, .manifesto__quote { grid-column: 1; }
+  .manifesto__quote { margin-top: 24px; }
+  .press-tile { --rot: 0deg !important; transform: none; }
+  .press-tile::after { display: none; }
+}
+
+/* ============================================================
+   Menu / header — refinamento de interface (v17)
+   ============================================================ */
+.site-header {
+  height: 82px;
+  transition: height .32s var(--ease), box-shadow .3s ease,
+              background-color .32s var(--ease), backdrop-filter .32s var(--ease), border-color .32s ease;
+}
+.site-header.is-solid {
+  height: 70px;
+  background: color-mix(in srgb, var(--canvas) 80%, transparent);
+  -webkit-backdrop-filter: saturate(1.15) blur(13px);
+  backdrop-filter: saturate(1.15) blur(13px);
+  box-shadow: 0 12px 34px -26px rgba(0,0,0,.55);
+  border-bottom-color: rgba(17,17,17,.14);
+}
+/* links mais aéreos: divisórias sutis, sem preenchimento cinza, sublinhado fino */
+.site-nav a {
+  border-left: 1px solid rgba(17,17,17,.08);
+  font-size: clamp(.8rem, .72vw, .94rem);
+  letter-spacing: .01em;
+  transition: color .2s ease;
+}
+.site-nav a:first-of-type { border-left: 0; }
+.site-nav a:hover { background: transparent; color: var(--accent); }
+.site-nav a.is-active { background: transparent; font-weight: 400; color: var(--accent); }
+.site-nav a::after { inset: auto 16px 19px; height: 2px; background: var(--accent); }
+.site-header.is-solid .site-nav a::after { bottom: 15px; }
+/* CTA "Seja parceiro" vira pílula vinho */
+.site-nav a.site-nav__cta {
+  align-self: center;
+  margin: 0 16px 0 20px;
+  padding: 11px 22px;
+  border-left: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 400;
+  transition: background .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+.site-nav a.site-nav__cta:hover {
+  background: var(--ink); color: #fff; transform: translateY(-1px);
+  box-shadow: 0 12px 24px -14px rgba(101,0,47,.6);
+}
+.site-nav a.site-nav__cta::after { display: none; }
+
+@media (max-width: 900px) {
+  .site-nav { box-shadow: 0 26px 44px -30px rgba(0,0,0,.5); border-top: 1px solid rgba(17,17,17,.1); }
+  .site-nav a { font-size: .82rem; }
+  .site-nav a:hover, .site-nav a.is-active { background: var(--wash); color: var(--accent); }
+  .site-nav a.site-nav__cta { margin: 16px 20px; padding: 0; min-height: 52px; justify-content: center; border-radius: 999px; background: var(--accent); }
+  .site-nav a.site-nav__cta:hover { transform: none; }
+}
+
+/* ============================================================
+   Ajustes v18 — rail lateral, banner §01, mural Presença, menu Lausanne
+   ============================================================ */
+
+/* 1) Remove a divisória/rótulo vertical à esquerda (desktop) e o vão que ela ocupava */
+:root { --rail: 0px; }
+@media (max-width: 900px) { :root { --rail: 0px; } }
+.section::before, .results::before, .partnership::before { display: none !important; }
+
+/* 3) Menu com a fonte dos textos em TWK Lausanne */
+.site-nav a, .site-nav a.site-nav__cta, .menu-button__label { font-family: var(--body); }
+
+/* 4) BANNER §01 — imagem full-screen (100vw x 100svh), colada na seção anterior,
+      título em caixa-baixa (só a 1ª letra maiúscula) + animação tipográfica (motion-word já existente) */
+.manifesto { padding-top: 0; }
+.manifesto__hero {
+  position: relative; width: 100%; height: 100svh; margin: 0; overflow: hidden;
+  background: var(--ink); border-radius: 0;
+}
+.manifesto__hero picture { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.manifesto__hero img {
+  position: absolute; left: 0; top: -9%; width: 100%; height: 118%;
+  object-fit: cover; object-position: center 42%;
+}
+.manifesto__hero-scrim {
+  background:
+    linear-gradient(180deg, rgba(9,9,9,.04) 0%, rgba(9,9,9,.20) 46%, rgba(9,9,9,.72) 100%),
+    linear-gradient(90deg, rgba(101,0,47,.40) 0%, rgba(101,0,47,0) 60%);
+}
+.manifesto__hero-caption { padding-bottom: clamp(40px, 6vw, 88px); gap: 14px; }
+.manifesto__hero-caption h2 { text-transform: lowercase; font-size: clamp(3rem, 6.6vw, 6.6rem); line-height: .98; }
+.manifesto__hero-caption h2::first-letter { text-transform: uppercase; }
+.manifesto__hero-caption h2 .motion-word:first-child::first-letter { text-transform: uppercase; }
+
+/* 2) PRESENÇA EDITORIAL — mural com padronagem 'pois' + fita adesiva (durex) realista em 2 cantos */
+.press-mosaic {
+  position: relative;
+  padding: clamp(28px, 3.2vw, 52px);
+  border-radius: 16px;
+  background-color: #e4dcc9;
+  background-image: radial-gradient(rgba(101,0,47,.11) 1.6px, transparent 1.7px);
+  background-size: 22px 22px;
+  box-shadow: inset 0 0 0 1px rgba(17,17,17,.10), inset 0 2px 22px rgba(11,11,11,.06);
+}
+/* duas fitas translúcidas foscas nos cantos superiores de cada recorte */
+.press-tile::before, .press-tile::after {
+  content: ""; position: absolute; z-index: 4; top: -9px;
+  width: clamp(50px, 5.2vw, 68px); height: 23px; left: auto; right: auto;
+  background: linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.16));
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.62);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 3px 8px -4px rgba(11,11,11,.42);
+  -webkit-backdrop-filter: blur(1.2px) saturate(1.1); backdrop-filter: blur(1.2px) saturate(1.1);
+}
+.press-tile::before { left: -7px; transform: rotate(-40deg); }
+.press-tile::after  { right: -7px; transform: rotate(40deg); background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,.14)); }
+.press-tile:nth-child(2n)::after { left: auto; right: -7px; transform: rotate(40deg); width: clamp(50px,5.2vw,68px); }
+.press-tile.is-open::before, .press-tile.is-open::after { opacity: .9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-tile::before { transform: rotate(-40deg); }
+  .press-tile::after  { transform: rotate(40deg); }
+}
+@media (max-width: 760px) {
+  .press-mosaic { padding: 20px; }
+  .press-tile::before, .press-tile::after { width: 46px; }
+}
