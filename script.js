@@ -389,6 +389,19 @@ function initMenu() {
   window.addEventListener("resize", () => {
     if (window.innerWidth > 860) closeMenu();
   });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && nav?.classList.contains("is-open")) {
+      closeMenu();
+      menuButton?.focus();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!nav?.classList.contains("is-open")) return;
+    if (nav.contains(event.target) || menuButton?.contains(event.target)) return;
+    closeMenu();
+  });
 }
 
 function openSectorRow(row, instant = false) {

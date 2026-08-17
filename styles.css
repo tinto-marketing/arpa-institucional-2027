@@ -770,6 +770,8 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
     z-index: 230;
     inset: 74px 0 auto;
     display: grid;
+    grid-template-columns: 1fr;
+    justify-content: normal;
     padding: 0;
     background: var(--canvas);
     color: var(--ink);
@@ -810,6 +812,12 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .proof__press-intro h3 { max-width: 14ch; }
   .model__grid, .impact__grid { grid-template-columns: 1fr; }
   .model__image { border-right: 0; border-bottom: 1px solid var(--line); }
+  /* Empilhado (1 coluna), .principles deixa de ter a altura da foto como
+     referência — o min-height:33.333% (pensado para 3 terços iguais ao
+     lado da imagem no desktop) fica sem base de cálculo estável e o card
+     03 (texto mais longo) estoura a borda inferior do item, cortando a
+     última linha. Corrigido: cada item cresce só com o próprio conteúdo. */
+  .principles li { min-height: 0; }
   .impact__image { position: relative; top: auto; }
   .sector-row__in { grid-template-columns: 1fr; height: auto; }
   .sector-row__in p { padding: 18px 0 14px; max-width: 60ch; }
