@@ -168,8 +168,8 @@ button { font: inherit; }
 }
 .brand img { width: 84px; height: auto; aspect-ratio: 631 / 235; object-fit: contain; transition: opacity 180ms ease, filter 260ms ease; }
 .brand:hover img { opacity: .72; }
-.site-header .brand { order: 1; background: var(--ink); border-right: 1px solid var(--line); }
-.site-header .brand img { filter: invert(1); }
+.site-header .brand { order: 1; background: var(--canvas); border-right: 1px solid var(--line); }
+.site-header .brand img { filter: none; }
 
 .site-nav {
   order: 2;
@@ -363,7 +363,7 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .manifesto { padding-bottom: 0; background: var(--canvas); }
 .manifesto__grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 22px; align-items: start; }
 .manifesto .section-heading { grid-column: 1 / 6; }
-.manifesto__body { grid-column: 7 / 10; }
+.manifesto__body { grid-column: 1 / 7; }
 .manifesto__body p { margin: 0 0 22px; }
 .manifesto__body .lead { margin-bottom: 28px; }
 .manifesto__body .founding { padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font: 500 .78rem/1.55 var(--mono); }
@@ -382,7 +382,7 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .model__header > p:last-child { grid-column: 3; margin: 0; }
 .model__grid { margin-top: clamp(64px, 8vw, 122px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, .8fr); border: 1px solid var(--line); }
 .model__image { min-width: 0; padding: clamp(20px, 3vw, 46px); border-right: 1px solid var(--line); background: var(--canvas); }
-.model__image img { aspect-ratio: 4 / 3; object-fit: cover; clip-path: polygon(0 0, 100% 0, 100% 88%, 88% 88%, 88% 100%, 0 100%); }
+.model__image img { aspect-ratio: 4 / 3; object-fit: cover; }
 .model__image figcaption { margin-top: 14px; }
 .principles { list-style: none; margin: 0; padding: 0; background: var(--canvas); }
 .principles li { min-height: 33.333%; display: grid; grid-template-columns: 54px 1fr; gap: 18px; padding: clamp(22px, 3vw, 42px); border-bottom: 1px solid var(--line); transition: background-color 180ms ease, color 180ms ease; }
@@ -594,7 +594,7 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .year-round__programs p { max-width: 54ch; margin: 9px 0 0; font-size: .9rem; opacity: .85; }
 .year-round__programs article:first-child { padding-bottom: 34px; }
 .year-round__programs article:first-child > span { color: var(--accent-2); opacity: 1; }
-.year-round__programs article:first-child h3 { font-size: clamp(1.9rem, 3vw, 3.2rem); }
+.year-round__programs article:first-child h3 { font-size: clamp(1.7rem, 2.5vw, 2.8rem); }
 .year-round__programs article:first-child p { max-width: 58ch; opacity: .95; }
 .year-round__image { grid-column: 3 / 13; margin-top: clamp(62px, 9vw, 138px); }
 .year-round__image img { aspect-ratio: 16 / 9; object-fit: cover; clip-path: polygon(0 0, 86% 0, 86% 8%, 100% 8%, 100% 100%, 10% 100%, 10% 92%, 0 92%); }
@@ -608,7 +608,7 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .impact__heading > p:last-child { grid-column: 3; margin: 0; }
 .impact__grid { margin-top: clamp(64px, 8vw, 120px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, .88fr); gap: clamp(36px, 6vw, 96px); align-items: start; }
 .impact__image { position: sticky; top: 116px; }
-.impact__image img { aspect-ratio: 4 / 3; object-fit: cover; clip-path: polygon(0 0, 100% 0, 100% 86%, 88% 86%, 88% 100%, 0 100%); }
+.impact__image img { aspect-ratio: 4 / 3; object-fit: cover; }
 .impact__list { border-top: 1px solid var(--line); }
 .impact__list article { position: relative; padding: 30px 48px 34px 0; border-bottom: 1px solid var(--line); transform: translateX(0); transition: transform 260ms var(--ease), background-color 180ms ease; }
 .impact__list article::after { content: "↗"; position: absolute; top: 30px; right: 4px; font: 500 1rem var(--mono); }
@@ -762,8 +762,8 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .site-header { height: 74px; }
   .brand { flex-basis: 120px; width: 120px; }
   .brand img { width: 76px; }
-  .site-header .brand { flex: 1 1 auto; justify-items: start; padding-left: 20px; background: var(--ink); }
-  .site-header .brand img { filter: invert(1); }
+  .site-header .brand { flex: 1 1 auto; justify-items: start; padding-left: 20px; background: var(--canvas); }
+  .site-header .brand img { filter: none; }
   .menu-button { display: flex; align-items: center; justify-content: center; }
   .site-nav {
     position: fixed;
@@ -797,11 +797,11 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .section::before, .results::before, .partnership::before { font-size: .55rem; }
   .section h2, .partnership h2 { font-size: clamp(3rem, 10vw, 5rem); }
   .manifesto__grid, .year-round__grid { grid-template-columns: 1fr; gap: 38px; }
-  .manifesto .section-heading, .manifesto__body, .manifesto__quote, .year-round__copy, .year-round__programs, .year-round__image { grid-column: 1; }
+  .manifesto__body, .manifesto__quote, .year-round__copy, .year-round__programs, .year-round__image { grid-column: 1; }
   .manifesto__quote { margin-top: 24px; }
   .wide-image img { height: 68svh; min-height: 520px; }
-  .model__header, .proof__heading, .sectors__heading, .impact__heading, .territories__heading, .brand-cases__heading { display: block; }
-  .model__header > p:last-child, .proof__heading > p:last-child, .sectors__heading > p:last-child, .impact__heading > p:last-child, .territories__heading > p:last-child, .brand-cases__heading > p:last-child { max-width: 52ch; margin-top: 24px; }
+  .model__header, .proof__heading, .sectors__heading, .impact__heading, .territories__heading, .brand-cases__heading, .manifesto__heading { display: block; }
+  .model__header > p:last-child, .proof__heading > p:last-child, .sectors__heading > p:last-child, .impact__heading > p:last-child, .territories__heading > p:last-child, .brand-cases__heading > p:last-child, .manifesto__heading > p:last-child { max-width: 52ch; margin-top: 24px; }
   .proof__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .proof__metrics div:nth-child(3) { border-left: 0; }
   .proof__metrics div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -945,3 +945,713 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   [data-parallax].is-parallax-active img { will-change: auto; }
   .hero__media.is-scroll-parallax-active img { will-change: auto; }
 }
+
+/* ---------- Presença editorial — mosaico de imprensa (v13→v14) ---------- */
+.press-mosaic { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(190px, 23vw, 250px), 1fr)); gap: 12px; align-content: start; }
+.press-tile { position: relative; display: flex; flex-direction: column; gap: 14px; text-align: left; min-height: clamp(152px, 17vw, 194px); padding: clamp(16px, 1.4vw, 20px); background: var(--canvas); border: 1px solid var(--line); border-radius: 4px; cursor: pointer; font-family: var(--body); color: var(--ink); overflow: hidden; transition: transform .5s var(--ease), background .45s var(--ease), color .45s var(--ease), border-color .45s var(--ease), box-shadow .5s var(--ease); }
+.press-tile__outlet { font: 500 .68rem var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--accent); transition: color .45s var(--ease); }
+.press-tile__headline { font-family: var(--display); font-weight: 400; font-size: clamp(1.02rem, 1.15vw, 1.3rem); line-height: 1.18; letter-spacing: -.01em; margin: 0; }
+.press-tile__cta { margin-top: auto; display: inline-flex; align-items: center; gap: 9px; font: 500 .6rem var(--mono); text-transform: uppercase; letter-spacing: .12em; color: var(--muted); transition: color .45s var(--ease); }
+.press-tile__cta i { display: grid; place-content: center; width: 21px; height: 21px; border: 1px solid currentColor; border-radius: 50%; font-style: normal; font-size: .92rem; line-height: 1; transition: transform .45s var(--ease); }
+.press-tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+@media (hover: hover) {
+  .press-tile:hover { transform: translateY(-4px); background: var(--accent); color: var(--accent-ink); border-color: var(--accent); box-shadow: 0 22px 46px -30px rgba(11,11,11,.6); }
+  .press-tile:hover .press-tile__outlet { color: #f2b8d0; }
+  .press-tile:hover .press-tile__cta { color: rgba(255,255,255,.85); }
+  .press-tile:hover .press-tile__cta i { transform: rotate(90deg); }
+}
+
+.press-modal[hidden] { display: none; }
+.press-modal { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: clamp(20px, 5vw, 60px); }
+.press-modal__backdrop { position: absolute; inset: 0; background: rgba(11,11,11,.62); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); opacity: 0; transition: opacity .4s var(--ease); }
+.press-modal.is-open .press-modal__backdrop { opacity: 1; }
+.press-modal__card { position: relative; z-index: 1; width: min(92vw, 640px); background: var(--canvas); border: 1px solid var(--line); border-radius: 6px; padding: clamp(32px, 4vw, 56px); transform: translateY(16px) scale(.985); opacity: 0; transition: transform .5s var(--ease), opacity .4s var(--ease); }
+.press-modal.is-open .press-modal__card { transform: none; opacity: 1; }
+.press-modal__close { position: absolute; top: 14px; right: 16px; display: inline-flex; align-items: center; gap: 7px; background: none; border: 0; cursor: pointer; font: 500 .64rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.press-modal__close:hover { color: var(--accent); }
+.press-modal__close i { font-size: 1.2rem; line-height: 1; }
+.press-modal__outlet { font: 500 .74rem var(--mono); text-transform: uppercase; letter-spacing: .14em; color: var(--accent); }
+.press-modal__headline { font-family: var(--display); font-weight: 400; font-size: clamp(1.6rem, 3.4vw, 2.8rem); line-height: 1.1; letter-spacing: -.015em; margin: .55em 0 1.1em; }
+.press-modal__note { font: 500 .66rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+@media (prefers-reduced-motion: reduce) {
+  .press-tile, .press-modal__card, .press-modal__backdrop { transition: none; }
+}
+
+/* ============================================================
+   Hero Materialização (v15) — logo grande→encolhe + frase word-by-word
+   ============================================================ */
+.hero-mat{
+  --cream:#e8e1d5; --vinho:#65002f; --rose:#f2b8d0; --eout:cubic-bezier(.16,1,.3,1);
+  position:relative; min-height:100svh; padding:86px clamp(26px,5vw,80px) 0;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; overflow:hidden; background:var(--vinho);
+  border-bottom:1px solid rgba(0,0,0,.14);
+}
+.hero-mat .stage{ position:relative; width:min(80vw,900px); }
+.hero-mat .glow{ position:absolute; inset:-34% -14%; z-index:-1;
+  background:radial-gradient(ellipse at center, rgba(242,184,208,.18), rgba(101,0,47,0) 62%);
+  opacity:0; transition:opacity 2.4s ease; }
+.hero-mat.is-in .glow{ opacity:1; }
+.hero-mat .logo{ width:100%; height:auto; display:block; color:var(--cream);
+  opacity:0; transform-origin:center; transform:scale(1.72); }
+.hero-mat.is-in .logo{ opacity:1; transform:none;
+  transition:opacity 1.2s ease .35s, transform 4.8s var(--eout) .35s;
+  animation:heroBreathe 13s ease-in-out 6.5s infinite; }
+.hero-mat .bars{ position:absolute; inset:-44% -44%; display:flex; pointer-events:none; }
+.hero-mat .bars i{ flex:1; background:var(--vinho); transform:translateY(0);
+  transition:transform 3s var(--eout); }
+.hero-mat.is-in .bars i{ transform:translateY(-104%); }
+.hero-mat.is-in .bars i:nth-child(even){ transform:translateY(104%); }
+.hero-mat__line{ position:absolute; bottom:clamp(34px,7vh,86px); left:0; right:0; margin:0;
+  font-family:"Reckless Neue",Georgia,serif; font-style:italic; font-weight:300;
+  font-size:clamp(1.2rem,2.15vw,2.05rem); letter-spacing:.005em; line-height:1.2;
+  color:var(--cream); opacity:.94; }
+.hero-mat__line .w{ display:inline-block; opacity:0; transform:translateY(.62em); filter:blur(7px);
+  transition:opacity .95s var(--eout), transform 1.15s var(--eout), filter .95s var(--eout); }
+.hero-mat.is-in .hero-mat__line .w{ opacity:1; transform:none; filter:blur(0); }
+@keyframes heroBreathe{ 0%,100%{transform:scale(1)} 50%{transform:scale(1.024)} }
+@media (max-width:760px){ .hero-mat{ padding-top:74px } .hero-mat .stage{ width:86vw } }
+@media (prefers-reduced-motion:reduce){
+  .hero-mat *{ animation:none!important; transition:none!important }
+  .hero-mat .bars{ display:none }
+  .hero-mat .logo,.hero-mat__line,.hero-mat__line .w{ opacity:1!important; transform:none!important; filter:none!important }
+}
+
+/* ============================================================
+   Presença editorial — cards que expandem no lugar (v16)
+   Melhora visual dos cards + acordeão suave (um aberto por vez).
+   Bloco no fim do arquivo p/ sobrepor as regras anteriores de .press-tile.
+   ============================================================ */
+.press-mosaic { align-items: start; }
+.press-tile {
+  background: #efe9df;
+  border: 1px solid rgba(17, 17, 17, .12);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.55), 0 10px 30px -26px rgba(11,11,11,.55);
+  gap: 12px;
+  padding: clamp(18px, 1.5vw, 22px);
+}
+.press-tile__outlet { font: 500 .64rem var(--mono); letter-spacing: .14em; }
+.press-tile__headline {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  transition: color .4s var(--ease), font-size .5s var(--ease);
+}
+.press-tile__meta {
+  display: grid; gap: 5px; margin-top: 0;
+  max-height: 0; opacity: 0; transform: translateY(6px); overflow: hidden;
+  transition: max-height .55s var(--ease), opacity .45s var(--ease), transform .5s var(--ease), margin .5s var(--ease);
+}
+.press-tile__tag { font: 500 .58rem var(--mono); text-transform: uppercase; letter-spacing: .13em; color: var(--muted); }
+.press-tile__co { font: italic 300 .98rem/1.2 var(--display); color: var(--muted); }
+.press-tile__cta { margin-top: auto; }
+
+/* hover = leve elevação (preview), NÃO vira vinho — diferencia do estado aberto */
+@media (hover: hover) {
+  .press-tile:hover {
+    background: #f4efe7; color: var(--ink);
+    border-color: rgba(101,0,47,.35); transform: translateY(-4px);
+    box-shadow: 0 20px 44px -28px rgba(11,11,11,.5);
+  }
+  .press-tile:hover .press-tile__outlet { color: var(--accent); }
+  .press-tile:hover .press-tile__cta { color: var(--muted); }
+  .press-tile:hover .press-tile__cta i { transform: rotate(90deg); }
+  .press-tile.is-open:hover { background: var(--accent); color: var(--accent-ink); transform: none; }
+  .press-tile.is-open:hover .press-tile__outlet { color: #f2b8d0; }
+  .press-tile.is-open:hover .press-tile__cta i { transform: rotate(45deg); }
+}
+
+/* estado ABERTO — vinho, manchete completa, meta revelada */
+.press-tile.is-open {
+  background: var(--accent); color: var(--accent-ink);
+  border-color: var(--accent); transform: none;
+  box-shadow: 0 26px 60px -30px rgba(11,11,11,.7);
+}
+.press-tile.is-open .press-tile__outlet { color: #f2b8d0; }
+.press-tile.is-open .press-tile__headline {
+  -webkit-line-clamp: unset; color: var(--accent-ink);
+  font-size: clamp(1.2rem, 1.5vw, 1.7rem);
+}
+.press-tile.is-open .press-tile__meta {
+  max-height: 140px; opacity: 1; transform: none; margin-top: 4px;
+  padding-top: 12px; border-top: 1px solid rgba(242,184,208,.32);
+}
+.press-tile.is-open .press-tile__tag { color: #f2b8d0; }
+.press-tile.is-open .press-tile__co { color: rgba(255,255,255,.9); }
+.press-tile.is-open .press-tile__cta { color: #f2b8d0; }
+.press-tile.is-open .press-tile__cta i { transform: rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-tile, .press-tile__headline, .press-tile__meta { transition: none; }
+}
+
+/* ============================================================
+   REFINO — Tasks A/B/C (adicionado ao fim p/ sobrepor regras anteriores)
+   ============================================================ */
+
+/* TASK A — banda editorial full-bleed com título sobreposto ao hero */
+.manifesto__hero {
+  position: relative;
+  width: 100%;
+  margin: 0 0 clamp(52px, 7vw, 104px);
+  overflow: hidden;
+  background: var(--ink);
+  border-radius: 0;
+}
+.manifesto__hero picture { display: block; width: 100%; height: 100%; overflow: hidden; }
+.manifesto__hero img {
+  display: block; width: 100%;
+  height: clamp(440px, 74vh, 780px);
+  object-fit: cover; object-position: center 42%;
+}
+.manifesto__hero-scrim {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(9,9,9,.06) 0%, rgba(9,9,9,.24) 44%, rgba(9,9,9,.76) 100%),
+    linear-gradient(90deg, rgba(101,0,47,.42) 0%, rgba(101,0,47,0) 62%);
+}
+.manifesto__hero-caption {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2;
+  padding-bottom: clamp(30px, 4.4vw, 60px);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+}
+.manifesto__hero-caption .chapter { color: var(--rose, #f2b8d0); margin: 0; }
+.manifesto__hero-caption .chapter::after { background: var(--rose, #f2b8d0); }
+.manifesto__hero-caption h2 {
+  margin: 0; color: #fff;
+  text-shadow: 0 2px 30px rgba(9,9,9,.35);
+}
+/* grade reequilibrada (o título saiu para a imagem) */
+.manifesto__grid { align-items: start; }
+.manifesto__body { grid-column: 1 / 7; }
+.manifesto__quote { grid-column: 8 / 13; }
+
+/* TASK B — card de citação refinado + avatar circular + texto em body font */
+.manifesto__quote {
+  position: relative; margin: clamp(6px, 1.5vw, 26px) 0 0;
+  display: grid; gap: clamp(16px, 1.5vw, 22px);
+  padding: clamp(26px, 2.4vw, 38px);
+  background: var(--wash); border: 1px solid rgba(101,0,47,.16);
+  border-radius: 16px; box-shadow: none;
+  box-shadow: 0 34px 70px -52px rgba(9,9,9,.55), inset 0 0 0 1px rgba(255,255,255,.4);
+}
+.manifesto__quote::before {
+  content: ""; position: absolute; left: 0; top: clamp(26px, 2.4vw, 38px); bottom: clamp(26px, 2.4vw, 38px);
+  width: 3px; border-radius: 3px; background: var(--accent);
+}
+.manifesto__quote-avatar {
+  display: grid; place-content: center;
+  width: clamp(64px, 6vw, 78px); height: clamp(64px, 6vw, 78px);
+  border-radius: 50%; overflow: hidden;
+  background: rgba(101,0,47,.09); border: 1px solid rgba(101,0,47,.3);
+  color: var(--accent);
+  font: 300 clamp(1.35rem, 1.8vw, 1.6rem)/1 var(--display);
+  letter-spacing: .04em; text-transform: uppercase;
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.5);
+}
+.manifesto__quote-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.manifesto__quote p.manifesto__quote-text {
+  margin: 0; font-family: var(--body); font-weight: 300; font-style: normal;
+  font-size: clamp(1.12rem, 1.35vw, 1.5rem); line-height: 1.5;
+  letter-spacing: -.005em; text-transform: none; color: var(--ink);
+}
+.manifesto__quote cite {
+  margin-top: 4px; color: var(--accent);
+}
+
+/* TASK C — logos em chip de papel (legível em ambos os estados) + colagem */
+.press-tile__outlet {
+  display: inline-flex; align-items: center; align-self: flex-start;
+  padding: 6px 11px; border-radius: 7px;
+  background: #f7f2ea;
+  box-shadow: 0 1px 2px rgba(9,9,9,.12), inset 0 0 0 1px rgba(9,9,9,.07);
+}
+.press-tile__logo {
+  display: block; height: 22px; width: auto; max-width: 140px;
+  object-fit: contain; object-position: left center;
+}
+.press-tile.is-open .press-tile__outlet,
+.press-tile:hover .press-tile__outlet { background: #fbf7f0; }
+
+/* manchete em TWK Lausanne */
+.press-tile .press-tile__headline {
+  font-family: var(--body); font-weight: 300; letter-spacing: 0;
+}
+.press-tile.is-open .press-tile__headline { font-family: var(--body); font-weight: 300; }
+
+/* colagem/scrapbook — rotações sutis, sobreposições e fita adesiva */
+.press-mosaic { padding-top: 16px; }
+.press-tile {
+  overflow: visible; --rot: 0deg;
+  transform: rotate(var(--rot)); transform-origin: center;
+}
+.press-tile:nth-child(6n+1) { --rot: -1.8deg; }
+.press-tile:nth-child(6n+2) { --rot: 1.4deg; }
+.press-tile:nth-child(6n+3) { --rot: -0.8deg; }
+.press-tile:nth-child(6n+4) { --rot: 2deg; }
+.press-tile:nth-child(6n+5) { --rot: -1.3deg; }
+.press-tile:nth-child(6n+6) { --rot: 0.9deg; }
+.press-tile:nth-child(3n+2) { margin-top: clamp(8px, 1.1vw, 20px); }
+.press-tile:nth-child(5n+3) { min-height: clamp(168px, 19vw, 214px); }
+/* fita adesiva translúcida no topo do recorte */
+.press-tile::after {
+  content: ""; position: absolute; z-index: 3;
+  top: -9px; left: 50%; width: 54px; height: 18px;
+  transform: translateX(-50%) rotate(-3.5deg);
+  background: repeating-linear-gradient(45deg,
+    rgba(242,184,208,.5) 0, rgba(242,184,208,.5) 5px,
+    rgba(242,184,208,.3) 5px, rgba(242,184,208,.3) 10px);
+  border: 1px solid rgba(101,0,47,.18);
+  box-shadow: 0 2px 6px -3px rgba(11,11,11,.4);
+}
+.press-tile:nth-child(2n)::after {
+  left: 22px; transform: rotate(4deg); width: 46px;
+}
+@media (hover: hover) {
+  .press-tile:hover {
+    transform: rotate(calc(var(--rot) * .35)) translateY(-5px) scale(1.015);
+    z-index: 6;
+  }
+  .press-tile.is-open:hover { transform: none; }
+}
+/* aberto = endireita p/ leitura */
+.press-tile.is-open { --rot: 0deg; transform: none; z-index: 7; }
+.press-tile.is-open::after { opacity: .85; }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-tile { transform: none; }
+  .press-tile::after { transform: translateX(-50%) rotate(0deg); }
+  .press-tile:nth-child(2n)::after { transform: rotate(0deg); }
+}
+
+/* responsivo */
+@media (max-width: 760px) {
+  .manifesto__hero img { height: clamp(360px, 62svh, 520px); }
+  .manifesto__body, .manifesto__quote { grid-column: 1; }
+  .manifesto__quote { margin-top: 24px; }
+  .press-tile { --rot: 0deg !important; transform: none; }
+  .press-tile::after { display: none; }
+}
+
+/* ============================================================
+   Menu / header — refinamento de interface (v17)
+   ============================================================ */
+.site-header {
+  height: 82px;
+  transition: height .32s var(--ease), box-shadow .3s ease,
+              background-color .32s var(--ease), backdrop-filter .32s var(--ease), border-color .32s ease;
+}
+.site-header.is-solid {
+  height: 70px;
+  background: color-mix(in srgb, var(--canvas) 80%, transparent);
+  -webkit-backdrop-filter: saturate(1.15) blur(13px);
+  backdrop-filter: saturate(1.15) blur(13px);
+  box-shadow: 0 12px 34px -26px rgba(0,0,0,.55);
+  border-bottom-color: rgba(17,17,17,.14);
+}
+/* links mais aéreos: divisórias sutis, sem preenchimento cinza, sublinhado fino */
+.site-nav a {
+  border-left: 1px solid rgba(17,17,17,.08);
+  font-size: clamp(.8rem, .72vw, .94rem);
+  letter-spacing: .01em;
+  transition: color .2s ease;
+}
+.site-nav a:first-of-type { border-left: 0; }
+.site-nav a:hover { background: transparent; color: var(--accent); }
+.site-nav a.is-active { background: transparent; font-weight: 400; color: var(--accent); }
+.site-nav a::after { inset: auto 16px 19px; height: 2px; background: var(--accent); }
+.site-header.is-solid .site-nav a::after { bottom: 15px; }
+/* CTA "Seja parceiro" vira pílula vinho */
+.site-nav a.site-nav__cta {
+  align-self: center;
+  margin: 0 16px 0 20px;
+  padding: 11px 22px;
+  border-left: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 400;
+  transition: background .22s ease, transform .22s ease, box-shadow .22s ease;
+}
+.site-nav a.site-nav__cta:hover {
+  background: var(--ink); color: #fff; transform: translateY(-1px);
+  box-shadow: 0 12px 24px -14px rgba(101,0,47,.6);
+}
+.site-nav a.site-nav__cta::after { display: none; }
+
+@media (max-width: 900px) {
+  .site-nav { box-shadow: 0 26px 44px -30px rgba(0,0,0,.5); border-top: 1px solid rgba(17,17,17,.1); }
+  .site-nav a { font-size: .82rem; }
+  .site-nav a:hover, .site-nav a.is-active { background: var(--wash); color: var(--accent); }
+  .site-nav a.site-nav__cta { margin: 16px 20px; padding: 0; min-height: 52px; justify-content: center; border-radius: 999px; background: var(--accent); }
+  .site-nav a.site-nav__cta:hover { transform: none; }
+}
+
+/* ============================================================
+   Ajustes v18 — rail lateral, banner §01, mural Presença, menu Lausanne
+   ============================================================ */
+
+/* 1) Remove a divisória/rótulo vertical à esquerda (desktop) e o vão que ela ocupava */
+:root { --rail: 0px; }
+@media (max-width: 900px) { :root { --rail: 0px; } }
+.section::before, .results::before, .partnership::before { display: none !important; }
+
+/* 3) Menu com a fonte dos textos em TWK Lausanne */
+.site-nav a, .site-nav a.site-nav__cta, .menu-button__label { font-family: var(--body); }
+
+/* 4) BANNER §01 — imagem full-screen (100vw x 100svh), colada na seção anterior,
+      título em caixa-baixa (só a 1ª letra maiúscula) + animação tipográfica (motion-word já existente) */
+.manifesto { padding-top: 0; }
+.manifesto__hero {
+  position: relative; width: 100%; height: 100svh; margin: 0; overflow: hidden;
+  background: var(--ink); border-radius: 0;
+}
+.manifesto__hero picture { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.manifesto__hero img {
+  position: absolute; left: 0; top: -9%; width: 100%; height: 118%;
+  object-fit: cover; object-position: center 42%;
+}
+.manifesto__hero-scrim {
+  background:
+    linear-gradient(180deg, rgba(9,9,9,.04) 0%, rgba(9,9,9,.20) 46%, rgba(9,9,9,.72) 100%),
+    linear-gradient(90deg, rgba(101,0,47,.40) 0%, rgba(101,0,47,0) 60%);
+}
+.manifesto__hero-caption { padding-bottom: clamp(40px, 6vw, 88px); gap: 14px; }
+.manifesto__hero-caption h2 { text-transform: lowercase; font-size: clamp(3rem, 6.6vw, 6.6rem); line-height: .98; }
+.manifesto__hero-caption h2::first-letter { text-transform: uppercase; }
+.manifesto__hero-caption h2 .motion-word:first-child::first-letter { text-transform: uppercase; }
+
+/* 2) PRESENÇA EDITORIAL — mural com padronagem 'pois' + fita adesiva (durex) realista em 2 cantos */
+.press-mosaic {
+  position: relative;
+  padding: clamp(28px, 3.2vw, 52px);
+  border-radius: 16px;
+  background-color: #e4dcc9;
+  background-image: radial-gradient(rgba(101,0,47,.11) 1.6px, transparent 1.7px);
+  background-size: 22px 22px;
+  box-shadow: inset 0 0 0 1px rgba(17,17,17,.10), inset 0 2px 22px rgba(11,11,11,.06);
+}
+/* duas fitas translúcidas foscas nos cantos superiores de cada recorte */
+.press-tile::before, .press-tile::after {
+  content: ""; position: absolute; z-index: 4; top: -9px;
+  width: clamp(50px, 5.2vw, 68px); height: 23px; left: auto; right: auto;
+  background: linear-gradient(180deg, rgba(255,255,255,.52), rgba(255,255,255,.16));
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.62);
+  border-bottom: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 3px 8px -4px rgba(11,11,11,.42);
+  -webkit-backdrop-filter: blur(1.2px) saturate(1.1); backdrop-filter: blur(1.2px) saturate(1.1);
+}
+.press-tile::before { left: -7px; transform: rotate(-40deg); }
+.press-tile::after  { right: -7px; transform: rotate(40deg); background: linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,.14)); }
+.press-tile:nth-child(2n)::after { left: auto; right: -7px; transform: rotate(40deg); width: clamp(50px,5.2vw,68px); }
+.press-tile.is-open::before, .press-tile.is-open::after { opacity: .9; }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-tile::before { transform: rotate(-40deg); }
+  .press-tile::after  { transform: rotate(40deg); }
+}
+@media (max-width: 760px) {
+  .press-mosaic { padding: 20px; }
+  .press-tile::before, .press-tile::after { width: 46px; }
+}
+
+/* ============================================================
+   Ajustes v19
+   ============================================================ */
+
+/* Home hero — frase da tagline em TWK Lausanne (itálico) */
+.hero-mat__line { font-family: var(--body); font-style: italic; }
+
+/* Mais respiro entre o banner §01 e o texto abaixo */
+.manifesto__grid { padding-top: clamp(58px, 7vw, 114px); }
+
+/* Resultados 2026 — tamanho uniforme (destaques = corpo), mantendo o fundo colorido;
+   composição serif/sans para dar interesse */
+.results__highlight { font-size: 1em; letter-spacing: -.015em; padding: .02em .2em .12em; }
+.results__num { font-family: var(--display); font-weight: 400; letter-spacing: -.01em; }
+
+/* Camilla — card da citação melhorado (cabeçalho avatar+nome, aspas d'água) */
+.manifesto__quote { overflow: hidden; gap: clamp(18px, 1.7vw, 28px); }
+.manifesto__quote::after {
+  content: "\201D"; position: absolute; right: .1em; top: -.34em;
+  font: 400 8rem/1 var(--display); color: rgba(101,0,47,.10); pointer-events: none; z-index: 0;
+}
+.manifesto__quote-head { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
+.manifesto__quote-attr { display: grid; gap: 3px; }
+.manifesto__quote-attr strong { font: 400 clamp(1.04rem, 1.1vw, 1.24rem)/1.05 var(--display); color: var(--ink); letter-spacing: -.01em; }
+.manifesto__quote-attr span { font: 500 .62rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.manifesto__quote p.manifesto__quote-text { position: relative; z-index: 1; font-size: clamp(1.18rem, 1.4vw, 1.62rem); }
+
+/* Presença editorial — cards VINHO (natural), PRETO no hover/aberto, chip BRANCO */
+.press-tile { background: var(--accent); color: #e8e1d5; border-color: transparent; }
+.press-tile .press-tile__headline { color: #e8e1d5; }
+.press-tile .press-tile__cta { color: #f2b8d0; }
+.press-tile .press-tile__cta i { border-color: currentColor; }
+.press-tile__outlet,
+.press-tile.is-open .press-tile__outlet { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.22), inset 0 0 0 1px rgba(0,0,0,.05); }
+@media (hover: hover) {
+  .press-tile:hover { background: var(--ink); color: #e8e1d5; transform: rotate(calc(var(--rot) * .35)) translateY(-5px) scale(1.015); }
+  .press-tile:hover .press-tile__headline { color: #e8e1d5; }
+  .press-tile:hover .press-tile__cta { color: #f2b8d0; }
+  .press-tile:hover .press-tile__outlet { background: #fff; }
+  .press-tile.is-open:hover { background: var(--ink); transform: none; }
+}
+.press-tile.is-open { background: var(--ink); color: #e8e1d5; border-color: transparent; }
+.press-tile.is-open .press-tile__headline { color: #e8e1d5; }
+.press-tile.is-open .press-tile__tag { color: #f2b8d0; }
+.press-tile.is-open .press-tile__co { color: rgba(255,255,255,.9); }
+.press-tile.is-open .press-tile__meta { border-top-color: rgba(242,184,208,.32); }
+
+/* §08 Parcerias — CTA com mais intenção de clique */
+.partnership__cta-note { margin: 0 0 12px; color: color-mix(in srgb, var(--accent-ink) 82%, transparent); font: 500 .62rem var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+.partnership .button--light { width: min(100%, 400px); min-height: 66px; padding-inline: 24px; font-size: 1.08rem; box-shadow: 6px 6px 0 var(--ink); }
+.partnership .button--light span { font-size: 1.2em; }
+@media (hover: hover) {
+  .partnership .button--light:hover { background: var(--ink); color: #fff; box-shadow: 2px 2px 0 rgba(0,0,0,.55); }
+  .partnership .button--light:hover span { animation: none; transform: translate(6px, -2px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .partnership .button--light span { animation: ctaNudge 1.8s var(--ease) infinite; }
+  @keyframes ctaNudge { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(5px, -2px); } }
+}
+
+/* ============================================================
+   Retorno da Camilla (13/08/2026) — ajustes de encerramento
+   ============================================================ */
+
+/* Buenos Aires — foto real dentro do semi-círculo decorativo do card
+   (antes era apenas um contorno vazio, igual no card de São Paulo) */
+.territory-card__orb {
+  position: absolute; z-index: -1; inset: auto -16% -36% auto;
+  width: 62%; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+  background: url("assets/2027/territories-ba-orb-640.webp") center/cover no-repeat;
+  opacity: .92; transform: translate3d(12%, 12%, 0);
+}
+.territory-card--future::after { display: none; }
+
+/* Presença editorial — cards retos, sem colagem/rotação/fita adesiva.
+   A estética "mural" destoava do restante da apresentação (feedback da
+   Camilla, 13/08/2026); volta ao mesmo padrão sóbrio de borda fina em
+   var(--line) usado no resto do site, com hover vinho consistente com
+   .principles li:hover. Bloco no fim do arquivo para sobrepor todas as
+   regras anteriores de .press-mosaic / .press-tile. */
+.press-mosaic {
+  padding: 0; border-radius: 0; background: none; background-image: none; box-shadow: none;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 22vw, 258px), 1fr));
+  gap: 1px; background-color: var(--line); border: 1px solid var(--line);
+}
+.press-tile {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: clamp(168px, 17vw, 204px) !important;
+  padding: clamp(20px, 1.8vw, 26px);
+  background: var(--canvas);
+  border: 0; border-radius: 0; box-shadow: none !important;
+  transform: none !important; margin: 0 !important;
+  cursor: pointer; text-align: left; color: var(--ink);
+  transition: background .4s var(--ease), color .4s var(--ease);
+}
+.press-tile::before,
+.press-tile::after { content: none !important; display: none !important; }
+.press-tile__outlet {
+  display: inline-flex; align-items: center; align-self: flex-start;
+  padding: 0; border-radius: 0; background: none !important; box-shadow: none;
+}
+.press-tile__logo { display: block; height: 20px; width: auto; max-width: 130px; object-fit: contain; object-position: left center; }
+.press-tile__headline {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  font-family: var(--display); font-weight: 400; letter-spacing: -.01em;
+  font-size: clamp(1.02rem, 1.15vw, 1.28rem); line-height: 1.22; color: inherit;
+}
+.press-tile__meta {
+  display: grid; gap: 4px; margin-top: 0;
+  max-height: 0; opacity: 0; transform: none; overflow: hidden;
+  transition: max-height .5s var(--ease), opacity .4s var(--ease), margin .5s var(--ease);
+}
+.press-tile__tag,
+.press-tile__co,
+.press-tile__cta { color: var(--muted); }
+
+@media (hover: hover) {
+  .press-tile:hover { background: var(--accent); color: var(--accent-ink); }
+  .press-tile:hover .press-tile__logo { filter: brightness(0) invert(1); }
+  .press-tile:hover .press-tile__cta { color: rgba(255,255,255,.82); }
+  .press-tile:hover .press-tile__cta i { transform: rotate(90deg); }
+  .press-tile.is-open:hover { background: var(--accent); color: var(--accent-ink); }
+}
+
+.press-tile.is-open { background: var(--accent); color: var(--accent-ink); z-index: 2; }
+.press-tile.is-open .press-tile__logo { filter: brightness(0) invert(1); }
+.press-tile.is-open .press-tile__headline { -webkit-line-clamp: unset; font-size: clamp(1.14rem, 1.3vw, 1.5rem); }
+.press-tile.is-open .press-tile__meta { max-height: 140px; opacity: 1; margin-top: 4px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.28); }
+.press-tile.is-open .press-tile__tag,
+.press-tile.is-open .press-tile__co,
+.press-tile.is-open .press-tile__cta { color: rgba(255,255,255,.85); }
+.press-tile.is-open .press-tile__cta i { transform: rotate(45deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .press-tile { transition: none; }
+}
+@media (max-width: 760px) {
+  .press-mosaic { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   VARIANTE — paleta preto + off-white no site inteiro
+   A pedido da Camilla (13/08/2026): substituir vinho/vermelho por preto
+   + off-white #ebe6dc, com variações em sépia/cinza. Esta versão troca
+   a paleta em TODO o site institucional (ver também a variante que
+   troca só o card de Buenos Aires).
+   ============================================================ */
+:root {
+  --accent: #111111;
+  --accent-2: var(--accent);
+  --rose: #ebe6dc;
+  --vinho: #111111;
+  --canvas: #ebe6dc;
+  --cream: #ebe6dc;
+}
+.manifesto__hero-scrim {
+  background:
+    linear-gradient(180deg, rgba(9,9,9,.04) 0%, rgba(9,9,9,.20) 46%, rgba(9,9,9,.72) 100%),
+    linear-gradient(90deg, rgba(17,17,17,.40) 0%, rgba(17,17,17,0) 60%);
+}
+.manifesto__quote { border-color: rgba(17,17,17,.16); }
+.manifesto__quote-avatar { background: rgba(17,17,17,.06); border-color: rgba(17,17,17,.28); }
+.manifesto__quote::after { color: rgba(17,17,17,.10); }
+.site-nav a.site-nav__cta:hover { box-shadow: 0 12px 24px -14px rgba(17,17,17,.6); }
+
+/* ============================================================
+   Correções pós-v21 (17/08/2026) — feedback do Vini
+   ============================================================ */
+
+/* 1) Presença editorial — bug de legibilidade: o bloco vinho-sólido
+   antigo (v19) definia .press-tile .press-tile__headline / .press-tile
+   .press-tile__cta com seletores de 2 classes, especificidade maior que
+   o reset de card sóbrio feito antes (1 classe só) — o texto ficava da
+   mesma cor do fundo (cream sobre cream) no estado fechado. Corrigido
+   igualando a especificidade e definindo estado hover explicitamente. */
+.press-tile .press-tile__headline { color: var(--ink); }
+.press-tile:hover .press-tile__headline { color: var(--accent-ink); }
+.press-tile .press-tile__cta { color: var(--muted); }
+.press-tile:hover .press-tile__cta { color: rgba(255,255,255,.82); }
+
+/* 2) "239 matérias publicadas" — número e rótulo no mesmo tamanho
+   (mesmo tratamento já usado em Resultados 2026: destaque = corpo) */
+.proof__press-count { align-items: baseline; gap: 14px; }
+.proof__press-count strong {
+  color: var(--accent); font: 400 clamp(1.55rem, 2.1vw, 2.3rem)/1.1 var(--display); letter-spacing: -.015em;
+}
+.proof__press-count span {
+  max-width: none; padding-bottom: 0; color: var(--ink);
+  font: 400 clamp(1.55rem, 2.1vw, 2.3rem)/1.15 var(--display);
+}
+
+/* 3) Card de citação da Camilla — alinhar ao resto do design system:
+   cantos retos e borda fina em var(--line) (como .press-tile,
+   .brand-case, .territory-card), sem sombra flutuante nem aspas
+   decorativas gigantes; anel do avatar neutro em vez de tingido de vinho. */
+.manifesto__quote { border-radius: 0; background: var(--canvas); border: 1px solid var(--line); box-shadow: none; }
+.manifesto__quote::before { width: 2px; border-radius: 0; background: var(--accent); }
+.manifesto__quote::after { content: none; }
+.manifesto__quote-avatar { border-radius: 50%; background: var(--wash); border: 1px solid var(--line); box-shadow: none; }
+
+/* ============================================================
+   Rodada 2 de feedback (17/08/2026) — Presença editorial mais
+   parecida com o card de citação + corrigir contraste dos logos
+   ============================================================ */
+
+/* --wash tinha leve tom rosado herdado da paleta vinho — neutralizado
+   pra não vazar rosa na paleta preto/off-white */
+:root { --wash: #f3efe7; }
+
+/* mesma barra de destaque à esquerda do card de citação (var(--accent));
+   logo do veículo agora vive num chip claro e FIXO (não recolore no
+   hover/aberto) — garante contraste em qualquer estado, sem precisar
+   inverter a cor do logo (alguns logos, como Estadão/Folha/Valor, têm
+   fundo retangular embutido no PNG: inverter cor virava um bloco branco
+   sólido sem texto legível) */
+.press-tile { padding-left: calc(clamp(20px, 1.8vw, 26px) + 14px); }
+.press-tile::before {
+  content: "" !important; position: absolute; left: 0;
+  top: clamp(20px, 1.8vw, 26px); bottom: clamp(20px, 1.8vw, 26px);
+  width: 2px; background: var(--accent); z-index: 1;
+}
+.press-tile__outlet {
+  padding: 5px 9px !important; background: var(--wash) !important;
+  border: 1px solid var(--line);
+}
+.press-tile:hover .press-tile__outlet,
+.press-tile.is-open .press-tile__outlet { background: var(--wash) !important; border-color: var(--line); }
+.press-tile__logo,
+.press-tile:hover .press-tile__logo,
+.press-tile.is-open .press-tile__logo { filter: none; }
+
+/* ============================================================
+   Rodada 3 de feedback (17/08/2026)
+   ============================================================ */
+
+/* Hero — a foto estende até o fim do menu: em vez de empurrar a seção
+   inteira (texto + foto) 86px pra baixo do header fixo, agora só o
+   painel de texto (.hero__copy) recebe esse respiro; a foto ocupa a
+   coluna inteira da grid desde y:0, ficando exatamente encostada no
+   header (que continua opaco por cima, z-index:200). */
+.hero { padding-top: 0; }
+.hero__copy { padding-top: 86px; }
+@media (max-width: 900px) {
+  .hero__copy { padding-top: 74px; }
+}
+
+/* Presença editorial — retângulos dos logos preenchidos de branco puro
+   (era var(--wash), um bege claro) */
+.press-tile__outlet,
+.press-tile:hover .press-tile__outlet,
+.press-tile.is-open .press-tile__outlet { background: #ffffff !important; }
+
+/* ============================================================
+   Rodada 4 de feedback (17/08/2026) — "01/A ArPa" no desktop
+   ============================================================ */
+
+/* A seção 01 tinha um layout bespoke (herdado de antes da faixa de
+   foto full-bleed da v17): heading dentro da mesma grid de 12 colunas
+   que o corpo+citação, com colunas parcialmente sobrepostas
+   (heading 1/6, corpo 7/10, citação 8/13 — corpo e citação disputavam
+   as colunas 8 e 9). O grid engine empurrava a citação pra uma 2ª
+   linha isolada, sozinha, com um vão vazio grande à esquerda.
+   Correção: heading vira um bloco de largura total, próprio, no MESMO
+   padrão (kicker | título | parágrafo de apoio, 2fr/6fr/3fr) já usado
+   em Modelo/Alcance/Setores/Impacto/Territórios/Parcerias — em vez de
+   ficar preso dentro do grid de conteúdo. Corpo e citação ficam then
+   numa segunda faixa, lado a lado, sem sobreposição de colunas
+   (corpo 1/7, citação 8/13 — nenhuma coluna compartilhada). */
+.manifesto__heading {
+  display: grid; grid-template-columns: 2fr 6fr 3fr; gap: 24px; align-items: end;
+  margin-bottom: clamp(48px, 6vw, 92px);
+}
+.manifesto__heading .chapter { grid-column: 1; }
+.manifesto__heading h2 { grid-column: 1 / 3; }
+.manifesto__heading > p:last-child { grid-column: 3; margin: 0; color: var(--muted); }
+
+/* padding-top:0 vinha da faixa full-bleed (v18), que precisava ficar
+   colada no bloco anterior — sem ela, a seção precisa do respiro
+   padrão (--section-space) como todas as outras */
+.manifesto { padding-top: var(--section-space); }
+
+/* ============================================================
+   Rodada 5 de feedback (17/08/2026)
+   ============================================================ */
+
+/* Hero — tira a barra decorativa vinho ao lado do texto: na paleta
+   preta ela usava var(--accent), que agora é quase preto (#111111),
+   praticamente igual a --ink — virou um retângulo preto solto sem
+   função, em vez de um detalhe de cor. Removida. */
+.hero__copy::before { content: none; }
+
+/* "01/A ArPa" — a frase "A ArPa nasceu para propor..." vira subtítulo
+   (classe .lead já existente no site) logo abaixo do título, em vez
+   de nota lateral numa 3ª coluna; heading passa a empilhar em bloco
+   (kicker → título → subtítulo) e o espaço antes do corpo de texto
+   abaixo diminui. */
+.manifesto__heading { display: block; max-width: 62ch; margin-bottom: clamp(32px, 3.6vw, 52px); }
+.manifesto__heading h2 { margin: 0; }
+.manifesto__heading .lead { margin: 16px 0 0; color: var(--muted); }

@@ -458,3 +458,61 @@ window.addEventListener("resize", () => {
   setTickerSpeed();
   onScroll();
 });
+
+/* Presença editorial — cards que expandem no lugar (acordeão, um aberto por vez) */
+(function () {
+  "use strict";
+  var tiles = [].slice.call(document.querySelectorAll(".press-tile"));
+  if (!tiles.length) return;
+  function setOpen(tile, open) {
+    tile.classList.toggle("is-open", open);
+    tile.setAttribute("aria-expanded", String(open));
+    var lbl = tile.querySelector(".press-tile__cta-label");
+    if (lbl) lbl.textContent = open ? "Fechar" : "Ler";
+  }
+  tiles.forEach(function (t) {
+    t.addEventListener("click", function () {
+      var willOpen = !t.classList.contains("is-open");
+      tiles.forEach(function (o) { if (o !== t) setOpen(o, false); });
+      setOpen(t, willOpen);
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") tiles.forEach(function (o) { setOpen(o, false); });
+  });
+})();
+
+/* ============================================================
+   Hero Materialização (v15) — cascata das barras + frase word-by-word
+   ============================================================ */
+(function () {
+  var hero = document.querySelector(".hero-mat");
+  if (!hero) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  hero.querySelectorAll(".bars i").forEach(function (b, i) {
+    b.style.transitionDelay = (i * 150) + "ms";
+  });
+
+  var line = hero.querySelector("[data-line]");
+  if (line) {
+    var words = line.textContent.trim().split(/\s+/);
+    line.textContent = "";
+    words.forEach(function (w, i) {
+      var s = document.createElement("span");
+      s.className = "w";
+      s.textContent = w;
+      s.style.transitionDelay = (3100 + i * 70) + "ms";
+      line.appendChild(s);
+      if (i < words.length - 1) {
+        if (/^arte$/i.test(w)) line.appendChild(document.createElement("br"));
+        else line.appendChild(document.createTextNode(" "));
+      }
+    });
+  }
+
+  if (reduce) { hero.classList.add("is-in"); return; }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { hero.classList.add("is-in"); });
+  });
+})();
