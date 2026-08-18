@@ -626,21 +626,26 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .territories__image { margin-top: clamp(64px, 8vw, 120px); }
 .territories__image img { height: clamp(520px, 64vw, 860px); object-fit: cover; clip-path: polygon(0 8%, 12% 8%, 12% 0, 100% 0, 100% 92%, 88% 92%, 88% 100%, 0 100%); }
 .territories__image figcaption { margin-top: 12px; }
-.territories__list { margin-top: 42px; display: grid; grid-template-columns: 5fr 7fr; gap: clamp(14px, 1.8vw, 28px); color: var(--ink); }
-.territory-card { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(360px, 32vw, 470px); display: grid; grid-template-rows: auto 1fr; box-shadow: 0 0 0 1px var(--line), 0 18px 44px rgba(9, 9, 9, .08); }
+/* Ajuste 18/08/2026 (feedback Camilla, reunião c/ Leo): cards de SP e BA
+   tinham tamanhos diferentes (5fr/7fr) e o card de Origem usava fundo
+   sólido preto (var(--accent), que nesta paleta = #111111) — ela pediu os
+   dois do mesmo tamanho e sem fundo preto. Os dois cards agora dividem a
+   grade meio a meio e usam o mesmo cartão sóbrio (fundo --canvas, borda
+   fina --line) já usado no resto do site (ver .press-tile); a distinção
+   Origem/Futuro fica só na cor de detalhe (status + numeral em vinho/preto
+   de destaque vs. cinza), não mais no preenchimento inteiro do card. */
+.territories__list { margin-top: 42px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.8vw, 28px); color: var(--ink); }
+.territory-card { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(360px, 32vw, 470px); display: grid; grid-template-rows: auto 1fr; background: var(--canvas); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 18px 44px rgba(9, 9, 9, .06); }
 .territory-card::after { content: ""; position: absolute; z-index: -1; inset: auto -16% -36% auto; width: 62%; aspect-ratio: 1; border: 1px solid currentColor; border-radius: 50%; opacity: .14; transform: translate3d(12%, 12%, 0); }
-.territory-card--origin { background: var(--accent); color: var(--accent-ink); }
-.territory-card--future { background: var(--accent-ink); color: var(--ink); }
-.territory-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: clamp(22px, 2.5vw, 36px); border-bottom: 1px solid currentColor; }
+.territory-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: clamp(22px, 2.5vw, 36px); border-bottom: 1px solid var(--line); }
 .status { margin: 0; padding-top: 3px; font: 300 clamp(.82rem, .9vw, .98rem)/1.2 var(--display); }
-.status--future { color: var(--accent); }
-.territory-card__code { color: currentColor; font: 300 clamp(4.5rem, 8vw, 8.8rem)/.68 var(--display); letter-spacing: -.07em; opacity: .22; }
-.territory-card--future .territory-card__code { color: var(--accent); opacity: 1; }
+.status--current { color: var(--accent); }
+.status--future { color: var(--muted); }
+.territory-card__code { color: var(--accent); font: 300 clamp(4.5rem, 8vw, 8.8rem)/.68 var(--display); letter-spacing: -.07em; opacity: .16; }
 .territory-card__body { align-self: end; padding: clamp(26px, 3.5vw, 52px); }
 .territories__list h3 { max-width: 11ch; font-size: clamp(3rem, 5.4vw, 6.5rem); }
-.territory-card__venue { max-width: 34ch; margin: 16px 0 0; color: inherit; font-size: clamp(.95rem, 1.15vw, 1.2rem); line-height: 1.35; }
-.territory-card__description { display: block; max-width: 48ch; margin-top: 30px; padding-top: 18px; border-top: 1px solid currentColor; color: inherit; font-size: .9rem; opacity: .72; }
-.territory-card--future .territory-card__description { color: var(--muted); opacity: 1; }
+.territory-card__venue { max-width: 34ch; margin: 16px 0 0; color: var(--ink); font-size: clamp(.95rem, 1.15vw, 1.2rem); line-height: 1.35; }
+.territory-card__description { display: block; max-width: 48ch; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; opacity: 1; }
 
 /* Brand partnerships — real activations, treated as documentary evidence */
 .brand-cases { background: var(--canvas); }
@@ -1129,9 +1134,13 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   text-shadow: 0 2px 30px rgba(9,9,9,.35);
 }
 /* grade reequilibrada (o título saiu para a imagem) */
+/* Ajuste 18/08/2026: quote começava na col.8, deixando a col.7 inteira vazia
+   entre o corpo de texto e o card — esse vão de coluna também contribuía pro
+   "vácuo" apontado pela Camilla. Corpo e citação passam a dividir a grade
+   meio a meio (6 colunas cada), lado a lado, só com o gap padrão entre eles. */
 .manifesto__grid { align-items: start; }
 .manifesto__body { grid-column: 1 / 7; }
-.manifesto__quote { grid-column: 8 / 13; }
+.manifesto__quote { grid-column: 7 / 13; }
 
 /* TASK B — card de citação refinado + avatar circular + texto em body font */
 .manifesto__quote {
@@ -1370,8 +1379,12 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 /* Home hero — frase da tagline em TWK Lausanne (itálico) */
 .hero-mat__line { font-family: var(--body); font-style: italic; }
 
-/* Mais respiro entre o banner §01 e o texto abaixo */
-.manifesto__grid { padding-top: clamp(58px, 7vw, 114px); }
+/* Ajuste 18/08/2026 (feedback Camilla): o banner full-bleed §01 que justificava
+   esse respiro extra nunca chegou a ser usado nesta versão (.manifesto__hero
+   não existe no HTML atual) — o padding ficou órfão e criava um vácuo grande
+   entre o texto de abertura e o corpo/citação. Removido; a separação agora
+   vem só da margin-bottom do heading (~52px), consistente com o resto do site. */
+.manifesto__grid { padding-top: 0; }
 
 /* Resultados 2026 — tamanho uniforme (destaques = corpo), mantendo o fundo colorido;
    composição serif/sans para dar interesse */
