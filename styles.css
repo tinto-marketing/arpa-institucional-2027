@@ -1618,8 +1618,7 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 }
 .manifesto__copy-inner {
   width: min(100%, 620px);
-  margin-left: auto;
-  padding: clamp(64px, 7vw, 108px) clamp(28px, 4.2vw, 72px);
+  padding: clamp(64px, 7vw, 108px) clamp(28px, 4.2vw, 72px) clamp(64px, 7vw, 108px) calc(var(--rail) + var(--pad));
 }
 .manifesto__copy-inner h2 { max-width: 11ch; font-size: clamp(2.4rem, 3.9vw, 4rem); }
 .manifesto__copy-inner .lead { max-width: 40ch; margin: 28px 0 0; }
@@ -1673,6 +1672,6 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 @media (max-width: 900px) {
   .manifesto { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
   .manifesto__copy { grid-column: 1; grid-row: 1; border-right: none; border-bottom: 1px solid var(--line); }
-  .manifesto__copy-inner { width: 100%; margin-left: 0; }
+  .manifesto__copy-inner { width: 100%; }
   .manifesto__banner { grid-column: 1; grid-row: 2; height: clamp(360px, 62svh, 520px); }
 }
