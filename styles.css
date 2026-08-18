@@ -1612,7 +1612,7 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 .manifesto {
   display: grid;
   grid-template-columns: minmax(0, 40%) minmax(400px, 60%);
-  grid-template-rows: min(78svh, 760px) auto;
+  grid-template-rows: minmax(min(78svh, 760px), auto) auto;
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
