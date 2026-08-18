@@ -631,17 +631,29 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .territories__list { margin-top: 42px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.8vw, 28px); color: var(--ink); }
 .territory-card { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(360px, 32vw, 470px); display: grid; grid-template-rows: auto 1fr; background: var(--canvas); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 18px 44px rgba(9, 9, 9, .06); }
 .territory-card::after { content: ""; position: absolute; z-index: -1; inset: auto -16% -36% auto; width: 62%; aspect-ratio: 1; border: 1px solid currentColor; border-radius: 50%; opacity: .14; transform: translate3d(12%, 12%, 0); }
-.territory-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; padding: clamp(22px, 2.5vw, 36px); border-bottom: 1px solid var(--line); }
-.status { margin: 0; padding-top: 3px; font: 300 clamp(.82rem, .9vw, .98rem)/1.2 var(--display); }
-.status--current { color: var(--accent); }
-.status--future { color: var(--muted); }
+.territory-card__top { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(22px, 2.5vw, 36px); border-bottom: 1px solid var(--line); }
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 6px 14px 7px;
+  border-radius: 999px;
+  font: 500 .68rem/1 var(--mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.status--current { background: var(--accent); color: var(--accent-ink); }
+.status--future { background: transparent; border: 1px solid var(--line); color: var(--muted); }
 .territory-card__code { color: var(--accent); font: 300 clamp(4.5rem, 8vw, 8.8rem)/.68 var(--display); letter-spacing: -.07em; opacity: .16; }
+.territory-card--future .territory-card__code { color: var(--muted); }
 .territory-card__body { align-self: end; padding: clamp(26px, 3.5vw, 52px); }
-.territory-card__body h3 { font-size: clamp(2rem, 3.4vw, 3.2rem); }
-.territory-card__meta { margin: 14px 0 0; color: var(--accent); font: 500 .78rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
-.territories__list h3 { max-width: 11ch; font-size: clamp(3rem, 5.4vw, 6.5rem); }
-.territory-card__venue { max-width: 34ch; margin: 6px 0 0; color: var(--muted); font-size: clamp(.9rem, 1vw, 1.05rem); line-height: 1.35; }
-.territory-card__description { display: block; max-width: 48ch; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; opacity: 1; }
+.territory-card__meta { margin: 16px 0 0; color: var(--accent); font: 600 .8rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.territory-card--future .territory-card__meta { color: var(--ink); }
+.territories__list h3 { max-width: 11ch; font-size: clamp(2.6rem, 4.4vw, 4.4rem); }
+.territory-card__venue { max-width: 34ch; margin: 5px 0 0; color: var(--muted); font-size: clamp(.86rem, .95vw, 1rem); line-height: 1.35; }
+.territory-card__description { display: block; max-width: 48ch; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; opacity: 1; }
 
 /* Brand partnerships — real activations, treated as documentary evidence */
 .brand-cases { background: var(--canvas); }
@@ -1599,12 +1611,15 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
    ============================================================ */
 .manifesto {
   display: grid;
-  grid-template-columns: minmax(0, 50%) minmax(360px, 50%);
+  grid-template-columns: minmax(0, 40%) minmax(400px, 60%);
   grid-template-rows: 1fr;
   min-height: min(78svh, 760px);
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
+}
+.manifesto > .wide-image {
+  grid-column: 1 / -1;
 }
 .manifesto__copy {
   grid-column: 1;
