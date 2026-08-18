@@ -82,7 +82,7 @@ function initTextMotion() {
   const headings = [...document.querySelectorAll(".hero h1, .section h2, .section h3, .partnership h2")];
   const copyItems = [...document.querySelectorAll([
     ".hero__intro",
-    ".manifesto__body > p",
+    ".manifesto__copy-inner > p",
     ".model__header > p:last-child",
     ".proof__heading > p:last-child",
     ".proof__community-copy > p:last-child",

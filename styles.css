@@ -359,17 +359,10 @@ button { font: inherit; }
 figure { margin: 0; }
 figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform: uppercase; }
 
-/* Manifesto */
+/* Manifesto — layout reconstruído em 18/08/2026, ver bloco "01/A ArPa espelha o hero" no fim do arquivo.
+   Regras antigas de .manifesto__grid/.manifesto__body/.manifesto__quote removidas: essas classes
+   não existem mais no HTML (o card de citação com avatar pequeno virou o banner lateral da Camilla). */
 .manifesto { padding-bottom: 0; background: var(--canvas); }
-.manifesto__grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 22px; align-items: start; }
-.manifesto .section-heading { grid-column: 1 / 6; }
-.manifesto__body { grid-column: 1 / 7; }
-.manifesto__body p { margin: 0 0 22px; }
-.manifesto__body .lead { margin-bottom: 28px; }
-.manifesto__body .founding { padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font: 500 .78rem/1.55 var(--mono); }
-.manifesto__quote { grid-column: 9 / 13; margin: clamp(110px, 14vw, 220px) 0 0; padding: 26px; background: var(--wash); box-shadow: inset 12px 0 var(--accent); }
-.manifesto__quote p { margin: 0; font-family: var(--display); font-size: clamp(2rem, 3vw, 3.8rem); font-weight: 300; font-style: italic; line-height: 1.02; text-transform: none; }
-.manifesto__quote cite { display: block; margin-top: 24px; font: 500 .66rem var(--mono); font-style: normal; text-transform: uppercase; }
 .wide-image { width: calc(100% - var(--rail)); margin: var(--section-space) 0 0 var(--rail); position: relative; }
 .wide-image img { height: clamp(520px, 70vw, 900px); object-fit: cover; clip-path: polygon(0 0, 87% 0, 87% 8%, 100% 8%, 100% 100%, 12% 100%, 12% 92%, 0 92%); }
 .wide-image figcaption { width: 100%; max-width: none; margin: 0; padding: 14px var(--pad); display: flex; justify-content: space-between; border-top: 1px solid var(--line); }
@@ -608,6 +601,7 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .impact__heading > p:last-child { grid-column: 3; margin: 0; }
 .impact__grid { margin-top: clamp(64px, 8vw, 120px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, .88fr); gap: clamp(36px, 6vw, 96px); align-items: start; }
 .impact__image { position: sticky; top: 116px; }
+.impact__image figcaption { margin-top: 12px; }
 .impact__image img { aspect-ratio: 4 / 3; object-fit: cover; }
 .impact__list { border-top: 1px solid var(--line); }
 .impact__list article { position: relative; padding: 30px 48px 34px 0; border-bottom: 1px solid var(--line); transform: translateX(0); transition: transform 260ms var(--ease), background-color 180ms ease; }
@@ -643,8 +637,10 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .status--future { color: var(--muted); }
 .territory-card__code { color: var(--accent); font: 300 clamp(4.5rem, 8vw, 8.8rem)/.68 var(--display); letter-spacing: -.07em; opacity: .16; }
 .territory-card__body { align-self: end; padding: clamp(26px, 3.5vw, 52px); }
+.territory-card__body h3 { font-size: clamp(2rem, 3.4vw, 3.2rem); }
+.territory-card__meta { margin: 14px 0 0; color: var(--accent); font: 500 .78rem var(--mono); letter-spacing: .05em; text-transform: uppercase; }
 .territories__list h3 { max-width: 11ch; font-size: clamp(3rem, 5.4vw, 6.5rem); }
-.territory-card__venue { max-width: 34ch; margin: 16px 0 0; color: var(--ink); font-size: clamp(.95rem, 1.15vw, 1.2rem); line-height: 1.35; }
+.territory-card__venue { max-width: 34ch; margin: 6px 0 0; color: var(--muted); font-size: clamp(.9rem, 1vw, 1.05rem); line-height: 1.35; }
 .territory-card__description { display: block; max-width: 48ch; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; opacity: 1; }
 
 /* Brand partnerships — real activations, treated as documentary evidence */
@@ -803,12 +799,11 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 
   .section::before, .results::before, .partnership::before { font-size: .55rem; }
   .section h2, .partnership h2 { font-size: clamp(3rem, 10vw, 5rem); }
-  .manifesto__grid, .year-round__grid { grid-template-columns: 1fr; gap: 38px; }
-  .manifesto__body, .manifesto__quote, .year-round__copy, .year-round__programs, .year-round__image { grid-column: 1; }
-  .manifesto__quote { margin-top: 24px; }
+  .year-round__grid { grid-template-columns: 1fr; gap: 38px; }
+  .year-round__copy, .year-round__programs, .year-round__image { grid-column: 1; }
   .wide-image img { height: 68svh; min-height: 520px; }
-  .model__header, .proof__heading, .sectors__heading, .impact__heading, .territories__heading, .brand-cases__heading, .manifesto__heading { display: block; }
-  .model__header > p:last-child, .proof__heading > p:last-child, .sectors__heading > p:last-child, .impact__heading > p:last-child, .territories__heading > p:last-child, .brand-cases__heading > p:last-child, .manifesto__heading > p:last-child { max-width: 52ch; margin-top: 24px; }
+  .model__header, .proof__heading, .sectors__heading, .impact__heading, .territories__heading, .brand-cases__heading { display: block; }
+  .model__header > p:last-child, .proof__heading > p:last-child, .sectors__heading > p:last-child, .impact__heading > p:last-child, .territories__heading > p:last-child, .brand-cases__heading > p:last-child { max-width: 52ch; margin-top: 24px; }
   .proof__metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .proof__metrics div:nth-child(3) { border-left: 0; }
   .proof__metrics div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -860,7 +855,6 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .section::before, .results::before, .partnership::before { display: none; }
   .wide-image { width: 100%; margin-left: 0; }
   .wide-image figcaption { display: grid; gap: 4px; }
-  .manifesto__quote { padding: 22px; box-shadow: inset 8px 0 var(--accent); }
   .model__grid { margin-inline: -20px; border-inline: 0; }
   .principles li { grid-template-columns: 40px 1fr; padding: 24px 20px; }
   .proof__metrics {
@@ -1133,47 +1127,9 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   margin: 0; color: #fff;
   text-shadow: 0 2px 30px rgba(9,9,9,.35);
 }
-/* grade reequilibrada (o título saiu para a imagem) */
-/* Ajuste 18/08/2026: quote começava na col.8, deixando a col.7 inteira vazia
-   entre o corpo de texto e o card — esse vão de coluna também contribuía pro
-   "vácuo" apontado pela Camilla. Corpo e citação passam a dividir a grade
-   meio a meio (6 colunas cada), lado a lado, só com o gap padrão entre eles. */
-.manifesto__grid { align-items: start; }
-.manifesto__body { grid-column: 1 / 7; }
-.manifesto__quote { grid-column: 7 / 13; }
-
-/* TASK B — card de citação refinado + avatar circular + texto em body font */
-.manifesto__quote {
-  position: relative; margin: clamp(6px, 1.5vw, 26px) 0 0;
-  display: grid; gap: clamp(16px, 1.5vw, 22px);
-  padding: clamp(26px, 2.4vw, 38px);
-  background: var(--wash); border: 1px solid rgba(101,0,47,.16);
-  border-radius: 16px; box-shadow: none;
-  box-shadow: 0 34px 70px -52px rgba(9,9,9,.55), inset 0 0 0 1px rgba(255,255,255,.4);
-}
-.manifesto__quote::before {
-  content: ""; position: absolute; left: 0; top: clamp(26px, 2.4vw, 38px); bottom: clamp(26px, 2.4vw, 38px);
-  width: 3px; border-radius: 3px; background: var(--accent);
-}
-.manifesto__quote-avatar {
-  display: grid; place-content: center;
-  width: clamp(64px, 6vw, 78px); height: clamp(64px, 6vw, 78px);
-  border-radius: 50%; overflow: hidden;
-  background: rgba(101,0,47,.09); border: 1px solid rgba(101,0,47,.3);
-  color: var(--accent);
-  font: 300 clamp(1.35rem, 1.8vw, 1.6rem)/1 var(--display);
-  letter-spacing: .04em; text-transform: uppercase;
-  box-shadow: inset 0 0 0 4px rgba(255,255,255,.5);
-}
-.manifesto__quote-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-.manifesto__quote p.manifesto__quote-text {
-  margin: 0; font-family: var(--body); font-weight: 300; font-style: normal;
-  font-size: clamp(1.12rem, 1.35vw, 1.5rem); line-height: 1.5;
-  letter-spacing: -.005em; text-transform: none; color: var(--ink);
-}
-.manifesto__quote cite {
-  margin-top: 4px; color: var(--accent);
-}
+/* Layout do "01/A ArPa" (texto + banner lateral) reconstruído em 18/08/2026 —
+   ver bloco no fim do arquivo. Grade antiga e card de citação com avatar
+   pequeno (TASK B) removidos: não existem mais no HTML. */
 
 /* TASK C — logos em chip de papel (legível em ambos os estados) + colagem */
 .press-tile__outlet {
@@ -1243,8 +1199,6 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 /* responsivo */
 @media (max-width: 760px) {
   .manifesto__hero img { height: clamp(360px, 62svh, 520px); }
-  .manifesto__body, .manifesto__quote { grid-column: 1; }
-  .manifesto__quote { margin-top: 24px; }
   .press-tile { --rot: 0deg !important; transform: none; }
   .press-tile::after { display: none; }
 }
@@ -1379,29 +1333,10 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 /* Home hero — frase da tagline em TWK Lausanne (itálico) */
 .hero-mat__line { font-family: var(--body); font-style: italic; }
 
-/* Ajuste 18/08/2026 (feedback Camilla): o banner full-bleed §01 que justificava
-   esse respiro extra nunca chegou a ser usado nesta versão (.manifesto__hero
-   não existe no HTML atual) — o padding ficou órfão e criava um vácuo grande
-   entre o texto de abertura e o corpo/citação. Removido; a separação agora
-   vem só da margin-bottom do heading (~52px), consistente com o resto do site. */
-.manifesto__grid { padding-top: 0; }
-
 /* Resultados 2026 — tamanho uniforme (destaques = corpo), mantendo o fundo colorido;
    composição serif/sans para dar interesse */
 .results__highlight { font-size: 1em; letter-spacing: -.015em; padding: .02em .2em .12em; }
 .results__num { font-family: var(--display); font-weight: 400; letter-spacing: -.01em; }
-
-/* Camilla — card da citação melhorado (cabeçalho avatar+nome, aspas d'água) */
-.manifesto__quote { overflow: hidden; gap: clamp(18px, 1.7vw, 28px); }
-.manifesto__quote::after {
-  content: "\201D"; position: absolute; right: .1em; top: -.34em;
-  font: 400 8rem/1 var(--display); color: rgba(101,0,47,.10); pointer-events: none; z-index: 0;
-}
-.manifesto__quote-head { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; }
-.manifesto__quote-attr { display: grid; gap: 3px; }
-.manifesto__quote-attr strong { font: 400 clamp(1.04rem, 1.1vw, 1.24rem)/1.05 var(--display); color: var(--ink); letter-spacing: -.01em; }
-.manifesto__quote-attr span { font: 500 .62rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
-.manifesto__quote p.manifesto__quote-text { position: relative; z-index: 1; font-size: clamp(1.18rem, 1.4vw, 1.62rem); }
 
 /* Presença editorial — cards VINHO (natural), PRETO no hover/aberto, chip BRANCO */
 .press-tile { background: var(--accent); color: #e8e1d5; border-color: transparent; }
@@ -1537,9 +1472,6 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
     linear-gradient(180deg, rgba(9,9,9,.04) 0%, rgba(9,9,9,.20) 46%, rgba(9,9,9,.72) 100%),
     linear-gradient(90deg, rgba(17,17,17,.40) 0%, rgba(17,17,17,0) 60%);
 }
-.manifesto__quote { border-color: rgba(17,17,17,.16); }
-.manifesto__quote-avatar { background: rgba(17,17,17,.06); border-color: rgba(17,17,17,.28); }
-.manifesto__quote::after { color: rgba(17,17,17,.10); }
 .site-nav a.site-nav__cta:hover { box-shadow: 0 12px 24px -14px rgba(17,17,17,.6); }
 
 /* ============================================================
@@ -1568,14 +1500,8 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   font: 400 clamp(1.55rem, 2.1vw, 2.3rem)/1.15 var(--display);
 }
 
-/* 3) Card de citação da Camilla — alinhar ao resto do design system:
-   cantos retos e borda fina em var(--line) (como .press-tile,
-   .brand-case, .territory-card), sem sombra flutuante nem aspas
-   decorativas gigantes; anel do avatar neutro em vez de tingido de vinho. */
-.manifesto__quote { border-radius: 0; background: var(--canvas); border: 1px solid var(--line); box-shadow: none; }
-.manifesto__quote::before { width: 2px; border-radius: 0; background: var(--accent); }
-.manifesto__quote::after { content: none; }
-.manifesto__quote-avatar { border-radius: 50%; background: var(--wash); border: 1px solid var(--line); box-shadow: none; }
+/* 3) [removido 18/08/2026 — card de citação da Camilla virou banner lateral,
+   ver bloco "01/A ArPa espelha o hero" no fim do arquivo] */
 
 /* ============================================================
    Rodada 2 de feedback (17/08/2026) — Presença editorial mais
@@ -1645,18 +1571,9 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
    ficar preso dentro do grid de conteúdo. Corpo e citação ficam then
    numa segunda faixa, lado a lado, sem sobreposição de colunas
    (corpo 1/7, citação 8/13 — nenhuma coluna compartilhada). */
-.manifesto__heading {
-  display: grid; grid-template-columns: 2fr 6fr 3fr; gap: 24px; align-items: end;
-  margin-bottom: clamp(48px, 6vw, 92px);
-}
-.manifesto__heading .chapter { grid-column: 1; }
-.manifesto__heading h2 { grid-column: 1 / 3; }
-.manifesto__heading > p:last-child { grid-column: 3; margin: 0; color: var(--muted); }
-
-/* padding-top:0 vinha da faixa full-bleed (v18), que precisava ficar
-   colada no bloco anterior — sem ela, a seção precisa do respiro
-   padrão (--section-space) como todas as outras */
-.manifesto { padding-top: var(--section-space); }
+/* [removido 18/08/2026 — .manifesto__heading não existe mais no HTML;
+   kicker/título/lead viraram parte de .manifesto__copy, ver bloco
+   "01/A ArPa espelha o hero" no fim do arquivo] */
 
 /* ============================================================
    Rodada 5 de feedback (17/08/2026)
@@ -1668,11 +1585,94 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
    função, em vez de um detalhe de cor. Removida. */
 .hero__copy::before { content: none; }
 
-/* "01/A ArPa" — a frase "A ArPa nasceu para propor..." vira subtítulo
-   (classe .lead já existente no site) logo abaixo do título, em vez
-   de nota lateral numa 3ª coluna; heading passa a empilhar em bloco
-   (kicker → título → subtítulo) e o espaço antes do corpo de texto
-   abaixo diminui. */
-.manifesto__heading { display: block; max-width: 62ch; margin-bottom: clamp(32px, 3.6vw, 52px); }
-.manifesto__heading h2 { margin: 0; }
-.manifesto__heading .lead { margin: 16px 0 0; color: var(--muted); }
+/* [removido 18/08/2026 — regra de .manifesto__heading obsoleta, ver nota acima] */
+
+/* ============================================================
+   01/A ArPa espelha o hero (18/08/2026) — pedido do Vini: no Hero a
+   imagem fica à esquerda e o texto à direita; em "01/A ArPa" é o
+   inverso — texto à esquerda, foto da Camilla como banner lateral à
+   direita, com a citação dela sobreposta na própria foto (como uma
+   legenda). Mesmo padrão de grid de 2 colunas do .hero (copy + media
+   posicionados por grid-column, edge-to-edge, sem .shell), só que
+   espelhado. Substitui todo o HTML antigo (.manifesto__heading,
+   .manifesto__grid, .manifesto__body, .manifesto__quote*).
+   ============================================================ */
+.manifesto {
+  display: grid;
+  grid-template-columns: minmax(0, 58%) minmax(320px, 42%);
+  grid-template-rows: 1fr;
+  min-height: min(78svh, 760px);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+.manifesto__copy {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  z-index: 3;
+  display: grid;
+  align-items: center;
+  background: var(--canvas);
+  border-right: 1px solid var(--line);
+}
+.manifesto__copy-inner {
+  width: min(100%, 620px);
+  margin-left: auto;
+  padding: clamp(64px, 7vw, 108px) clamp(28px, 4.2vw, 72px);
+}
+.manifesto__copy-inner h2 { max-width: 11ch; font-size: clamp(2.4rem, 3.9vw, 4rem); }
+.manifesto__copy-inner .lead { max-width: 40ch; margin: 28px 0 0; }
+.manifesto__copy-inner p {
+  max-width: 46ch;
+  margin: 20px 0 0;
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(.96rem, .3vw + .87rem, 1.08rem);
+  line-height: 1.62;
+  color: var(--ink);
+}
+.manifesto__copy-inner p.founding { margin-top: 24px; font-style: italic; color: var(--muted); }
+.manifesto__banner {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  overflow: hidden;
+}
+.manifesto__banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+.manifesto__banner-quote {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  gap: 14px;
+  padding: clamp(28px, 3.4vw, 52px) clamp(24px, 3vw, 44px) clamp(32px, 3.6vw, 52px);
+  background: linear-gradient(180deg, rgba(9,9,9,0) 0%, rgba(9,9,9,.18) 32%, rgba(9,9,9,.78) 100%);
+  color: #f5f1e8;
+}
+.manifesto__banner-quote p {
+  margin: 0;
+  font-family: var(--body);
+  font-weight: 300;
+  font-size: clamp(1.05rem, 1.15vw, 1.32rem);
+  line-height: 1.48;
+  letter-spacing: -.005em;
+}
+.manifesto__banner-quote cite {
+  display: grid;
+  gap: 2px;
+  font-style: normal;
+}
+.manifesto__banner-quote cite strong { font: 400 .98rem/1.1 var(--display); letter-spacing: -.01em; color: #fff; }
+.manifesto__banner-quote cite span { font: 500 .64rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(245,241,232,.72); }
+
+@media (max-width: 900px) {
+  .manifesto { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
+  .manifesto__copy { grid-column: 1; grid-row: 1; border-right: none; border-bottom: 1px solid var(--line); }
+  .manifesto__copy-inner { width: 100%; margin-left: 0; }
+  .manifesto__banner { grid-column: 1; grid-row: 2; height: clamp(360px, 62svh, 520px); }
+}
