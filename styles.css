@@ -1599,7 +1599,7 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
    ============================================================ */
 .manifesto {
   display: grid;
-  grid-template-columns: minmax(0, 58%) minmax(320px, 42%);
+  grid-template-columns: minmax(0, 50%) minmax(360px, 50%);
   grid-template-rows: 1fr;
   min-height: min(78svh, 760px);
   position: relative;
@@ -1651,23 +1651,24 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   gap: 14px;
   padding: clamp(28px, 3.4vw, 52px) clamp(24px, 3vw, 44px) clamp(32px, 3.6vw, 52px);
   background: linear-gradient(180deg, rgba(9,9,9,0) 0%, rgba(9,9,9,.18) 32%, rgba(9,9,9,.78) 100%);
-  color: #f5f1e8;
+  color: var(--accent-ink);
 }
 .manifesto__banner-quote p {
   margin: 0;
   font-family: var(--body);
   font-weight: 300;
-  font-size: clamp(1.05rem, 1.15vw, 1.32rem);
-  line-height: 1.48;
+  font-size: clamp(1.1rem, 1.25vw, 1.4rem);
+  line-height: 1.5;
   letter-spacing: -.005em;
+  color: color-mix(in srgb, var(--accent-ink) 96%, transparent);
 }
 .manifesto__banner-quote cite {
   display: grid;
   gap: 2px;
   font-style: normal;
 }
-.manifesto__banner-quote cite strong { font: 400 .98rem/1.1 var(--display); letter-spacing: -.01em; color: #fff; }
-.manifesto__banner-quote cite span { font: 500 .64rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: rgba(245,241,232,.72); }
+.manifesto__banner-quote cite strong { font: 400 .98rem/1.1 var(--display); letter-spacing: -.01em; color: var(--accent-ink); }
+.manifesto__banner-quote cite span { font: 500 .62rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: color-mix(in srgb, var(--accent-ink) 72%, transparent); }
 
 @media (max-width: 900px) {
   .manifesto { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
