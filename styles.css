@@ -560,19 +560,49 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .sectors__heading > p:last-child { grid-column: 3; margin: 0; }
 .sector-list { margin-top: clamp(64px, 8vw, 120px); border-top: 1px solid var(--line); }
 .sector-row { border-bottom: 1px solid var(--line); }
-.sector-row__head { display: flex; align-items: baseline; gap: 24px; width: 100%; padding: 22px 2px; background: none; border: 0; text-align: left; cursor: pointer; font: inherit; color: inherit; }
-.sector-row__idx { flex: 0 0 auto; font: 500 .68rem var(--mono); color: var(--muted); }
+/* Ajuste 19/08/2026 — pequenos reforços de coerência com o padrão editorial
+   novo dos cards de Presença (v30): um ponto de status (cheio = linha
+   aberta, contorno = fechada) reaproveitando a mesma gramática visual dos
+   pontos "Origem/Programação futura"; um fundo --wash sutil na linha
+   ativa/hover (mesmo tom usado no hover dos cards territoriais); e o
+   corte de canto (clip-path) que já é a assinatura gráfica das imagens
+   grandes do site (.wide-image, .territories__image), até então ausente
+   nas fotos do acordeão de Setores. O acordeão em si (abrir uma linha por
+   vez, clique/hover/teclado) continua igual — só o acabamento visual muda. */
+.sector-row__head { display: flex; align-items: baseline; gap: 24px; width: 100%; padding: 22px 2px; background: none; border: 0; text-align: left; cursor: pointer; font: inherit; color: inherit; transition: background-color 220ms var(--ease-snappy); }
+.sector-row.is-open .sector-row__head { background: var(--wash); }
+@media (hover: hover) {
+  .sector-row__head:hover { background: var(--wash); }
+}
+/* .sector-row__head usa align-items:baseline (alinha __idx e o h3 pela
+   linha de base do texto). Dar display:inline-flex ao __idx quebrava essa
+   referência de baseline (o baseline de um flex container é o do seu
+   próprio conteúdo, não o do texto), derrubando o h3 pra fora de posição
+   em várias linhas do acordeão — bug real encontrado na verificação.
+   Fix: manter __idx como inline (baseline normal de texto) e desenhar o
+   ponto como ::before inline-block com vertical-align próprio, sem afetar
+   o baseline do elemento pai. */
+.sector-row__idx { flex: 0 0 auto; font: 500 .68rem var(--mono); color: var(--muted); transition: color 220ms var(--ease-snappy); }
+.sector-row__idx::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 8px; vertical-align: 1px; border-radius: 50%; border: 1px solid var(--muted); background: transparent; transition: background-color 220ms var(--ease-snappy), border-color 220ms var(--ease-snappy); }
+.sector-row.is-open .sector-row__idx { color: var(--ink); }
+.sector-row.is-open .sector-row__idx::before { background: var(--accent); border-color: var(--accent); }
 .sector-row__head h3 { flex: 1; margin: 0; font-family: var(--title); font-weight: 300; font-size: clamp(1.7rem, 3.2vw, 2.9rem); letter-spacing: -.03em; transition: color 200ms ease, transform 320ms var(--ease); }
 .sector-row__head:hover h3 { transform: translateX(10px); }
 .sector-row.is-open .sector-row__head h3 { color: var(--accent); }
-.sector-row__detail { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows 420ms var(--ease); }
-.sector-row.is-open .sector-row__detail { grid-template-rows: 1fr; }
+/* Bug real encontrado em 19/08/2026: "0fr" sozinho equivale a
+   "minmax(auto, 0fr)" — o mínimo auto respeita o min-content do filho
+   (.sector-row__in tem height: clamp(...) explícito), então a linha nunca
+   colapsava de verdade; todas as 5 linhas ficavam sempre expandidas ao
+   mesmo tempo, silenciosamente, desde sempre. Fix: minmax(0, Nfr) força o
+   mínimo a zero e deixa o colapso/expansão funcionar como pretendido. */
+.sector-row__detail { display: grid; grid-template-rows: minmax(0, 0fr); overflow: hidden; transition: grid-template-rows 420ms var(--ease); }
+.sector-row.is-open .sector-row__detail { grid-template-rows: minmax(0, 1fr); }
 .sector-list.is-keyboard-nav .sector-row__detail,
 .sector-list.is-keyboard-nav .sector-row__head h3 { transition: none; }
 .sector-row__in { min-height: 0; display: grid; grid-template-columns: 1fr 1.35fr; height: clamp(280px, 34vw, 420px); overflow: hidden; }
 .sector-row__in p { align-self: center; margin: 0; padding: 0 clamp(20px, 3vw, 44px) 0 2px; font-size: .95rem; color: var(--muted); max-width: 42ch; }
 .sector-row__in figure { margin: 0; height: 100%; overflow: hidden; }
-.sector-row__in img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sector-row__in img { width: 100%; height: 100%; object-fit: cover; display: block; clip-path: polygon(0 0, 90% 0, 90% 9%, 100% 9%, 100% 100%, 0 100%); }
 
 /* Year-round — vinho passa a ser apenas detalhe (underline do chapter); fundo neutro */
 .year-round { background: var(--canvas); color: var(--ink); }
