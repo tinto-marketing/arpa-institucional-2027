@@ -349,10 +349,14 @@ button { font: inherit; }
   color: inherit;
 }
 .section { padding-block: var(--section-space); }
-.chapter { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; font: 300 .92rem var(--display); font-style: italic; letter-spacing: .005em; }
-.chapter::after { content: ""; width: 44px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 620ms var(--ease); }
+/* Kicker de capítulo — abre uma <section> inteira (numerado "01 / Nome" ou não, ex. "Resultados 2026"). v33: ganhou mais presença agora que não divide o mesmo estilo com rótulos de sub-bloco. */
+.chapter { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; font: 300 1.05rem var(--display); font-style: italic; letter-spacing: .005em; }
+.chapter::after { content: ""; width: 52px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 620ms var(--ease); }
 [data-reveal].is-visible > .chapter::after,
 [data-reveal].is-visible .chapter::after { transform: scaleX(1); }
+
+/* Eyebrow — rótulo de sub-bloco/card DENTRO de uma seção (não abre capítulo novo). v33: antes reaproveitava .chapter (mesmo peso visual de um kicker de seção); agora segue o vocabulário mono já usado em legendas/status do site (.partnership__cta-note, .status), menor e mais discreto por natureza — reforça que é uma anotação interna, não uma nova página do sumário. */
+.eyebrow { display: block; margin: 0 0 14px; color: var(--muted); font: 500 .68rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 .section h2, .partnership h2 { font-size: clamp(3rem, 5.4vw, 6rem); }
 .section h3 { margin: 0; font-family: var(--title); font-weight: 300; letter-spacing: -.03em; line-height: 1.05; }
 .lead { font-size: clamp(1.08rem, .55vw + .95rem, 1.45rem); line-height: 1.5; }
@@ -729,13 +733,13 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 /* Closing wall — full-bleed editorial statement, bookends the hero (v32: era split imagem+caixa preta, virou imagem+texto sobre scrim) */
 .partnership { position: relative; min-height: min(84svh, 820px); overflow: hidden; color: var(--accent-ink); }
 .partnership::before { border-color: color-mix(in srgb, var(--accent-ink) 45%, transparent); }
-.partnership__media { position: absolute; inset: 0; margin: 0; overflow: hidden; }
+.partnership__media { position: absolute; inset: 0; margin: 0; overflow: hidden; transform: scaleX(-1); }
 .partnership__media img { width: 100%; height: 100%; object-fit: cover; }
 .partnership__overlay {
   display: block;
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(9,9,9,.04) 0%, rgba(9,9,9,.1) 34%, rgba(9,9,9,.68) 72%, rgba(9,9,9,.9) 100%);
+  background: linear-gradient(90deg, rgba(9,9,9,.88) 0%, rgba(9,9,9,.62) 28%, rgba(9,9,9,.14) 58%, rgba(9,9,9,.02) 82%);
 }
 .partnership__content.shell {
   position: relative;
