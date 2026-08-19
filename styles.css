@@ -350,7 +350,7 @@ button { font: inherit; }
 }
 .section { padding-block: var(--section-space); }
 /* Kicker de capítulo — abre uma <section> inteira (numerado "01 / Nome" ou não, ex. "Resultados 2026"). v33: ganhou mais presença agora que não divide o mesmo estilo com rótulos de sub-bloco. */
-.chapter { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; font: 300 1.05rem var(--display); font-style: italic; letter-spacing: .005em; }
+.chapter { display: flex; align-items: center; gap: 14px; margin: 0 0 24px; font: 300 1.08rem var(--display); font-style: italic; letter-spacing: .005em; }
 .chapter::after { content: ""; width: 52px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 620ms var(--ease); }
 [data-reveal].is-visible > .chapter::after,
 [data-reveal].is-visible .chapter::after { transform: scaleX(1); }
@@ -733,8 +733,9 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 /* Closing wall — full-bleed editorial statement, bookends the hero (v32: era split imagem+caixa preta, virou imagem+texto sobre scrim) */
 .partnership { position: relative; min-height: min(84svh, 820px); overflow: hidden; color: var(--accent-ink); }
 .partnership::before { border-color: color-mix(in srgb, var(--accent-ink) 45%, transparent); }
-.partnership__media { position: absolute; inset: 0; margin: 0; overflow: hidden; transform: scaleX(-1); }
-.partnership__media img { width: 100%; height: 100%; object-fit: cover; }
+.partnership__media { position: absolute; inset: 0; height: 100%; margin: 0; overflow: hidden; transform: scaleX(-1); background: var(--ink); }
+.partnership__media picture { display: block; width: 100%; height: 100%; }
+.partnership__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .partnership__overlay {
   display: block;
   position: absolute;
@@ -1691,7 +1692,12 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 }
 .manifesto__copy-inner h2 { max-width: 11ch; font-size: clamp(2.4rem, 3.9vw, 4rem); }
 .manifesto__copy-inner .lead { max-width: 40ch; margin: 28px 0 0; }
-.manifesto__copy-inner p {
+/* v34: excluído .chapter — sem esse :not(), a especificidade de ".manifesto__copy-inner p"
+   (classe + tag) vencia a de ".chapter" (classe única) e vazava font-size/line-height de
+   parágrafo de corpo pro kicker "01 / A ArPa", fazendo-o renderizar diferente (maior no
+   desktop, menor no mobile) de todos os outros 9 kickers do site — bug real encontrado
+   ao investigar por que "01 / A ArPa" não seguia o mesmo estilo dos demais. */
+.manifesto__copy-inner p:not(.chapter) {
   max-width: 46ch;
   margin: 20px 0 0;
   font-family: var(--body);
@@ -1701,25 +1707,26 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   color: var(--ink);
 }
 .manifesto__copy-inner p.founding { margin-top: 24px; font-style: italic; color: var(--muted); }
+/* v34: citação da Camilla saiu de cima da foto (overlay + scrim) e virou um bloco próprio,
+   fracionando a coluna do banner em duas divs empilhadas — foto (flex:1, ocupa o espaço
+   que sobra) + citação (flex:0 0 auto, altura pelo próprio conteúdo, fundo --ink sólido).
+   Sem overlap, sem precisar de gradiente pra legibilidade. */
 .manifesto__banner {
   grid-column: 2;
   grid-row: 1;
-  position: relative;
-  z-index: 1;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   overflow: hidden;
+  background: var(--ink);
 }
-.manifesto__banner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 28%; }
+.manifesto__banner img { display: block; width: 100%; flex: 1 1 auto; min-height: 0; object-fit: cover; object-position: center 28%; }
 .manifesto__banner-quote {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
+  flex: 0 0 auto;
   display: grid;
   gap: 20px;
-  padding: clamp(32px, 4vw, 60px) clamp(24px, 3vw, 44px) clamp(36px, 4vw, 60px);
-  background: linear-gradient(180deg, rgba(9,9,9,0) 0%, rgba(9,9,9,.22) 30%, rgba(9,9,9,.82) 100%);
+  padding: clamp(32px, 4vw, 52px) clamp(24px, 3vw, 44px);
+  background: var(--ink);
   color: var(--accent-ink);
 }
 .manifesto__banner-quote p {
@@ -1746,6 +1753,8 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .manifesto { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
   .manifesto__copy { grid-column: 1; grid-row: 1; border-right: none; border-bottom: 1px solid var(--line); }
   .manifesto__copy-inner { width: 100%; }
-  .manifesto__banner { grid-column: 1; grid-row: 2; height: clamp(360px, 62svh, 520px); }
+  .manifesto__banner { grid-column: 1; grid-row: 2; }
+  .manifesto__banner img { flex: none; height: clamp(320px, 62svh, 460px); }
+  .manifesto__banner-quote { padding: clamp(28px, 7vw, 44px) var(--pad); }
   .manifesto > .wide-image { grid-row: 3; }
 }
