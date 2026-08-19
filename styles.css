@@ -730,33 +730,39 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
   .brand-case:hover .brand-case__content::after { transform: scaleX(1); }
 }
 
-/* Closing wall — full-bleed editorial statement, bookends the hero (v32: era split imagem+caixa preta, virou imagem+texto sobre scrim) */
-.partnership { position: relative; min-height: min(84svh, 820px); overflow: hidden; color: var(--accent-ink); }
+/* Closing wall — v35: era full-bleed imagem+scrim (v32/v33); virou split de duas colunas sem
+   sobreposição, mesma gramática do banner de "01/A ArPa" (v34) — painel de conteúdo sólido ao
+   lado da foto, cada um na própria coluna da grid, sem precisar de gradiente pra legibilidade. */
+.partnership {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 42%) minmax(420px, 58%);
+  grid-template-rows: min(84svh, 820px);
+  overflow: hidden;
+}
 .partnership::before { border-color: color-mix(in srgb, var(--accent-ink) 45%, transparent); }
-.partnership__media { position: absolute; inset: 0; height: 100%; margin: 0; overflow: hidden; transform: scaleX(-1); background: var(--ink); }
+.partnership__media { grid-column: 2; grid-row: 1; position: relative; margin: 0; overflow: hidden; background: var(--ink); }
 .partnership__media picture { display: block; width: 100%; height: 100%; }
 .partnership__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.partnership__overlay {
-  display: block;
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(9,9,9,.88) 0%, rgba(9,9,9,.62) 28%, rgba(9,9,9,.14) 58%, rgba(9,9,9,.02) 82%);
-}
 .partnership__content.shell {
+  grid-column: 1;
+  grid-row: 1;
   position: relative;
   z-index: 2;
   width: auto;
-  max-width: min(50vw, 760px);
+  max-width: none;
   min-height: 100%;
-  margin: 0 var(--pad);
-  padding: clamp(64px, 8vw, 96px) 0 clamp(52px, 6vw, 84px);
+  margin: 0;
+  padding: clamp(56px, 6vw, 84px) clamp(28px, 4.2vw, 72px) clamp(56px, 6vw, 84px) var(--pad);
   display: grid;
-  align-content: end;
+  align-content: center;
+  background: var(--ink);
+  color: var(--accent-ink);
 }
 .partnership__content .chapter::after { background: currentColor; }
-.partnership__content h2 { font-size: clamp(3.2rem, 5vw, 5.4rem); }
-.partnership__content > p:not(.chapter) { max-width: 44ch; margin: 26px 0 32px; color: color-mix(in srgb, var(--accent-ink) 88%, transparent); font-size: 1rem; }
-.partnership .button--light { width: min(100%, 360px); }
+.partnership__content h2 { font-size: clamp(2.4rem, 3.6vw, 4.2rem); }
+.partnership__content > p:not(.chapter) { max-width: 40ch; margin: 22px 0 30px; color: color-mix(in srgb, var(--accent-ink) 88%, transparent); font-size: 1rem; }
+.partnership .button--light { width: min(100%, 340px); }
 
 /* Footer matrix */
 .site-footer { background: var(--canvas); }
@@ -909,8 +915,11 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .brand-case,
   .brand-case:nth-child(1),
   .brand-case:nth-child(4) { grid-column: 1; }
-  .partnership { min-height: 78svh; }
-  .partnership__content.shell { max-width: none; margin: 0 var(--pad); padding: clamp(64px, 10vw, 92px) 0 clamp(48px, 8vw, 68px); }
+  /* v35: split de 2 colunas empilha — foto em cima (altura fixa), painel de conteúdo embaixo
+     (mesmo padrão do banner de "01/A ArPa" no mobile, ver .manifesto__banner). */
+  .partnership { grid-template-columns: 1fr; grid-template-rows: auto auto; min-height: 0; }
+  .partnership__media { grid-column: 1; grid-row: 1; height: clamp(320px, 56svh, 460px); }
+  .partnership__content.shell { grid-column: 1; grid-row: 2; max-width: none; margin: 0; padding: clamp(48px, 8vw, 68px) var(--pad); align-content: start; }
   .site-footer__top { grid-template-columns: repeat(2, 1fr); }
   .site-footer__top > *:nth-child(2) { border-right: 0; }
   .site-footer__top > *:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -1000,8 +1009,8 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .territories__list { margin-inline: -20px; }
   .territory-card { padding: 28px 20px; }
   .territory-card__body { margin-top: 24px; }
-  .partnership { min-height: 72svh; }
-  .partnership__content.shell { margin: 0 20px; padding: 56px 0 60px; }
+  .partnership__media { height: clamp(280px, 48svh, 380px); }
+  .partnership__content.shell { padding: 40px var(--pad) 48px; }
 
   body.motion-ready .motion-word { transform: translateY(.82em) rotate(1deg); transition-delay: calc(var(--word-index) * 34ms); }
   .motion-copy { transform: translateY(22px); }
@@ -1436,10 +1445,13 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 
 /* §08 Parcerias — CTA com mais intenção de clique */
 .partnership__cta-note { margin: 0 0 12px; color: color-mix(in srgb, var(--accent-ink) 82%, transparent); font: 500 .62rem var(--mono); letter-spacing: .16em; text-transform: uppercase; }
-.partnership .button--light { width: min(100%, 400px); min-height: 66px; padding-inline: 24px; font-size: 1.08rem; box-shadow: 6px 6px 0 var(--ink); }
+/* v35: sombra do botão era var(--ink) sólido — funcionava contra a foto/scrim antigos, mas
+   desaparece contra o painel de fundo var(--ink) sólido do novo layout em split. Trocada por
+   um tom claro translúcido, visível sobre o fundo escuro. */
+.partnership .button--light { width: min(100%, 400px); min-height: 66px; padding-inline: 24px; font-size: 1.08rem; box-shadow: 6px 6px 0 color-mix(in srgb, var(--accent-ink) 45%, transparent); }
 .partnership .button--light span { font-size: 1.2em; }
 @media (hover: hover) {
-  .partnership .button--light:hover { background: var(--ink); color: #fff; box-shadow: 2px 2px 0 rgba(0,0,0,.55); }
+  .partnership .button--light:hover { background: var(--accent-ink); color: var(--ink); box-shadow: 2px 2px 0 color-mix(in srgb, var(--accent-ink) 25%, transparent); }
   .partnership .button--light:hover span { animation: none; transform: translate(6px, -2px); }
 }
 @media (prefers-reduced-motion: no-preference) {
