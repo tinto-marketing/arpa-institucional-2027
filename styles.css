@@ -620,40 +620,57 @@ figcaption { font: 500 .62rem var(--mono); letter-spacing: .03em; text-transform
 .territories__image { margin-top: clamp(64px, 8vw, 120px); }
 .territories__image img { height: clamp(520px, 64vw, 860px); object-fit: cover; clip-path: polygon(0 8%, 12% 8%, 12% 0, 100% 0, 100% 92%, 88% 92%, 88% 100%, 0 100%); }
 .territories__image figcaption { margin-top: 12px; }
-/* Ajuste 18/08/2026 (feedback Camilla, reunião c/ Leo): cards de SP e BA
-   tinham tamanhos diferentes (5fr/7fr) e o card de Origem usava fundo
-   sólido preto (var(--accent), que nesta paleta = #111111) — ela pediu os
-   dois do mesmo tamanho e sem fundo preto. Os dois cards agora dividem a
-   grade meio a meio e usam o mesmo cartão sóbrio (fundo --canvas, borda
-   fina --line) já usado no resto do site (ver .press-tile); a distinção
-   Origem/Futuro fica só na cor de detalhe (status + numeral em vinho/preto
-   de destaque vs. cinza), não mais no preenchimento inteiro do card. */
-.territories__list { margin-top: 42px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(14px, 1.8vw, 28px); color: var(--ink); }
-.territory-card { position: relative; isolation: isolate; overflow: hidden; min-height: clamp(360px, 32vw, 470px); display: grid; grid-template-rows: auto 1fr; background: var(--canvas); color: var(--ink); box-shadow: 0 0 0 1px var(--line), 0 18px 44px rgba(9, 9, 9, .06); }
-.territory-card::after { content: ""; position: absolute; z-index: -1; inset: auto -16% -36% auto; width: 62%; aspect-ratio: 1; border: 1px solid currentColor; border-radius: 50%; opacity: .14; transform: translate3d(12%, 12%, 0); }
-.territory-card__top { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(22px, 2.5vw, 36px); border-bottom: 1px solid var(--line); }
+/* Ajuste 18/08/2026 (noite, 6ª rodada) — cards de Origem/Programação futura
+   redesenhados de novo, dessa vez trocando de família visual: o padrão
+   anterior (caixa com borda + sombra, selo pill, numeral gigante fantasma,
+   círculo decorativo/foto sangrando no canto) lia como card de produto
+   SaaS, na contramão do princípio "editorial, não corporativo" do design
+   system. Nova versão segue o MESMO padrão já usado em .proof__metrics
+   (Resultados/Alcance): uma faixa única emoldurada por regra superior e
+   inferior (border-block), sem caixa nem sombra em cada item, dividida por
+   uma única linha vertical entre as duas colunas (div + div → border-left).
+   Sem fotos (decisão do Vini) — só tipografia. */
+.territories__list {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-block: 1px solid var(--line);
+  color: var(--ink);
+}
+.territory-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(32px, 4vw, 56px) clamp(24px, 3.2vw, 52px);
+  transition: background-color 220ms var(--ease-snappy), transform 260ms var(--ease-snappy);
+}
+.territory-card + .territory-card { border-left: 1px solid var(--line); }
+@media (hover: hover) {
+  .territory-card:hover { background: var(--wash); transform: translateY(-4px); }
+}
+.territory-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
 .status {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   margin: 0;
-  padding: 6px 14px 7px;
-  border-radius: 999px;
-  font: 500 .68rem/1 var(--mono);
+  font: 500 .72rem/1 var(--mono);
   letter-spacing: .08em;
   text-transform: uppercase;
+  color: var(--muted);
 }
-.status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-.status--current { background: var(--accent); color: var(--accent-ink); }
-.status--future { background: transparent; border: 1px solid var(--line); color: var(--muted); }
-.territory-card__code { color: var(--accent); font: 300 clamp(4.5rem, 8vw, 8.8rem)/.68 var(--display); letter-spacing: -.07em; opacity: .16; }
+.status::before { content: ""; width: 7px; height: 7px; flex: none; border-radius: 50%; }
+.status--current { color: var(--ink); }
+.status--current::before { background: var(--accent); }
+.status--future::before { background: transparent; border: 1px solid var(--muted); }
+.territory-card__code { color: var(--accent); font: 300 clamp(1.7rem, 2.1vw, 2.35rem)/1 var(--display); letter-spacing: -.01em; }
 .territory-card--future .territory-card__code { color: var(--muted); }
-.territory-card__body { align-self: end; padding: clamp(26px, 3.5vw, 52px); }
+.territory-card__body { flex: 1 1 auto; display: flex; flex-direction: column; margin-top: clamp(28px, 3.6vw, 48px); }
+.territories__list h3 { max-width: 11ch; font-size: clamp(2.6rem, 4.4vw, 4.4rem); }
 .territory-card__meta { margin: 16px 0 0; color: var(--accent); font: 600 .8rem var(--mono); letter-spacing: .06em; text-transform: uppercase; }
 .territory-card--future .territory-card__meta { color: var(--ink); }
-.territories__list h3 { max-width: 11ch; font-size: clamp(2.6rem, 4.4vw, 4.4rem); }
 .territory-card__venue { max-width: 34ch; margin: 5px 0 0; color: var(--muted); font-size: clamp(.86rem, .95vw, 1rem); line-height: 1.35; }
-.territory-card__description { display: block; max-width: 48ch; margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; opacity: 1; }
+.territory-card__description { display: block; max-width: 42ch; margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
 
 /* Brand partnerships — real activations, treated as documentary evidence */
 .brand-cases { background: var(--canvas); }
@@ -837,7 +854,7 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .sector-row.is-open .sector-row__detail { max-height: 460px; }
   .year-round__image { margin-top: 24px; }
   .territories__list { grid-template-columns: 1fr; }
-  .territories__list { gap: 14px; }
+  .territory-card + .territory-card { border-left: 0; border-top: 1px solid var(--line); }
   .brand-cases__grid { grid-template-columns: 1fr; }
   .brand-case,
   .brand-case:nth-child(1),
@@ -932,9 +949,8 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   .territories__image img { min-height: 480px; }
   .territories__image figcaption { padding-inline: 20px; }
   .territories__list { margin-inline: -20px; }
-  .territory-card { min-height: 390px; box-shadow: 0 0 0 1px var(--line); }
-  .territory-card__top { padding: 24px 20px; }
-  .territory-card__body { padding: 32px 20px; }
+  .territory-card { padding: 28px 20px; }
+  .territory-card__body { margin-top: 24px; }
   .partnership { padding-left: 0; }
   .partnership__content.shell { padding: 64px 20px 72px; }
   .partnership__media { height: 48svh; min-height: 360px; }
@@ -1386,16 +1402,6 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 /* ============================================================
    Retorno da Camilla (13/08/2026) — ajustes de encerramento
    ============================================================ */
-
-/* Buenos Aires — foto real dentro do semi-círculo decorativo do card
-   (antes era apenas um contorno vazio, igual no card de São Paulo) */
-.territory-card__orb {
-  position: absolute; z-index: -1; inset: auto -16% -36% auto;
-  width: 62%; aspect-ratio: 1; border-radius: 50%; overflow: hidden;
-  background: url("assets/2027/territories-ba-orb-640.webp") center/cover no-repeat;
-  opacity: .92; transform: translate3d(12%, 12%, 0);
-}
-.territory-card--future::after { display: none; }
 
 /* Presença editorial — cards retos, sem colagem/rotação/fita adesiva.
    A estética "mural" destoava do restante da apresentação (feedback da
