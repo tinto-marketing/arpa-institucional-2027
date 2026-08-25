@@ -495,6 +495,125 @@ window.addEventListener("resize", () => {
   });
 })();
 
+/* Presenca editorial — carrossel automatico no mobile (v36, "vitrine com espiada").
+   So entra em acao no breakpoint ≤760px (mesmo em que .press-mosaic vira flex/scroll-snap
+   no CSS); acima disso o nav fica display:none e este bloco nao faz nada visivel. */
+(function () {
+  "use strict";
+  var mosaic = document.querySelector("[data-press-mosaic]");
+  var nav = document.querySelector("[data-press-nav]");
+  if (!mosaic || !nav) return;
+  var tiles = [].slice.call(mosaic.querySelectorAll(".press-tile"));
+  if (!tiles.length) return;
+
+  var countEl = nav.querySelector("[data-press-count]");
+  var dashesWrap = nav.querySelector("[data-press-dashes]");
+  var dashes = tiles.map(function () {
+    var d = document.createElement("i");
+    dashesWrap.appendChild(d);
+    return d;
+  });
+
+  var mqMobile = window.matchMedia("(max-width: 760px)");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var AUTOPLAY_MS = 4000;
+  var RESUME_DELAY_MS = 1600;
+
+  var index = 0;
+  var timer = null;
+  var userPaused = false;
+  var holdOpen = false;
+  var scrollTimer = null;
+
+  function pad2(n) { return n < 10 ? "0" + n : String(n); }
+
+  function updateUI() {
+    if (countEl) countEl.textContent = pad2(index + 1) + "/" + tiles.length;
+    dashes.forEach(function (d, i) { d.classList.toggle("is-active", i === index); });
+  }
+
+  function closestIndex() {
+    var mRect = mosaic.getBoundingClientRect();
+    var mid = mRect.left + mRect.width / 2;
+    var closest = 0, min = Infinity;
+    tiles.forEach(function (t, i) {
+      var r = t.getBoundingClientRect();
+      var c = r.left + r.width / 2;
+      var d = Math.abs(c - mid);
+      if (d < min) { min = d; closest = i; }
+    });
+    return closest;
+  }
+
+  function goTo(i, smooth) {
+    index = (i + tiles.length) % tiles.length;
+    var tile = tiles[index];
+    if (tile) {
+      var mRect = mosaic.getBoundingClientRect();
+      var tRect = tile.getBoundingClientRect();
+      var padStart = parseFloat(getComputedStyle(mosaic).paddingLeft) || 0;
+      var target = mosaic.scrollLeft + (tRect.left - mRect.left) - padStart;
+      mosaic.scrollTo({ left: target, behavior: smooth ? "smooth" : "auto" });
+    }
+    updateUI();
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  function start() {
+    stop();
+    if (reduceMotion || !mqMobile.matches || userPaused || holdOpen) return;
+    timer = setInterval(function () { goTo(index + 1, true); }, AUTOPLAY_MS);
+  }
+
+  mosaic.addEventListener("scroll", function () {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      index = closestIndex();
+      updateUI();
+    }, 120);
+  }, { passive: true });
+
+  mosaic.addEventListener("touchstart", function () { stop(); }, { passive: true });
+  mosaic.addEventListener("touchend", function () {
+    clearTimeout(scrollTimer);
+    setTimeout(function () { if (!userPaused && !holdOpen) start(); }, RESUME_DELAY_MS);
+  }, { passive: true });
+
+  /* acompanha o accordion existente (bloco acima): quando um card abre, pausa
+     o avanco automatico enquanto ele estiver aberto; ao fechar, retoma. */
+  tiles.forEach(function (t) {
+    t.addEventListener("click", function () {
+      holdOpen = t.classList.contains("is-open");
+      if (holdOpen) stop(); else start();
+    });
+  });
+
+  if (typeof mqMobile.addEventListener === "function") {
+    mqMobile.addEventListener("change", function () { updateUI(); start(); });
+  } else if (typeof mqMobile.addListener === "function") {
+    mqMobile.addListener(function () { updateUI(); start(); });
+  }
+
+  var io = null;
+  if ("IntersectionObserver" in window) {
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { if (!userPaused && !holdOpen) start(); }
+        else { stop(); }
+      });
+    }, { threshold: 0.2 });
+    io.observe(mosaic);
+  } else {
+    start();
+  }
+
+  updateUI();
+})();
+
 /* ============================================================
    Hero Materialização (v15) — cascata das barras + frase word-by-word
    ============================================================ */
