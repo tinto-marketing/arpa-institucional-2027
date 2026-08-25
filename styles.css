@@ -1506,28 +1506,6 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
 .press-tile__co,
 .press-tile__cta { color: var(--muted); }
 
-/* v37: print de materia real (Arte Que Acontece) — some junto ao card, so aparece
-   quando o card e aberto. Nao muda o card fechado; so 3 dos 12 tiles tem essa imagem
-   (os unicos com link/fonte confirmados — ver CHANGELOG v37). */
-.press-tile__print {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  margin-top: 0;
-  border: 1px solid rgba(232, 225, 213, 0);
-  transition: max-height .5s var(--ease), opacity .4s var(--ease), margin .5s var(--ease), border-color .4s var(--ease);
-}
-.press-tile__print img { display: block; width: 100%; height: auto; }
-.press-tile.is-open .press-tile__print {
-  max-height: 220px;
-  opacity: 1;
-  margin-top: 4px;
-  border-color: rgba(232, 225, 213, .3);
-}
-@media (prefers-reduced-motion: reduce) {
-  .press-tile__print { transition: none; }
-}
-
 @media (hover: hover) {
   .press-tile:hover { background: var(--accent); color: var(--accent-ink); }
   .press-tile:hover .press-tile__logo { filter: brightness(0) invert(1); }
@@ -1804,7 +1782,7 @@ body.motion-ready .motion-text.is-text-visible .motion-word { opacity: 1; filter
   overflow: hidden;
   background: var(--ink);
 }
-.manifesto__banner img { display: block; width: 100%; flex: 1 1 auto; min-height: 0; object-fit: cover; object-position: center 28%; }
+.manifesto__banner img { display: block; width: 100%; flex: 1 1 auto; min-height: 0; object-fit: cover; object-position: center 65%; }
 .manifesto__banner-quote {
   flex: 0 0 auto;
   display: grid;
