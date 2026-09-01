@@ -472,28 +472,6 @@ window.addEventListener("resize", () => {
   onScroll();
 });
 
-/* Presença editorial — cards que expandem no lugar (acordeão, um aberto por vez) */
-(function () {
-  "use strict";
-  var tiles = [].slice.call(document.querySelectorAll(".press-tile"));
-  if (!tiles.length) return;
-  function setOpen(tile, open) {
-    tile.classList.toggle("is-open", open);
-    tile.setAttribute("aria-expanded", String(open));
-    var lbl = tile.querySelector(".press-tile__cta-label");
-    if (lbl) lbl.textContent = open ? "Fechar" : "Ler";
-  }
-  tiles.forEach(function (t) {
-    t.addEventListener("click", function () {
-      var willOpen = !t.classList.contains("is-open");
-      tiles.forEach(function (o) { if (o !== t) setOpen(o, false); });
-      setOpen(t, willOpen);
-    });
-  });
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape") tiles.forEach(function (o) { setOpen(o, false); });
-  });
-})();
 
 /* Presenca editorial — carrossel automatico no mobile (v36, "vitrine com espiada").
    So entra em acao no breakpoint ≤760px (mesmo em que .press-mosaic vira flex/scroll-snap
@@ -583,14 +561,6 @@ window.addEventListener("resize", () => {
     setTimeout(function () { if (!userPaused && !holdOpen) start(); }, RESUME_DELAY_MS);
   }, { passive: true });
 
-  /* acompanha o accordion existente (bloco acima): quando um card abre, pausa
-     o avanco automatico enquanto ele estiver aberto; ao fechar, retoma. */
-  tiles.forEach(function (t) {
-    t.addEventListener("click", function () {
-      holdOpen = t.classList.contains("is-open");
-      if (holdOpen) stop(); else start();
-    });
-  });
 
   if (typeof mqMobile.addEventListener === "function") {
     mqMobile.addEventListener("change", function () { updateUI(); start(); });
